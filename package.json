@@ -1,0 +1,62 @@
+{
+  "name": "glance-dom-selector",
+  "version": "0.10.0",
+  "description": "Glance DOM selector library",
+  "main": "javascript/lib/selector.js",
+  "scripts": {
+    "docs:clean": "rm -rf docs/_book",
+    "docs:prepare": "cd docs && gitbook install",
+    "docs:watch": "npm run docs:prepare && cd docs && gitbook serve",
+    "docs:build": "npm run docs:prepare && cd docs && rm -rf _book && gitbook build",
+    "build": "rm -rf lib && node_modules/.bin/pegjs -o javascript/src/parser/parser.js javascript/src/parser/glance.pegjs && babel javascript/src -d javascript/lib",
+    "test": "echo 'Please test using wallaby'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quasimatic/glance-dom-selector.git"
+  },
+  "keywords": [
+    "glance",
+    "automation",
+    "browser",
+    "testing",
+    "test"
+  ],
+  "author": "Dan Gilkerson <dangilkerson@quasimatic.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/quasimatic/glance-dom-selector/issues"
+  },
+  "homepage": "https://github.com/quasimatic/glance-dom-selector",
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.4.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.23.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babelify": "^7.3.0",
+    "chai": "^3.5.0",
+    "eslint": "^3.17.0",
+    "gitbook-cli": "^2.3.0",
+    "mocha": "^3.2.0",
+    "pegjs": "^0.10.0",
+    "phantomjs-polyfill": "0.0.2",
+    "phantomjs2-ext": "^0.2.2",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "wallaby-webpack": "0.0.34",
+    "webpack": "^2.2.1"
+  },
+  "babel": {
+    "ignore": [
+      "javascript/src/**/*-spec.js"
+    ],
+    "presets": [
+      "es2015",
+      "stage-0",
+      "react"
+    ]
+  }
+}
