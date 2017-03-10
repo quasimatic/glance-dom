@@ -1,75 +1,75 @@
-import dom from "../../../test/dom"
+import dom from '../../../test/dom';
 import extension from './value';
 
-describe("Locator: Value Match", () => {
-    let findByValue = extension.options["value"].locate;
+describe('Locator: Value Match', () => {
+    let findByValue = extension.options['value'].locate;
 
     beforeEach(() => {
-        document.body.innerHTML = "";
+        document.body.innerHTML = '';
     });
 
-    it("should find in value", () => {
+    it('should find in value', () => {
         dom.render(<input value="enter name" id="subject"/>);
 
         findByValue({
-            target: {label: "enter name"},
+            label: 'enter name',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 
-    it("should find in value case insensitive", () => {
+    it('should find in value case insensitive', () => {
         dom.render(<input value="eNter namE" id="subject"/>);
 
         findByValue({
-            target: {label: "enteR naMe"},
+            label: 'enteR naMe',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 
-    it("should find by contains", () => {
+    it('should find by contains', () => {
         dom.render(<input id="subject" value="this name is unique"/>);
 
         findByValue({
-            target: {label: "name"},
+            label: 'name',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 
-    it("should find dynamically set value", () => {
+    it('should find dynamically set value', () => {
         dom.render(<input id="subject"/>);
 
-        dom.get("subject").value = "name";
+        dom.get('subject').value = 'name';
         findByValue({
-            target: {label: "name"},
+            label: 'name',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 
-    it("should find for button", () => {
+    it('should find for button', () => {
         dom.render(<button value="name" id="subject"></button>);
 
         findByValue({
-            target: {label: "name"},
+            label: 'name',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 
-    it("should find for option", () => {
+    it('should find for option', () => {
         dom.render(<option value="name" id="subject"></option>);
 
         findByValue({
-            target: {label: "name"},
+            label: 'name',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 
-    it("should find for param", () => {
+    it('should find for param', () => {
         dom.render(<param value="name" id="subject"/>);
 
         findByValue({
-            target: {label: "name"},
+            label: 'name',
             containerElements: [document.body]
-        }).should.deep.equal([dom.get("subject")]);
+        }).should.deep.equal([dom.get('subject')]);
     });
 });
 

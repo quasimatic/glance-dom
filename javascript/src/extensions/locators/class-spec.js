@@ -12,7 +12,7 @@ describe("Locator: Class", () => {
         dom.render(<div className="class-name" id="subject">text</div>);
 
         findByClass({
-            target: {label: "class-name"},
+            label: "class-name",
             containerElements: [document.body]
         }).should.deep.equal([dom.get("subject")]);
     });
@@ -20,6 +20,6 @@ describe("Locator: Class", () => {
     it("should not find by class name", () => {
         dom.render(<div className="class-name">text</div>);
 
-        findByClass({target: {label: "missing-class"}, containerElements: [document.body]}).should.deep.equal([]);
+        findByClass({label: "missing-class", containerElements: [document.body]}).should.deep.equal([]);
     });
 });

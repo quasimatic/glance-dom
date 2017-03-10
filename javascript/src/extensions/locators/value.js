@@ -7,8 +7,7 @@ import log from "../../log"
 export default {
     options: {
         "value": {
-            locate: function ({target, containerElements}) {
-                let {label} = target;
+            locate: function ({label, containerElements}) {
                 log.debug("Searching in value:", label);
 
                 return containerElements.reduce((result, scope) => {

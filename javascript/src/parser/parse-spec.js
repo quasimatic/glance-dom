@@ -1,4 +1,4 @@
-import parser from './parser';
+import parser from './index';
 
 describe("Parsing", function () {
     it("should get label", function () {
