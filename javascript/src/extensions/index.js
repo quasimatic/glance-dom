@@ -7,9 +7,9 @@ export default class Extensions {
         this.extensions = this.extensions.concat(extension);
     }
 
-    getLocatorForLabel(name) {
+    getLocatorForLabel(text) {
         let labels = Extensions.labels(this.extensions);
-        let label = labels[name];
+        let label = labels[text];
         return label ? this.getLocator(label.locate || label) : () => [];
     }
 
@@ -20,8 +20,9 @@ export default class Extensions {
         return option ? this.getLocator(option.locate) : this.getDynamicLocator(name, label);
     }
 
-    getDynamicLocator(name, label) {
-        let catchAlls = this.extensions.filter(e => e.locator ? e.locator.check({label, option:name}) : false).map(e => e.locator.locate);
+    getDynamicLocator(option, label) {
+        let catchAlls = this.extensions.filter(e => e.locator ? e.locator.check({label, option}) : false)
+            .map(e => e.locator.locate);
 
         if (catchAlls.length > 0) {
             return (data) => catchAlls.reduce((result, locate) => result.concat(locate(data)), []);
@@ -40,6 +41,26 @@ export default class Extensions {
         }
 
         return () => [];
+    }
+
+    getFilterForOption(name, label) {
+        let options = Extensions.options(this.extensions);
+        let option = options[name];
+
+        if (option)
+            return typeof(option) === 'function' ? option : option.filter;
+        else
+            return this.getDynamicFilter(name, label);
+    }
+
+    getDynamicFilter(option, label) {
+        let catchAlls = this.extensions.filter(e => e.filter ? e.filter.check({label, option}) : false)
+            .map(e => e.filter.filter);
+
+        console.log('dynamic filter', catchAlls)
+        if (catchAlls.length > 0) {
+            return (data) => catchAlls.reduce((result, filter) => result.concat(filter(data)), []);
+        }
     }
 
     getExtensions() {

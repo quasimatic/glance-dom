@@ -28,10 +28,7 @@ describe("Shortest scope and container path", () => {
 
         return filter({
             elements: dom.get('target-1', 'target-2'),
-            scopeElements: dom.get('scope-1', 'scope-2'),
-            target: {
-                scopeIndex: 1
-            }
+            scopeElements: dom.get('scope-1', 'scope-2')
         }).should.deep.equal(dom.get('target-1', 'target-2'));
     });
 
@@ -57,10 +54,7 @@ describe("Shortest scope and container path", () => {
 
         return filter({
             elements: dom.get('item-1', 'target'),
-            scopeElements: dom.get('scope-1', 'scope-2'),
-            target: {
-                scopeIndex: 1
-            }
+            scopeElements: dom.get('scope-1', 'scope-2')
         }).should.deep.equal([dom.get('target')]);
     });
 
@@ -81,10 +75,7 @@ describe("Shortest scope and container path", () => {
 
         return filter({
             elements: dom.get('target-1', 'target-2'),
-            scopeElements: dom.get('scope-1', 'scope-2'),
-            target: {
-                scopeIndex: 1
-            }
+            scopeElements: dom.get('scope-1', 'scope-2')
         }).should.deep.equal(dom.get('target-1', 'target-2'));
     });
 
@@ -102,10 +93,7 @@ describe("Shortest scope and container path", () => {
 
         return filter({
             elements: dom.get("target-1", "target-2"),
-            scopeElements: [dom.get("scope-1")],
-            target: {
-                scopeIndex: 1
-            }
+            scopeElements: [dom.get("scope-1")]
         }).should.deep.equal(dom.get("target-1", "target-2"));
     });
 
@@ -125,10 +113,7 @@ describe("Shortest scope and container path", () => {
 
         return filter({
             elements: dom.get("target", "item-2"),
-            scopeElements: [dom.get("scope-1")],
-            target: {
-                scopeIndex: 1
-            }
+            scopeElements: [dom.get("scope-1")]
         }).should.deep.equal([dom.get("target")]);
     });
 });

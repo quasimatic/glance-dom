@@ -51,7 +51,7 @@ export default class FilterPreprocessor {
             possibleOptions = defaultOptions.concat(possibleOptions);
 
         possibleOptions.forEach(name => {
-            if (options[name] && (typeof(options[name]) == 'function' || options[name].filter)) {
+            if (options[name] && (typeof(options[name]) === 'function' || options[name].filter)) {
                 validOptions = validOptions.concat(name);
             }
             else {

@@ -1,12 +1,11 @@
-import log from "../../log";
+import log from '../../log';
 
 export default {
     options: {
-        "shortest-path": {
-            filter: function closestdom({elements, scopeElements, target}) {
-                log.debug("Filtering for shortest scope and target");
+        'shortest-path': {
+            filter: function closestdom({elements, scopeElements = [], target}) {
+                log.debug('Filtering for shortest scope and target');
 
-                let {scopeIndex} = target;
                 let elementsForDistance = [];
                 let distanceToScopeLookup = {};
 
@@ -23,8 +22,7 @@ export default {
                     return distanceToScopeLookup[i];
                 }
 
-
-                if (scopeIndex === 0) return elements;
+                if (scopeElements.length === 0) return elements;
 
                 scopeElements.forEach(function (v) {
                     let p = v;

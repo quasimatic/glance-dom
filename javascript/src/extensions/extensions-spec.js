@@ -12,4 +12,15 @@ describe('Extensions', () => {
 
         extensions.getLocatorForOption('option-1', {label: 'subject', options: ['option-1']}).should.be.a('function');
     });
+
+    it('should get filter for option', () => {
+        let extensions = new Extensions([{
+            options: {
+                'option-1': () => {
+                }
+            }
+        }]);
+
+        extensions.getFilterForOption('option-1', {label: 'subject', options: ['option-1']}).should.be.a('function');
+    });
 });
