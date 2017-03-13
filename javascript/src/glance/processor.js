@@ -11,28 +11,41 @@ function dispatch({command, extensions, result}) {
                 result.scopeElements = result.subjectElements;
             }
 
+            result.targetElements = [];
             result.subjectElements = [];
+            break;
+
+        case 'intersect':
+            if (result.subjectElements.length > 0) {
+                let subjectLookup = new Set(result.subjectElements);
+                result.subjectElements = result.targetElements.filter(e => subjectLookup.has(e));
+            }
+            else {
+                result.subjectElements = result.targetElements;
+            }
+
+            result.targetElements = [];
             break;
 
         case 'locate':
             let locator = extensions.getLocatorForOption(command.option, command.label);
-            result.subjectElements = result.subjectElements.concat(locator({
+            result.targetElements = result.targetElements.concat(locator({
                 label: command.label,
                 option: command.option,
                 extensions,
                 containerElements: result.containerElements
             }));
 
-            result.subjectElements = [...new Set(result.subjectElements)];
+            result.targetElements = [...new Set(result.targetElements)];
             break;
 
         case 'filter':
             let filter = extensions.getFilterForOption(command.option);
-            result.subjectElements = filter({
+            result.targetElements = filter({
                 label: command.label,
                 option: command.option,
                 extensions,
-                elements: result.subjectElements,
+                elements: result.targetElements,
                 scopeElements: result.scopeElements
             });
             break;

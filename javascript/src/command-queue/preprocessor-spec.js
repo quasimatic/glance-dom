@@ -70,4 +70,43 @@ describe('Preprocessor', () => {
             {command: 'intersect'}
         ]);
     });
+
+    it('should queue up for scope and subject', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions});
+        let commands = preprocessor.create('subject ^ intersect');
+
+        commands.should.deep.equal([
+            {command: 'containers'},
+            {command: 'locate', option: 'custom-label', label: 'subject'},
+            {command: 'locate', option: 'contains-text', label: 'subject'},
+            {command: 'locate', option: 'value', label: 'subject'},
+            {command: 'locate', option: 'attribute-placeholder', label: 'subject'},
+            {command: 'locate', option: 'attribute-name', label: 'subject'},
+            {command: 'locate', option: 'attribute-id', label: 'subject'},
+            {command: 'locate', option: 'class', label: 'subject'},
+            {command: 'locate', option: 'attribute-alt', label: 'subject'},
+            {command: 'locate', option: 'attribute-type', label: 'subject'},
+            {command: 'locate', option: 'node-type', label: 'subject'},
+            {command: 'filter', option: 'visible', label: 'subject'},
+            {command: 'filter', option: 'leaf-node-target', label: 'subject'},
+            {command: 'filter', option: 'input-after', label: 'subject'},
+            {command: 'filter', option: 'shortest-path', label: 'subject'},
+            {command: 'intersect'},
+            {command: 'locate', option: 'custom-label', label: 'intersect'},
+            {command: 'locate', option: 'contains-text', label: 'intersect'},
+            {command: 'locate', option: 'value', label: 'intersect'},
+            {command: 'locate', option: 'attribute-placeholder', label: 'intersect'},
+            {command: 'locate', option: 'attribute-name', label: 'intersect'},
+            {command: 'locate', option: 'attribute-id', label: 'intersect'},
+            {command: 'locate', option: 'class', label: 'intersect'},
+            {command: 'locate', option: 'attribute-alt', label: 'intersect'},
+            {command: 'locate', option: 'attribute-type', label: 'intersect'},
+            {command: 'locate', option: 'node-type', label: 'intersect'},
+            {command: 'filter', option: 'visible', label: 'intersect'},
+            {command: 'filter', option: 'leaf-node-target', label: 'intersect'},
+            {command: 'filter', option: 'input-after', label: 'intersect'},
+            {command: 'filter', option: 'shortest-path', label: 'intersect'},
+            {command: 'intersect'},
+        ]);
+    });
 });

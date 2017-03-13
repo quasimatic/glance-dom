@@ -10,12 +10,14 @@ export default class Preprocessor {
     }
 
     create(reference) {
-        let data = parser.parse(reference);
-        return data.reduce((result, scopes) => result.concat(this.processScopes(scopes)), []);
+        let scopes = parser.parse(reference);
+        return scopes.reduce((result, scope) => result.concat({command: 'containers'}, this.processIntersect(scope)), []);
     }
 
-    processScopes(scopes) {
-        return scopes.reduce((result, target) => result.concat({command: 'containers'}).concat(this.locators(target)).concat(this.filters(target)), []).concat({command: 'intersect'});
+    processIntersect(intersects) {
+        return intersects.reduce((result, target) => {
+            return result.concat(this.locators(target), this.filters(target), {command: 'intersect'});
+        }, []);
     }
 
     locators(target) {
