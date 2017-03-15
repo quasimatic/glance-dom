@@ -9,13 +9,13 @@ describe('Locator: Exact Match', () => {
 
         findByNodeType({
             label: 'p',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
     it('should not find by node type', () => {
         dom.render(<span></span>);
 
-        findByNodeType({label: 'p', containerElements: [document.body]}).should.deep.equal([]);
+        findByNodeType({label: 'p', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 });

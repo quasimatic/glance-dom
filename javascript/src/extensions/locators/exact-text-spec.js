@@ -9,14 +9,14 @@ describe('Locator: Exact Match', () => {
 
         findExactText({
             label: 'exact text',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('target')]);
     });
 
     it('should not find containing match', () => {
         dom.render(<div>not so exact text here</div>);
 
-        findExactText({label: 'exact text', containerElements: [document.body]}).should.deep.equal([]);
+        findExactText({label: 'exact text', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 
     it('should find more than one', () => {
@@ -27,7 +27,7 @@ describe('Locator: Exact Match', () => {
 
         findExactText({
             label: 'exact text',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal(dom.get('target-1', 'target-2'));
     });
 });

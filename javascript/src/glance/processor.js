@@ -61,7 +61,7 @@ export default function ({commands = [], extensions, glanceSelector}) {
         extensions,
         glanceSelector,
         result
-    }), {containerElements: [document.body]});
+    }), {containerElements: [document.documentElement]});
 
     return result.subjectElements.length === 1 ? result.subjectElements[0] : result.subjectElements;
 };

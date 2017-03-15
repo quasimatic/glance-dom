@@ -9,7 +9,7 @@ describe('Locator: Exact Match', () => {
 
         findByCSS({
             label: '.class-name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -38,6 +38,6 @@ describe('Locator: Exact Match', () => {
     it('should not find by css selector', () => {
         dom.render(<div className="class-name">text</div>);
 
-        findByCSS({label: '.missing-class', containerElements: [document.body]}).should.deep.equal([]);
+        findByCSS({label: '.missing-class', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 });

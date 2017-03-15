@@ -9,7 +9,7 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'contains text',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -18,7 +18,7 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'contains text',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -32,14 +32,14 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'contains text',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal(dom.get('subject-1', 'subject-2'));
     });
 
     it('should not find missing text', () => {
         dom.render(<div>contains text</div>);
 
-        findContainsText({label: 'missing text', containerElements: [document.body]}).should.deep.equal([]);
+        findContainsText({label: 'missing text', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 
     it('should find by case insensitive', () => {
@@ -47,7 +47,7 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'Contains teXt',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -56,7 +56,7 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'text node',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -65,7 +65,7 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'bold and italicized',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -78,7 +78,7 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'some new',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -88,26 +88,26 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({
             label: 'something extra',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
     it('should not search script tags', () => {
         dom.render(<script>console.log('stuff')</script>);
 
-        findContainsText({label: 'stuff', containerElements: [document.body]}).should.deep.equal([]);
+        findContainsText({label: 'stuff', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 
     it('should not search noscript tags', () => {
         dom.render(<noscript>console.log('stuff')</noscript>);
 
-        findContainsText({label: 'stuff', containerElements: [document.body]}).should.deep.equal([]);
+        findContainsText({label: 'stuff', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 
     it('should not search style tags', () => {
         dom.render(<style>{ 'color: red;' }</style>);
 
-        findContainsText({label: 'red', containerElements: [document.body]}).should.deep.equal([]);
+        findContainsText({label: 'red', containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 
     it('should only find inner item', () => {
@@ -119,6 +119,6 @@ describe('Locator: Contains Match', () => {
 
             <div>subject</div>
         </div>)
-        findContainsText({label: 'scope', containerElements: [document.body]}).should.deep.equal([dom.get('scope')]);
+        findContainsText({label: 'scope', containerElements: [document.documentElement]}).should.deep.equal([dom.get('scope')]);
     })
 });

@@ -9,7 +9,7 @@ describe('Locator: Value Match', () => {
 
         findByValue({
             label: 'enter name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -18,7 +18,7 @@ describe('Locator: Value Match', () => {
 
         findByValue({
             label: 'enteR naMe',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -27,7 +27,7 @@ describe('Locator: Value Match', () => {
 
         findByValue({
             label: 'name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -37,7 +37,7 @@ describe('Locator: Value Match', () => {
         dom.get('subject').value = 'name';
         findByValue({
             label: 'name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -46,7 +46,7 @@ describe('Locator: Value Match', () => {
 
         findByValue({
             label: 'name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -55,7 +55,7 @@ describe('Locator: Value Match', () => {
 
         findByValue({
             label: 'name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -64,7 +64,7 @@ describe('Locator: Value Match', () => {
 
         findByValue({
             label: 'name',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 });

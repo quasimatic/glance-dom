@@ -9,7 +9,7 @@ describe('Locator: Search in attributes', () => {
         locate({
             label: 'image-name',
             option: 'attribute-alt',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -18,7 +18,7 @@ describe('Locator: Search in attributes', () => {
         locate({
             label: 'suBJect',
             option: 'attribute-id',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -27,7 +27,7 @@ describe('Locator: Search in attributes', () => {
         locate({
             label: 'first',
             option: 'attribute-placeholder',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get('subject')]);
     });
 
@@ -36,7 +36,7 @@ describe('Locator: Search in attributes', () => {
         locate({
             label: 'missing-id',
             option: 'attribute-id',
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([]);
     });
 });

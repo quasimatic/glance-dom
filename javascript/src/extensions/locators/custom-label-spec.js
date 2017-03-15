@@ -10,7 +10,7 @@ describe('Locator: Custom Label', () => {
 
         customLabel({
             label: 'custom',
-            containerElements: [document.body],
+            containerElements: [document.documentElement],
             extensions: new Extensions([
                 {
                     labels: {

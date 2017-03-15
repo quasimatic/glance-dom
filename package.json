@@ -2,7 +2,7 @@
   "name": "glance-dom-selector",
   "version": "0.10.0",
   "description": "Glance DOM selector library",
-  "main": "javascript/lib/selector.js",
+  "main": "javascript/lib/glance/index.js",
   "scripts": {
     "docs:clean": "rm -rf docs/_book",
     "docs:prepare": "cd docs && gitbook install",

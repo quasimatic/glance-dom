@@ -9,13 +9,13 @@ describe("Locator: Class", () => {
 
         findByClass({
             label: "class-name",
-            containerElements: [document.body]
+            containerElements: [document.documentElement]
         }).should.deep.equal([dom.get("subject")]);
     });
 
     it("should not find by class name", () => {
         dom.render(<div className="class-name">text</div>);
 
-        findByClass({label: "missing-class", containerElements: [document.body]}).should.deep.equal([]);
+        findByClass({label: "missing-class", containerElements: [document.documentElement]}).should.deep.equal([]);
     });
 });
