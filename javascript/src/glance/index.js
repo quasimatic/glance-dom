@@ -3,9 +3,10 @@ import Extensions from '../extensions';
 import defaultExtensions from '../extensions/default';
 import defaultOptions from '../default-options';
 import processCommands from './processor';
+import requiredParameter from '../utils/required-parameter';
 
 function createGlanceSelector() {
-    let selector = function (reference) {
+    let selector = function (reference = requiredParameter('Selector required')) {
         let extensions = new Extensions(defaultExtensions);
         let preprocessor = new Preprocessor({extensions, defaultOptions});
 
