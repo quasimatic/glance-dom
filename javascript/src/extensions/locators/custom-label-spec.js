@@ -5,10 +5,6 @@ import Extensions from '../index';
 describe('Locator: Custom Label', () => {
     let customLabel = customLabelExtension.options['custom-label'].locate;
 
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
-
     it('should find by custom label', () => {
         dom.render(<p id="subject">complex</p>);
 

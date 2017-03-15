@@ -1,8 +1,6 @@
 import dom from './dom';
 import glanceSelector from '../src/glance';
 
-beforeEach(() => document.body.innerHTML = '');
-
 describe('Scope', () => {
     it('should narrow down to scope', () => {
         dom.render(<div>

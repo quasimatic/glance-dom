@@ -3,9 +3,6 @@ import containsText from './contains-text';
 
 describe('Locator: Contains Match', () => {
     let findContainsText = containsText.options['contains-text'].locate;
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
 
     it('should find by exact text match', () => {
         dom.render(<div id="subject">contains text</div>);
@@ -112,4 +109,16 @@ describe('Locator: Contains Match', () => {
 
         findContainsText({label: 'red', containerElements: [document.body]}).should.deep.equal([]);
     });
+
+    it('should only find inner item', () => {
+        dom.render(<div>
+            <div>
+                <div id='scope'>scope</div>
+                <div>subject</div>
+            </div>
+
+            <div>subject</div>
+        </div>)
+        findContainsText({label: 'scope', containerElements: [document.body]}).should.deep.equal([dom.get('scope')]);
+    })
 });

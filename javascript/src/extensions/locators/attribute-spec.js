@@ -4,10 +4,6 @@ import findInAttribute from './attribute';
 describe('Locator: Search in attributes', () => {
     let locate = findInAttribute.locator.locate;
 
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
-
     it('should find exact match', () => {
         dom.render(<img alt="image-name" id="subject"/>);
         locate({

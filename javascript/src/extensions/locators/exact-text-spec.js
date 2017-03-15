@@ -4,10 +4,6 @@ import extension from './exact-text';
 describe('Locator: Exact Match', () => {
     let findExactText = extension.options['exact-text'].locate;
 
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
-
     it('should find by exact text match', () => {
         dom.render(<div id="target">exact text</div>);
 

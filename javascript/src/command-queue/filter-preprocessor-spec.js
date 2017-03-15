@@ -10,6 +10,10 @@ let extensions = new Extensions([{
 
 let defaultOptions = ['default-filter-1'];
 
+function formatResult(commands) {
+    return commands.map(c => ({command: c.command, label: c.label, option: c.option}));
+}
+
 describe('Preprocessor: filters', () => {
     it('should apply default filters', () => {
         let preprocessor = new Preprocessor({extensions, defaultOptions});
@@ -20,7 +24,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'subject',
@@ -48,7 +52,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'subject',
@@ -75,7 +79,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'subject',
@@ -106,7 +110,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: false
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'subject',
@@ -133,7 +137,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'custom-label',
@@ -165,7 +169,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: false
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'custom-label',
@@ -191,7 +195,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'subject',
@@ -222,7 +226,7 @@ describe('Preprocessor: filters', () => {
             useDefaultOptions: false
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'filter',
                 label: 'subject',

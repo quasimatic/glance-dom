@@ -1,8 +1,6 @@
 import dom from '../../test/dom';
 import containers from './containers';
 
-beforeEach(() => document.body.innerHTML = '');
-
 describe('Containers', () => {
     it('should get container elements for scopes and subjects', () => {
         dom.render(<div>

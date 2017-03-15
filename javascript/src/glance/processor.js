@@ -30,20 +30,20 @@ function dispatch({command, extensions, result}) {
         case 'locate':
             let locator = extensions.getLocatorForOption(command.option, command.label);
             result.targetElements = result.targetElements.concat(locator({
-                label: command.label,
-                option: command.option,
+                ...command,
                 extensions,
                 containerElements: result.containerElements
             }));
 
+
             result.targetElements = [...new Set(result.targetElements)];
+
             break;
 
         case 'filter':
             let filter = extensions.getFilterForOption(command.option);
             result.targetElements = filter({
-                label: command.label,
-                option: command.option,
+                ...command,
                 extensions,
                 elements: result.targetElements,
                 scopeElements: result.scopeElements

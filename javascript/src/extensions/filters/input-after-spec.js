@@ -4,10 +4,6 @@ import inputAfter from './input-after'
 let filter = inputAfter.options['input-after'].filter;
 
 describe("Input after", function () {
-    beforeEach(function () {
-        document.body.innerHTML = "";
-    });
-
     it("should get input next to label", () => {
         dom.render(
             <div>

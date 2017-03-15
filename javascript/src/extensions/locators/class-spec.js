@@ -4,10 +4,6 @@ import extension from './class';
 describe("Locator: Class", () => {
     let findByClass = extension.options["class"].locate;
 
-    beforeEach(() => {
-        document.body.innerHTML = "";
-    });
-
     it("should find by class name", () => {
         dom.render(<div className="class-name" id="subject">text</div>);
 

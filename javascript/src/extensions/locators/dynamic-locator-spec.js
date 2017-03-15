@@ -5,8 +5,6 @@
 // describe('Locator: Dynamic Locator', () => {
 //     let dynamicLocator = dynamicLocatorExtension.options['dynamic-locator'].locate;
 //
-//     beforeEach(() => document.body.innerHTML = '');
-//
 //     it('should find by custom label', () => {
 //         dom.render(<p id="subject">complex</p>);
 //

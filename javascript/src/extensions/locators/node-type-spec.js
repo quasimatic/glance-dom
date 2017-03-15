@@ -4,10 +4,6 @@ import extension from './node-type';
 describe('Locator: Exact Match', () => {
     let findByNodeType = extension.options['node-type'].locate;
 
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
-
     it('should find by node type', () => {
         dom.render(<p id="subject"></p>);
 

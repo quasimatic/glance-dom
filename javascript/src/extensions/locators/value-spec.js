@@ -4,10 +4,6 @@ import extension from './value';
 describe('Locator: Value Match', () => {
     let findByValue = extension.options['value'].locate;
 
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
-
     it('should find in value', () => {
         dom.render(<input value="enter name" id="subject"/>);
 

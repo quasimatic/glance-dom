@@ -1,8 +1,6 @@
 import dom from './dom';
 import glanceSelector from '../src/glance';
 
-beforeEach(() => document.body.innerHTML = '');
-
 describe('Subjects', () => {
     it('should find subject', () => {
         dom.render(<div id="subject"></div>);

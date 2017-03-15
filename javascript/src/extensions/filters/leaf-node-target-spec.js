@@ -3,10 +3,6 @@ import leafNodeTarget from './leaf-node-target';
 let filter = leafNodeTarget.options['leaf-node-target'].filter;
 
 describe('Filter: Target is leaf node', () => {
-    beforeEach(function () {
-        document.body.innerHTML = '';
-    });
-
     it('should filter out non leaf nodes', () => {
         dom.render(
             <div>
@@ -32,5 +28,19 @@ describe('Filter: Target is leaf node', () => {
         );
 
         filter({elements: [dom.get('target')]}).should.deep.equal([dom.get('target')]);
+    });
+
+    it('should only filter leaf nodes for last target', () => {
+        dom.render(
+            <div>
+                <div id='scope'>
+                    <div id='target'></div>
+                </div>
+                <div id='fake-scope'></div>
+            </div>
+        );
+
+        filter({elements: [dom.get('target')], targetIndex: 0, totalTargets: 2}).should.deep.equal([dom.get('target')]);
+        // filter({elements: dom.get('scope', 'fake-scope'), targetsIndex: 1, totalTargets: 2}).should.deep.equal(dom.get('scope', 'fake-scope'));
     });
 });

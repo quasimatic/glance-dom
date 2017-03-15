@@ -5,8 +5,6 @@ describe('Filter: Index', () => {
     let filter = index.filter.filter;
 
     beforeEach(function () {
-        document.body.innerHTML = '';
-
         dom.render(<div>
             <div id="target-1">item</div>
             <div id="target-2">item</div>

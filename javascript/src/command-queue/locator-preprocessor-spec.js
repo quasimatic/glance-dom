@@ -11,6 +11,10 @@ let extensions = new Extensions([{
 
 let defaultOptions = ['default-locator-1'];
 
+function formatResult(commands) {
+    return commands.map(c => ({command: c.command, label: c.label, option: c.option}));
+}
+
 describe('Preprocessor: locators', () => {
     it('should apply default locators', () => {
         let preprocessor = new Preprocessor({extensions, defaultOptions});
@@ -21,7 +25,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'subject',
@@ -48,7 +52,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'subject',
@@ -76,7 +80,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'subject',
@@ -107,7 +111,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: false
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'subject',
@@ -131,7 +135,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'custom-label',
@@ -160,7 +164,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: false
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'custom-label',
@@ -186,7 +190,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: true
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'subject',
@@ -217,7 +221,7 @@ describe('Preprocessor: locators', () => {
             useDefaultOptions: false
         });
 
-        commands.should.deep.equal([
+        formatResult(commands).should.deep.equal([
             {
                 command: 'locate',
                 label: 'subject',

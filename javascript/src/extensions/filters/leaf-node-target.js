@@ -2,9 +2,11 @@ import log from '../../log';
 
 export default {
     options: {
-        "leaf-node-target": {
-            filter: function visible({elements}) {
-                log.debug("Filtering for leaf node targets");
+        'leaf-node-target': {
+            filter: function visible({elements, targetIndex = 0, totalTargets = 1}) {
+                log.debug('Filtering for leaf node targets');
+
+                if ((targetIndex + 1) !== totalTargets) return elements;
 
                 let filteredElements = elements.filter(function (e) {
                     return !e.childNodes

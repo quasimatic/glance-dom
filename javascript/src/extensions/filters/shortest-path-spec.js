@@ -3,10 +3,6 @@ import shortestPath from './shortest-path';
 let filter = shortestPath.options['shortest-path'].filter;
 
 describe("Shortest scope and container path", () => {
-    beforeEach(function () {
-        document.body.innerHTML = "";
-    });
-
     it("should get all items if the scope distances to their container are the same", () => {
         dom.render(
             <div>

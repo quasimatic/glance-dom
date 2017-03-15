@@ -4,10 +4,6 @@ import visible from './visible';
 let filter = visible.options['visible'].filter;
 
 describe('Filter: Visible', () => {
-    beforeEach(function () {
-        document.body.innerHTML = '';
-    });
-
     it('should filter out non visible items', () => {
         dom.render(
             <div>

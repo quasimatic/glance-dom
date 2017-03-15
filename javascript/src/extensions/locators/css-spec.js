@@ -3,9 +3,6 @@ import css from './css';
 
 describe('Locator: Exact Match', () => {
     let findByCSS = css.options['css'].locate;
-    beforeEach(() => {
-        document.body.innerHTML = '';
-    });
 
     it('should find by css selector', () => {
         dom.render(<div className="class-name" id="subject">text</div>);

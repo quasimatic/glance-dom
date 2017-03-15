@@ -10,23 +10,28 @@ export default class Preprocessor {
     }
 
     create(reference) {
+        this.targetCount = 0;
         let scopes = parser.parse(reference);
-        return scopes.reduce((result, scope) => result.concat({command: 'containers'}, this.processIntersect(scope)), []);
+        let totalTargets = scopes.reduce((total, s) => total + s.length, 0);
+        return scopes.reduce((result, scope) => result.concat({command: 'containers'}, this.processIntersect(scope, totalTargets)), []);
     }
 
-    processIntersect(intersects) {
-        return intersects.reduce((result, target) => {
-            return result.concat(this.locators(target), this.filters(target), {command: 'intersect'});
+    processIntersect(intersects, totalTargets) {
+        let result = intersects.reduce((result, target, index) => {
+            return result.concat(this.locators(target, this.targetCount + index, totalTargets), this.filters(target, this.targetCount + index, totalTargets), {command: 'intersect'});
         }, []);
+
+        this.targetCount += intersects.length;
+        return result;
     }
 
-    locators(target) {
+    locators(target, targetIndex, totalTargets) {
         let collector = new LocatorCollector(this);
-        return collector.getLocatorCommands(target);
+        return collector.getLocatorCommands(target).map(c => ({...c, targetIndex, totalTargets}));
     }
 
-    filters(target) {
+    filters(target, targetIndex, totalTargets) {
         let collector = new FilterCollector(this);
-        return collector.getFilterCommands(target);
+        return collector.getFilterCommands(target).map(c => ({...c, targetIndex, totalTargets}));
     }
 };

@@ -1,8 +1,6 @@
 import dom from './dom';
 import glanceSelector from '../src/glance';
 
-beforeEach(() => document.body.innerHTML = '');
-
 describe('Intersect', () => {
     it('should limit to intersecting elements', () => {
         dom.render(<div>
@@ -42,5 +40,16 @@ describe('Intersect', () => {
         </div>);
 
         glanceSelector('scope ^ div > subject').should.deep.equal(dom.get('subject'));
+    });
+
+    it('should interesect on class even if one is a leaf node', () => {
+        dom.render(<div id="target" className="blue circle">
+            <svg>
+                <circle></circle>
+            </svg>
+        </div>);
+
+        // glanceSelector('blue ^ circle').should.deep.equal(dom.get('target'));
+        glanceSelector('circle ^ blue').should.deep.equal(dom.get('target'));
     });
 });
