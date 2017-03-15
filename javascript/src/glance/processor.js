@@ -1,6 +1,6 @@
 import containers from './containers';
 
-function dispatch({command, extensions, result}) {
+function dispatch({command, extensions, glanceSelector, result}) {
     switch (command.command) {
         case 'containers':
             if (result.scopeElements) {
@@ -29,12 +29,13 @@ function dispatch({command, extensions, result}) {
 
         case 'locate':
             let locator = extensions.getLocatorForOption(command.option, command.label);
+
             result.targetElements = result.targetElements.concat(locator({
                 ...command,
                 extensions,
+                glanceSelector,
                 containerElements: result.containerElements
             }));
-
 
             result.targetElements = [...new Set(result.targetElements)];
 
@@ -54,10 +55,11 @@ function dispatch({command, extensions, result}) {
     return result;
 }
 
-export default function ({commands = [], extensions}) {
+export default function ({commands = [], extensions, glanceSelector}) {
     let result = commands.reduce((result, command) => dispatch({
         command,
         extensions,
+        glanceSelector,
         result
     }), {containerElements: [document.body]});
 

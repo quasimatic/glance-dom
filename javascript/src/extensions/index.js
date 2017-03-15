@@ -31,7 +31,7 @@ export default class Extensions {
 
     getLocator(locator) {
         if (Object.prototype.toString.call(locator) === '[object Array]') {
-            return ({glanceSelector}) => locator.reduce((result, label) => result.concat(glanceSelector(label), []));
+            return ({glanceSelector}) => locator.reduce((result, label) => result.concat(glanceSelector(label), []) , []);
         }
         else if (typeof(locator) === 'string') {
             return ({glanceSelector}) => glanceSelector(locator);
@@ -57,7 +57,6 @@ export default class Extensions {
         let catchAlls = this.extensions.filter(e => e.filter ? e.filter.check({label, option}) : false)
             .map(e => e.filter.filter);
 
-        console.log('dynamic filter', catchAlls)
         if (catchAlls.length > 0) {
             return (data) => catchAlls.reduce((result, filter) => result.concat(filter(data)), []);
         }

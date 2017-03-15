@@ -36,7 +36,7 @@ describe('Preprocessor: filters', () => {
     it('should not apply option without filter', () => {
         let customExtension = {
             options: {
-                'custom-filter': {
+                'custom-label': {
                     locate: 'custom'
                 }
             }
@@ -48,7 +48,7 @@ describe('Preprocessor: filters', () => {
 
         let commands = preprocessor.getFilterCommands({
             label: 'subject',
-            options: ['custom-filter'],
+            options: ['custom-label'],
             useDefaultOptions: true
         });
 
@@ -174,6 +174,30 @@ describe('Preprocessor: filters', () => {
                 command: 'filter',
                 label: 'custom-label',
                 option: 'custom-label'
+            }
+        ]);
+    });
+
+    it('should not apply to custom label locator as an array', () => {
+        extensions.add({
+            labels: {
+                'custom-label' : ['item-1', 'item-2']
+            }
+        });
+
+        let preprocessor = new Preprocessor({extensions, defaultOptions});
+
+        let commands = preprocessor.getFilterCommands({
+            label: 'custom-label',
+            options: [],
+            useDefaultOptions: true
+        });
+
+        formatResult(commands).should.deep.equal([
+            {
+                command: 'filter',
+                label: 'custom-label',
+                option: 'default-filter-1'
             }
         ]);
     });

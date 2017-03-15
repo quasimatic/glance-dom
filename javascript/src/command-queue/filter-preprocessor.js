@@ -20,7 +20,7 @@ export default class FilterPreprocessor {
         let locators = [];
         let labels = extensions.getLabels();
 
-        if (labels[target.label] && labels[target.label].filter) {
+        if (labels[target.label] && Object.prototype.toString.call(labels[target.label]) !== '[object Array]' && labels[target.label].filter) {
             locators = [{command: 'filter', option: 'custom-label', label: target.label}];
         }
 

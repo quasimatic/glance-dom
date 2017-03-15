@@ -3,7 +3,7 @@ import log from "../../log";
 export default {
     options: {
         "input-after": {
-            filter: function inputafter({elements, scopeElements}) {
+            filter: function inputafter({elements, scopeElements = []}) {
                 log.debug("Filtering for sibling input next to scope");
 
                 let siblings = elements.filter(function (e) {
