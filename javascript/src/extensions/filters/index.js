@@ -9,7 +9,7 @@ export default {
             log.debug('Filtering by index');
 
             if (option !== null && !isNaN(option)) {
-                let position = option;
+                let position = parseInt(option);
                 log.debug('Selecting the', position, 'element out of', elements.length);
 
                 if (position <= 0) {

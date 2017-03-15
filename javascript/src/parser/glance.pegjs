@@ -1,9 +1,3 @@
-{
-	function tryParseInt(str) {
-      return !isNaN(str)? parseInt(str) : str;
-    }
-}
-
 GlanceReference = scopes:Scope+ subject:Subject {return scopes.concat([subject])}
   / subject:Subject {return [subject]}
   / .* {return []}
@@ -37,7 +31,7 @@ LabelCharacter
 
 Options = OptionChar useDefaultOptions:OptionChar? options:Option* { return {options:options, useDefaultOptions: useDefaultOptions?false:true}; }
 
-Option = name:Character+ SeparatorChar? { return tryParseInt(name.join("").trim()) }
+Option = name:Character+ SeparatorChar? { return name.join("").trim() }
 
 EscapeChar = "\\"
 EscapableChars = EscapeChar / ScopeChar / OptionChar / IntersectChar

@@ -169,7 +169,7 @@ function peg$parse(input, options) {
       },
       peg$c16 = function(c) { return c },
       peg$c17 = function(useDefaultOptions, options) { return {options:options, useDefaultOptions: useDefaultOptions?false:true}; },
-      peg$c18 = function(name) { return tryParseInt(name.join("").trim()) },
+      peg$c18 = function(name) { return name.join("").trim() },
       peg$c19 = "\\",
       peg$c20 = peg$literalExpectation("\\", false),
       peg$c21 = /^[ \t\r\n]/,
@@ -201,7 +201,7 @@ function peg$parse(input, options) {
   }
 
   function expected(description, location) {
-    location = location !== void 0 ? location : peg$computeLocation(peg$savedPos, peg$currPos);
+    location = location !== void 0 ? location : peg$computeLocation(peg$savedPos, peg$currPos)
 
     throw peg$buildStructuredError(
       [peg$otherExpectation(description)],
@@ -211,7 +211,7 @@ function peg$parse(input, options) {
   }
 
   function error(message, location) {
-    location = location !== void 0 ? location : peg$computeLocation(peg$savedPos, peg$currPos);
+    location = location !== void 0 ? location : peg$computeLocation(peg$savedPos, peg$currPos)
 
     throw peg$buildSimpleError(message, location);
   }
@@ -816,12 +816,6 @@ function peg$parse(input, options) {
 
     return s0;
   }
-
-
-  	function tryParseInt(str) {
-        return !isNaN(str)? parseInt(str) : str;
-      }
-
 
   peg$result = peg$startRuleFunction();
 

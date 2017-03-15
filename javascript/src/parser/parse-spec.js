@@ -6,7 +6,7 @@ describe("Parsing", function () {
     });
 
     it("should get index", function () {
-        parser.parse("label#10").should.deep.equal([[{label: 'label', options: [10], useDefaultOptions:true}]]);
+        parser.parse("label#10").should.deep.equal([[{label: 'label', options: ['10'], useDefaultOptions:true}]]);
     });
 
     it("should support scopes", function () {
@@ -39,7 +39,7 @@ describe("Parsing", function () {
     });
 
     it("should support spaces before and after a label", function () {
-        parser.parse(" label#1 ").should.deep.equal([[{label: 'label', options: [1], useDefaultOptions:true}]]);
+        parser.parse(" label#1 ").should.deep.equal([[{label: 'label', options: ['1'], useDefaultOptions:true}]]);
     });
 
     it("should support spaces before and after a label", function () {
