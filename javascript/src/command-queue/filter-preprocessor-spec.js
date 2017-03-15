@@ -4,6 +4,13 @@ import Extensions from '../extensions';
 let extensions = new Extensions([{
     options: {
         'default-filter-1': () => {
+        },
+
+        'in-filter': {
+            inverse: 'out-filter',
+            filter: () => {
+
+            }
         }
     }
 }]);
@@ -181,7 +188,7 @@ describe('Preprocessor: filters', () => {
     it('should not apply to custom label locator as an array', () => {
         extensions.add({
             labels: {
-                'custom-label' : ['item-1', 'item-2']
+                'custom-label': ['item-1', 'item-2']
             }
         });
 
@@ -258,4 +265,91 @@ describe('Preprocessor: filters', () => {
             }
         ]);
     });
+
+    it('should apply filter if inverse is not provided', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions});
+        let commands = preprocessor.getFilterCommands({
+            label: 'subject',
+            options: ['in-filter'],
+            useDefaultOptions: false
+        });
+
+        formatResult(commands).should.deep.equal([{command: 'filter', label: 'subject', option: 'in-filter'}]);
+    });
+
+    it('should apply filter if inverse is not provided with defaults', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions: defaultOptions.concat('in-filter')});
+        let commands = preprocessor.getFilterCommands({
+            label: 'subject',
+            options: [],
+            useDefaultOptions: true
+        });
+
+        formatResult(commands).should.deep.equal([
+            {
+                command: 'filter',
+                label: 'subject',
+                option: 'default-filter-1'
+            },
+            {command: 'filter', label: 'subject', option: 'in-filter'}]);
+    });
+
+    it('should apply filter if default explicity specified', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions: ['in-filter'].concat(defaultOptions)});
+        let commands = preprocessor.getFilterCommands({
+            label: 'subject',
+            options: ['in-filter'],
+            useDefaultOptions: true
+        });
+
+        formatResult(commands).should.deep.equal([
+            {
+                command: 'filter',
+                label: 'subject',
+                option: 'default-filter-1'
+            },
+            {command: 'filter', label: 'subject', option: 'in-filter'}]);
+    });
+
+
+    it('should remove option if filter and inverse declared', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions});
+        let commands = preprocessor.getFilterCommands({
+            label: 'subject',
+            options: ['in-filter', 'out-filter'],
+            useDefaultOptions: false
+        });
+
+        formatResult(commands).should.deep.equal([]);
+    });
+
+    it('should remove option if filter and inverse declared with defaults', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions});
+        let commands = preprocessor.getFilterCommands({
+            label: 'subject',
+            options: ['in-filter', 'out-filter'],
+            useDefaultOptions: true
+        });
+
+        formatResult(commands).should.deep.equal([{
+            command: 'filter',
+            label: 'subject',
+            option: 'default-filter-1'
+        }]);
+    });
+
+    it('should override default option if inverse is specified', () => {
+        let preprocessor = new Preprocessor({extensions, defaultOptions: defaultOptions.concat('in-filter')});
+        let commands = preprocessor.getFilterCommands({
+            label: 'subject',
+            options: ['out-filter'],
+            useDefaultOptions: true
+        });
+
+        formatResult(commands).should.deep.equal([
+            {command: 'filter', label: 'subject', option: 'default-filter-1'},
+            {command: 'filter', label: 'subject', option: 'out-filter'}
+        ]);
+    });
+
 });

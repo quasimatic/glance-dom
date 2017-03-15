@@ -47,12 +47,17 @@ export default class FilterPreprocessor {
         let possibleOptions = target.options || [];
         let validOptions = [];
 
-        if (target.useDefaultOptions && defaultOptions.length > 0)
-            possibleOptions = defaultOptions.concat(possibleOptions);
+        let inverses = possibleOptions.reduce((r, o) => options[o] && options[o].inverse ? r.concat(options[o].inverse) : r, []);
+        let defaultOptionsWithoutInverse = defaultOptions.filter(d => inverses.indexOf(d) === -1 && possibleOptions.indexOf(d) === -1);
+
+        if (target.useDefaultOptions && defaultOptionsWithoutInverse.length > 0)
+            possibleOptions = defaultOptionsWithoutInverse.concat(possibleOptions);
 
         possibleOptions.forEach(name => {
             if (options[name] && (typeof(options[name]) === 'function' || options[name].filter)) {
-                validOptions = validOptions.concat(name);
+                if (typeof(options[name]) === 'function' || !options[name].inverse || !(target.options.indexOf(name) > -1 && target.options.indexOf(options[name].inverse) > -1)) {
+                    validOptions = validOptions.concat(name);
+                }
             }
             else {
                 let catchAlls = extensions.getExtensions().filter(e => {
@@ -64,12 +69,11 @@ export default class FilterPreprocessor {
                 });
 
                 if (catchAlls.length > 0) {
-                    validOptions = validOptions.concat(catchAlls.map(e => (name)));
+                    validOptions = validOptions.concat(name);
                 }
             }
         });
 
-
-        return target.useDefaultOptions ? {...target, options: validOptions} : target;
+        return {...target, options: validOptions};
     }
 };

@@ -31,7 +31,7 @@ export default class Extensions {
 
     getLocator(locator) {
         if (Object.prototype.toString.call(locator) === '[object Array]') {
-            return ({glanceSelector}) => locator.reduce((result, label) => result.concat(glanceSelector(label), []) , []);
+            return ({glanceSelector}) => locator.reduce((result, label) => result.concat(glanceSelector(label), []), []);
         }
         else if (typeof(locator) === 'string') {
             return ({glanceSelector}) => glanceSelector(locator);
@@ -91,6 +91,20 @@ export default class Extensions {
     static options(extensions) {
         return extensions
             .filter(e => e.options)
-            .reduce((l, e) => Object.assign(l, e.options), {});
+            .reduce((l, e) => {
+                let inverses = Object.keys(e.options).reduce((r, k) => {
+                    if (e.options[k].inverse) {
+                        r[e.options[k].inverse] = {
+                            inverse: k,
+                            filter: (data, inverse) => {
+                                return e.options[k].filter(data, !inverse);
+                            }
+                        };
+                    }
+                    return r;
+                }, {});
+
+                return {...l, ...e.options, ...inverses};
+            }, {});
     }
 };

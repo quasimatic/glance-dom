@@ -37,3 +37,27 @@ describe('Filter: Visible', () => {
         filter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
     });
 });
+
+describe('Filter: Hidden', () => {
+    it('should find hidden display none items', () => {
+        dom.render(
+            <div>
+                <div id="item-1">item</div>
+                <div id="subject" style={{display: 'none'}}>item</div>
+            </div>
+        );
+
+        filter({elements: dom.get('subject', 'item-1')}, true).should.deep.equal([dom.get('subject')]);
+    });
+
+    it('should find hidden visibility hidden items', () => {
+        dom.render(
+            <div>
+                <div id="item-1">item</div>
+                <div id="subject" style={{visibility: 'hidden'}}>item</div>
+            </div>
+        );
+
+        filter({elements: dom.get('subject', 'item-1')}, true).should.deep.equal([dom.get('subject')]);
+    });
+});
