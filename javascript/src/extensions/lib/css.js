@@ -1,17 +1,18 @@
-export default function (label, containerElement) {
-        try {
-            let results = [];
+import matches from '../../utils/matches';
 
-            let matches = (containerElement.matches || containerElement.matchesSelector || containerElement.msMatchesSelector || containerElement.mozMatchesSelector || containerElement.webkitMatchesSelector || containerElement.oMatchesSelector);
-            if (matches && matches.call(containerElement, label))
-                results.push(containerElement);
+export default function(selector, containerElement) {
+    try {
+        let results = [];
 
-            return results.concat(Array.prototype.slice.apply(containerElement.querySelectorAll(label)));
-        }
-        catch (e) {
-            if (e instanceof DOMException)
-                return [];
+        if (matches(selector, containerElement))
+            results.push(containerElement);
 
-            throw e;
-        }
-}
+        return results.concat(Array.prototype.slice.apply(containerElement.querySelectorAll(selector)));
+    }
+    catch (e) {
+        if (e instanceof DOMException)
+            return [];
+
+        throw e;
+    }
+};

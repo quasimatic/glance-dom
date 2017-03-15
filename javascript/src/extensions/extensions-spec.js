@@ -23,4 +23,9 @@ describe('Extensions', () => {
 
         extensions.getFilterForOption('option-1', {label: 'subject', options: ['option-1']}).should.be.a('function');
     });
+
+    it('should return a noop locator if locate is undefined', () => {
+        let extensions = new Extensions();
+        extensions.getLocator()().should.deep.equal([]);
+    });
 });

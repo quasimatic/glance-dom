@@ -22,6 +22,18 @@ function formatResult(commands) {
 }
 
 describe('Preprocessor: filters', () => {
+    it('should support no options', () => {
+        let preprocessor = new Preprocessor();
+        preprocessor.extensions.extensions.length.should.equal(0);
+        preprocessor.defaultOptions.length.should.equal(0);
+    });
+
+    it('should have no default extensions or options', () => {
+        let preprocessor = new Preprocessor({});
+        preprocessor.extensions.extensions.length.should.equal(0);
+        preprocessor.defaultOptions.length.should.equal(0);
+    });
+
     it('should apply default filters', () => {
         let preprocessor = new Preprocessor({extensions, defaultOptions});
 
@@ -310,7 +322,6 @@ describe('Preprocessor: filters', () => {
             },
             {command: 'filter', label: 'subject', option: 'in-filter'}]);
     });
-
 
     it('should remove option if filter and inverse declared', () => {
         let preprocessor = new Preprocessor({extensions, defaultOptions});

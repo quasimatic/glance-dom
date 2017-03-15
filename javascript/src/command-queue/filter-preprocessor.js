@@ -1,18 +1,12 @@
 import Extensions from '../extensions';
 
 export default class FilterPreprocessor {
-    constructor({extensions = new Extensions(), defaultOptions = []}) {
+    constructor({extensions = new Extensions(), defaultOptions = []} = {
+                    extensions: new Extensions(),
+                    defaultOptions: []
+                }) {
         this.extensions = extensions;
         this.defaultOptions = defaultOptions;
-    }
-
-    beforeFilters(elements, data) {
-        return this.extensions.getExtensions().filter(e => e.beforeFilters).reduce((elements, e) => e.beforeFilters(Object.assign(data, {elements})), elements);
-    }
-
-    afterFilters(callback, data) {
-        let extensions = this.extensions;
-        return (err, filteredElements) => callback(err, extensions.getExtensions().filter(e => e.afterFilters).reduce((elements, e) => e.afterFilters(Object.assign(data, {elements})), filteredElements));
     }
 
     getFilterCommands(target) {
@@ -44,7 +38,7 @@ export default class FilterPreprocessor {
         let extensions = this.extensions;
         let defaultOptions = this.defaultOptions;
         let options = extensions.getOptions();
-        let possibleOptions = target.options || [];
+        let possibleOptions = target.options;
         let validOptions = [];
 
         let inverses = possibleOptions.reduce((r, o) => options[o] && options[o].inverse ? r.concat(options[o].inverse) : r, []);

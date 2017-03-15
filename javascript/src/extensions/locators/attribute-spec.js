@@ -39,4 +39,13 @@ describe('Locator: Search in attributes', () => {
             containerElements: [document.documentElement]
         }).should.deep.equal([]);
     });
+
+    it('should return no elements if option does not start with attribute', () => {
+        dom.render(<div id="subject"></div>);
+        locate({
+            label: 'subject',
+            option: 'bad-option-name',
+            containerElements: [document.documentElement]
+        }).should.deep.equal([]);
+    });
 });

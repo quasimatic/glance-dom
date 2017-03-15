@@ -74,14 +74,6 @@ export default class Extensions {
         return Extensions.options(this.extensions);
     }
 
-    static beforeScopeEvent(data, extensions) {
-        return extensions.filter(e => e.beforeScope).forEach(e => e.beforeScope(data));
-    }
-
-    static afterScopeEvent(data, extensions) {
-        return extensions.filter(e => e.afterScope).forEach(e => e.afterScope(data));
-    }
-
     static labels(extensions) {
         return extensions
             .filter(e => e.labels)

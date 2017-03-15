@@ -4,7 +4,10 @@ import FilterCollector from './filter-preprocessor';
 import Extensions from '../extensions';
 
 export default class Preprocessor {
-    constructor({extensions = new Extensions(), defaultOptions = []}) {
+    constructor({extensions = new Extensions(), defaultOptions = []} = {
+                    extensions: new Extensions(),
+                    defaultOptions: []
+                }) {
         this.extensions = extensions;
         this.defaultOptions = defaultOptions;
     }

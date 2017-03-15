@@ -1,5 +1,5 @@
 import findByXPath from '../lib/xpath';
-import log from '../../log';
+import log from '../../utils/log';
 import parentElements from '../../utils/parent-elements';
 
 export default {

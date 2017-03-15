@@ -1,7 +1,10 @@
 import Extensions from '../extensions';
 
 export default class LocatorPreprocessor {
-    constructor({extensions = new Extensions(), defaultOptions = []}) {
+    constructor({extensions = new Extensions(), defaultOptions = []} = {
+                    extensions: new Extensions(),
+                    defaultOptions: []
+                }) {
         this.extensions = extensions;
         this.defaultOptions = defaultOptions;
     }
@@ -22,7 +25,11 @@ export default class LocatorPreprocessor {
         let options = extensions.getOptions();
         let updatedOptionTarget = this.configureOptionsWithLocators(target);
 
-        updatedOptionTarget.options.forEach(name => locators.push({command: 'locate', option: name, label:target.label}));
+        updatedOptionTarget.options.forEach(name => locators.push({
+            command: 'locate',
+            option: name,
+            label: target.label
+        }));
 
         return locators;
     }
@@ -31,7 +38,7 @@ export default class LocatorPreprocessor {
         let extensions = this.extensions;
         let defaultOptions = this.defaultOptions;
         let options = extensions.getOptions();
-        let possibleOptions = target.options || [];
+        let possibleOptions = target.options;
         let validOptions = [];
 
         if (target.useDefaultOptions && defaultOptions.length > 0)
@@ -56,32 +63,6 @@ export default class LocatorPreprocessor {
             }
         });
 
-
         return target.useDefaultOptions ? {...target, options: validOptions} : target;
-    }
-
-    getBeforeLocateFromLabels(label) {
-        let extensions = this.extensions;
-        return this.getExtensionLabels(label, extensions).filter(e => e.beforeLocate).map(e => e.beforeLocate);
-    }
-
-    getAfterLocateFromLabels(label) {
-        let extensions = this.extensions;
-        return this.getExtensionLabels(label, extensions).filter(e => e.afterLocate).map(e => e.afterLocate);
-    }
-
-    getBeforeLocate() {
-        let extensions = this.extensions;
-        return extensions.filter(e => e.beforeLocate).map(e => e.beforeLocate);
-    }
-
-    getAfterLocate() {
-        let extensions = this.extensions;
-        return extensions.filter(e => e.afterLocate).map(e => e.afterLocate);
-    }
-
-    getExtensionLabels(key) {
-        let extensions = this.extensions;
-        return extensions.filter(e => e.labels && e.labels[key]).map(e => e.labels[key]);
     }
 };

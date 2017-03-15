@@ -1,5 +1,5 @@
 import findByCSS from "../lib/css"
-import log from "../../log"
+import log from "../../utils/log"
 
 export default {
     options: {

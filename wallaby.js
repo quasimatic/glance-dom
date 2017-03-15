@@ -1,9 +1,9 @@
 var wallabyWebpack = require('wallaby-webpack');
 
-module.exports = function (wallaby) {
+module.exports = function(wallaby) {
     var webpackPostprocessor = wallabyWebpack({
         externals: {
-            "react": "React"
+            'react': 'React'
         },
         module: {
             loaders: [
@@ -21,6 +21,7 @@ module.exports = function (wallaby) {
 
     return {
         files: [
+            {pattern: 'node_modules/sinon/pkg/sinon.js', instrument: false},
             {pattern: 'node_modules/babel-polyfill/dist/polyfill.js', instrument: false},
             {pattern: 'node_modules/phantomjs-polyfill/bind-polyfill.js', instrument: false},
             {pattern: 'node_modules/react/dist/react-with-addons.js', instrument: false},
@@ -38,6 +39,8 @@ module.exports = function (wallaby) {
             {pattern: 'javascript/test/**/*-specs.js', load: false}
         ],
 
+        filesWithNoCoverageCalculated: ['javascript/src/parser/index.js'],
+
         compilers: {
             '**/*.js*': wallaby.compilers.babel({
                 presets: ['es2015', 'react', 'stage-0'],
@@ -47,9 +50,9 @@ module.exports = function (wallaby) {
 
         postprocessor: webpackPostprocessor,
 
-        testFramework: "mocha",
+        testFramework: 'mocha',
 
-        bootstrap: function () {
+        bootstrap: function() {
             window.expect = chai.expect;
             var should = chai.should();
 

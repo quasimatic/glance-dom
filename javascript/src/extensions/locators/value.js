@@ -1,4 +1,4 @@
-import log from "../../log"
+import log from "../../utils/log"
 
 /*
  Searching the dom by xpath or css for value only gets the default. Inputs dynamically set don't update the dom which

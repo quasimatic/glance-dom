@@ -16,6 +16,18 @@ function formatResult(commands) {
 }
 
 describe('Preprocessor: locators', () => {
+    it('should support no options', () => {
+        let preprocessor = new Preprocessor();
+        preprocessor.extensions.extensions.length.should.equal(0);
+        preprocessor.defaultOptions.length.should.equal(0);
+    });
+
+    it('should have no default extensions or options', () => {
+        let preprocessor = new Preprocessor({});
+        preprocessor.extensions.extensions.length.should.equal(0);
+        preprocessor.defaultOptions.length.should.equal(0);
+    });
+
     it('should apply default locators', () => {
         let preprocessor = new Preprocessor({extensions, defaultOptions});
 
