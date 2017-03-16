@@ -16,7 +16,7 @@ function createGlanceSelector() {
 
         let commands = preprocessor.create(reference);
 
-        return processCommands({commands, extensions: this.extensions, glanceSelector: this.selector, containerElements});
+        return processCommands({commands, extensions: this.extensions, glanceSelector: this.selector, containerElements, reference});
     };
 
     this.selector.addExtension = (extension) => {

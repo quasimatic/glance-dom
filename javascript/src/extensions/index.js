@@ -99,4 +99,13 @@ export default class Extensions {
                 return {...l, ...e.options, ...inverses};
             }, {});
     }
+
+    getBeforeAllHooks() {
+        return this.extensions.filter(e => e.beforeAll).map(e => e.beforeAll);
+    }
+
+    getAfterAllHooks() {
+        return this.extensions.filter(e => e.afterAll).map(e => e.afterAll);
+    }
+
 };

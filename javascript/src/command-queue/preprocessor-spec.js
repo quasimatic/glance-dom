@@ -18,6 +18,43 @@ describe('Preprocessor', () => {
         preprocessor.defaultOptions.length.should.equal(0);
     });
 
+    it('should support a beforeAll hook', () => {
+        let preprocessor = new Preprocessor({
+            extensions: new Extension([{
+                beforeAll: () => {
+                }
+            }]),
+            defaultOptions: []
+        });
+
+        let commands = preprocessor.create('scope');
+
+        commands.should.deep.equal([
+            {command: 'beforeall'},
+            {command: 'containers'},
+            {command: 'intersect'},
+        ]);
+    });
+
+    it('should support a afterAll hook', () => {
+        let preprocessor = new Preprocessor({
+            extensions: new Extension([{
+                afterAll: () => {
+                }
+            }]),
+            defaultOptions: []
+        });
+
+        let commands = preprocessor.create('scope');
+
+        commands.should.deep.equal([
+            {command: 'containers'},
+            {command: 'intersect'},
+            {command: 'afterall'},
+        ]);
+    });
+
+
     it('should queue up for subject', () => {
         let preprocessor = new Preprocessor({extensions, defaultOptions});
         let commands = preprocessor.create('subject');

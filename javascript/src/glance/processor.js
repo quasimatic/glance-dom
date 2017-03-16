@@ -1,7 +1,11 @@
 import containers from './containers';
 
-function dispatch({command, extensions, glanceSelector, result}) {
+function dispatch({command, extensions, glanceSelector, result, reference}) {
     switch (command.command) {
+        case 'beforeall':
+            extensions.getBeforeAllHooks().forEach(h => h({reference}));
+            break;
+
         case 'containers':
             if (result.scopeElements) {
                 result.containerElements = containers(result.scopeElements, result.subjectElements);
@@ -50,15 +54,20 @@ function dispatch({command, extensions, glanceSelector, result}) {
                 scopeElements: result.scopeElements
             });
             break;
+
+        case 'afterall':
+            extensions.getAfterAllHooks().forEach(h => h({reference, elements: result.subjectElements}));
+            break;
     }
 
     return result;
 }
 
-export default function ({commands = [], extensions, glanceSelector, containerElements}) {
+export default function({commands = [], extensions, glanceSelector, reference, containerElements}) {
     let result = commands.reduce((result, command) => dispatch({
         command,
         extensions,
+        reference,
         glanceSelector,
         result
     }), {containerElements});
