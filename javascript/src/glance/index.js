@@ -5,11 +5,12 @@ import DefaultOptions from '../default-options';
 import processCommands from './processor';
 import requiredParameter from '../utils/required-parameter';
 import Parser from '../parser';
+import log from '../utils/log';
 
 function createGlanceSelector() {
     this.extensions = new Extensions(DefaultExtensions);
     this.selector = (reference = requiredParameter('Selector required')) => {
-        let preprocessor = new Preprocessor({extensions: this.extensions, defaultOptions:DefaultOptions});
+        let preprocessor = new Preprocessor({extensions: this.extensions, defaultOptions: DefaultOptions});
 
         let commands = preprocessor.create(reference);
 
@@ -18,6 +19,10 @@ function createGlanceSelector() {
 
     this.selector.addExtension = (extension) => {
         this.extensions.add(extension);
+    };
+
+    this.selector.setLogLevel = (level) => {
+        log.setLogLevel(level)
     };
 
     return this.selector;
