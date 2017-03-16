@@ -4,11 +4,12 @@
   "description": "Glance DOM selector library",
   "main": "javascript/lib/glance/index.js",
   "scripts": {
+    "build:browser": "webpack",
     "docs:clean": "rm -rf docs/_book",
     "docs:prepare": "cd docs && gitbook install",
     "docs:watch": "npm run docs:prepare && cd docs && gitbook serve",
     "docs:build": "npm run docs:prepare && cd docs && rm -rf _book && gitbook build",
-    "build": "rm -rf lib && node_modules/.bin/pegjs -o javascript/src/parser/index.js javascript/src/parser/glance.pegjs && babel javascript/src -d javascript/lib",
+    "build": "rm -rf javascript/lib && node_modules/.bin/pegjs -o javascript/src/parser/index.js javascript/src/parser/glance.pegjs && babel javascript/src -d javascript/lib",
     "test": "echo 'Please test using wallaby'"
   },
   "repository": {
