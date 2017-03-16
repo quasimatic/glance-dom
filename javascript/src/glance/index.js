@@ -9,12 +9,14 @@ import log from '../utils/log';
 
 function createGlanceSelector() {
     this.extensions = new Extensions(DefaultExtensions);
-    this.selector = (reference = requiredParameter('Selector required')) => {
+    this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
+        let {containerElements = [document.documentElement]} = config;
+
         let preprocessor = new Preprocessor({extensions: this.extensions, defaultOptions: DefaultOptions});
 
         let commands = preprocessor.create(reference);
 
-        return processCommands({commands, extensions: this.extensions, glanceSelector: this.selector});
+        return processCommands({commands, extensions: this.extensions, glanceSelector: this.selector, containerElements});
     };
 
     this.selector.addExtension = (extension) => {
@@ -22,7 +24,7 @@ function createGlanceSelector() {
     };
 
     this.selector.setLogLevel = (level) => {
-        log.setLogLevel(level)
+        log.setLogLevel(level);
     };
 
     return this.selector;

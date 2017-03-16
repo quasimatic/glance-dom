@@ -55,13 +55,13 @@ function dispatch({command, extensions, glanceSelector, result}) {
     return result;
 }
 
-export default function ({commands = [], extensions, glanceSelector}) {
+export default function ({commands = [], extensions, glanceSelector, containerElements}) {
     let result = commands.reduce((result, command) => dispatch({
         command,
         extensions,
         glanceSelector,
         result
-    }), {containerElements: [document.documentElement]});
+    }), {containerElements});
 
     return result.subjectElements.length === 1 ? result.subjectElements[0] : result.subjectElements;
 };
