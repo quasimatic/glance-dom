@@ -1,72 +1,86 @@
 import log from '../../utils/log';
 
 export default {
-    options: {
-        'shortest-path': {
-            filter: function closestdom({elements, scopeElements = [], target}) {
-                log.debug('Filtering for shortest scope and target');
+	options: {
+		'shortest-path': {
+			filter: function closestdom({elements, containerElements = [document.documentElement], scopeElements = [], target}) {
+				log.debug('Filtering for shortest scope and target');
 
-                let elementsForDistance = [];
-                let distanceToScopeLookup = {};
+				let containerLookup = new Set(containerElements.map(c => c.parentNode));
+				let elementsForDistance = [];
+				let distanceToScopeLookup = {};
 
-                function addToLookup(element, distance) {
-                    elementsForDistance.push(element);
-                    let i = elementsForDistance.indexOf(element);
-                    distanceToScopeLookup[i] = distance;
-                }
+				function addToLookup(element, distance) {
+					elementsForDistance.push(element);
+					let i = elementsForDistance.indexOf(element);
+					distanceToScopeLookup[i] = distance;
+				}
 
-                function lookup(element) {
-                    let i = elementsForDistance.indexOf(element);
-                    if (i === -1) return null;
+				function lookup(element) {
+					let i = elementsForDistance.indexOf(element);
+					if (i === -1) return null;
 
-                    return distanceToScopeLookup[i];
-                }
+					return distanceToScopeLookup[i];
+				}
 
-                if (scopeElements.length === 0) return elements;
+				function siblingDistanceToParent(element) {
+					return Array.prototype.indexOf.call(element.parentNode.childNodes, element);
+				}
 
-                scopeElements.forEach(function (v) {
-                    let p = v;
-                    let i = 0;
+				if (scopeElements.length === 0) return elements;
 
-                    while (p !== null && p.outerHTML !== null) {
-                        let distanceToScope = lookup(p);
+				scopeElements.forEach(function(v) {
+					let p = v;
+					let i = 0;
 
-                        if (!distanceToScope || i < distanceToScope) {
-                            addToLookup(p, i);
-                        }
+					while (p !== null && p.outerHTML !== null) {
+						let distanceToScope = lookup(p);
 
-                        ++i;
+						if (!distanceToScope || i < distanceToScope) {
+							addToLookup(p, i);
+						}
 
-                        p = p.parentNode;
-                    }
-                });
+						++i;
 
-                let closestLevel = -1;
-                let closestElements = [];
+						p = p.parentNode;
 
-                elements.forEach(function (element) {
-                    let parent = element;
+						if (containerLookup.has(p)) break;
+					}
+				});
 
-                    let distanceToScope = lookup(parent);
+				let closestLevel = -1;
+				let closestElements = [];
 
-                    while ((closestLevel === -1 || !distanceToScope || distanceToScope <= closestLevel) && parent !== null && parent.outerHTML !== null) {
-                        if (distanceToScope || distanceToScope === 0) {
-                            if (distanceToScope < closestLevel) {
-                                closestElements = [];
-                            }
+				elements.forEach(function(element) {
+					let parent = element;
+					let distanceToScope = lookup(parent);
+					let distance = 0;
 
-                            closestLevel = distanceToScope;
-                            closestElements.push(element);
-                            break;
-                        }
+					while ((closestLevel === -1 || !distanceToScope || distanceToScope + distance <= closestLevel) && parent !== null && parent.outerHTML !== null) {
+						if (distanceToScope || distanceToScope === 0) {
+							distanceToScope += distance;
 
-                        parent = parent.parentNode;
-                        distanceToScope = lookup(parent);
-                    }
-                });
+							if (distanceToScope < closestLevel) {
+								closestElements = [];
+							}
 
-                return closestElements;
-            }
-        }
-    }
+							closestLevel = distanceToScope;
+							closestElements.push(element);
+							break;
+						}
+
+						distance = Math.max(siblingDistanceToParent(parent), distance);
+
+						parent = parent.parentNode;
+
+						if (containerLookup.has(parent)) break;
+
+						distanceToScope = lookup(parent);
+					}
+				});
+
+				return closestElements;
+			}
+		}
+	}
 };
