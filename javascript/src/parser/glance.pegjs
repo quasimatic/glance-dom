@@ -31,7 +31,9 @@ LabelCharacter
 
 Options = OptionChar useDefaultOptions:OptionChar? options:Option* { return {options:options, useDefaultOptions: useDefaultOptions?false:true}; }
 
-Option = name:Character+ SeparatorChar? { return name.join("").trim() }
+Option = name:Character+ OptionSeparatorChar? { return name.join("").trim() }
+
+OptionSeparatorChar = OptionChar / SeparatorChar
 
 EscapeChar = "\\"
 EscapableChars = EscapeChar / ScopeChar / OptionChar / IntersectChar

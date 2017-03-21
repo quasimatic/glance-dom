@@ -673,7 +673,7 @@ function peg$parse(input, options) {
       s1 = peg$FAILED;
     }
     if (s1 !== peg$FAILED) {
-      s2 = peg$parseSeparatorChar();
+      s2 = peg$parseOptionSeparatorChar();
       if (s2 === peg$FAILED) {
         s2 = null;
       }
@@ -688,6 +688,17 @@ function peg$parse(input, options) {
     } else {
       peg$currPos = s0;
       s0 = peg$FAILED;
+    }
+
+    return s0;
+  }
+
+  function peg$parseOptionSeparatorChar() {
+    var s0;
+
+    s0 = peg$parseOptionChar();
+    if (s0 === peg$FAILED) {
+      s0 = peg$parseSeparatorChar();
     }
 
     return s0;
