@@ -1,4 +1,4 @@
-GlanceReference = scopes:Scope+ subject:Subject {return scopes.concat([subject])}
+GlanceReference = scopes:Scope+ subject:Subject? {return subject? scopes.concat([subject]) : scopes}
   / subject:Subject {return [subject]}
   / .* {return []}
 

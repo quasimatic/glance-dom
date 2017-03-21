@@ -78,6 +78,10 @@ describe('Parsing', () => {
 		parser.parse(' label 1^label 2 ').should.deep.equal([[{label: 'label 1', options: [], useDefaultOptions: true},
 			{label: 'label 2', options: [], useDefaultOptions: true}]]);
 	});
+	
+	it('should support an empty subject', () => {
+		parser.parse('label >').should.deep.equal([[{label: 'label', options: [], useDefaultOptions: true}]]);
+	})
 });
 
 describe('Glace Parser: Syntax Errors', () => {
@@ -86,6 +90,6 @@ describe('Glace Parser: Syntax Errors', () => {
 	});
 
 	it('should throw an error for >>', () => {
-		expect(() => parser.parse('aaa >>')).to.throw('Expected "#" or "\\\\" but ">" found.');
+		expect(() => parser.parse('aaa >>')).to.throw('Expected "#", "\\\\", or end of input but ">" found.');
 	});
 });

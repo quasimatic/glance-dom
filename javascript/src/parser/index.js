@@ -141,7 +141,7 @@ function peg$parse(input, options) {
       peg$startRuleFunctions = { GlanceReference: peg$parseGlanceReference },
       peg$startRuleFunction  = peg$parseGlanceReference,
 
-      peg$c0 = function(scopes, subject) {return scopes.concat([subject])},
+      peg$c0 = function(scopes, subject) {return subject? scopes.concat([subject]) : scopes},
       peg$c1 = function(subject) {return [subject]},
       peg$c2 = peg$anyExpectation(),
       peg$c3 = function() {return []},
@@ -327,6 +327,9 @@ function peg$parse(input, options) {
     }
     if (s1 !== peg$FAILED) {
       s2 = peg$parseSubject();
+      if (s2 === peg$FAILED) {
+        s2 = null;
+      }
       if (s2 !== peg$FAILED) {
         peg$savedPos = s0;
         s1 = peg$c0(s1, s2);
