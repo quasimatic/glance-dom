@@ -1,4 +1,4 @@
-import parser from '../parser';
+import parser from 'glance-parser';
 import LocatorCollector from './locator-preprocessor';
 import FilterCollector from './filter-preprocessor';
 import Extensions from '../extensions';

@@ -14,7 +14,7 @@ export default class LocatorPreprocessor {
         let locators = [];
         let labels = extensions.getLabels();
 
-        if ((typeof(labels[target.label]) == 'object' && labels[target.label].locate) || labels[target.label]) {
+        if ((typeof(labels[target.label]) === 'object' && labels[target.label].locate) || labels[target.label]) {
             locators = [{command: 'locate', option: 'custom-label', label: target.label}];
         }
 
@@ -22,7 +22,6 @@ export default class LocatorPreprocessor {
     }
 
     locatorsFromOptions(target, locators, extensions) {
-        let options = extensions.getOptions();
         let updatedOptionTarget = this.configureOptionsWithLocators(target);
 
         updatedOptionTarget.options.forEach(name => locators.push({
@@ -41,7 +40,7 @@ export default class LocatorPreprocessor {
         let possibleOptions = target.options;
         let validOptions = [];
 
-        if (target.useDefaultOptions && defaultOptions.length > 0)
+        if (defaultOptions.length > 0)
             possibleOptions = defaultOptions.concat(possibleOptions);
 
         possibleOptions.forEach(name => {
@@ -63,6 +62,6 @@ export default class LocatorPreprocessor {
             }
         });
 
-        return target.useDefaultOptions ? {...target, options: validOptions} : target;
+        return {...target, options: validOptions};
     }
 };

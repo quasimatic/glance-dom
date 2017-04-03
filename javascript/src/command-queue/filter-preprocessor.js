@@ -44,7 +44,7 @@ export default class FilterPreprocessor {
         let inverses = possibleOptions.reduce((r, o) => options[o] && options[o].inverse ? r.concat(options[o].inverse) : r, []);
         let defaultOptionsWithoutInverse = defaultOptions.filter(d => inverses.indexOf(d) === -1 && possibleOptions.indexOf(d) === -1);
 
-        if (target.useDefaultOptions && defaultOptionsWithoutInverse.length > 0)
+        if (defaultOptionsWithoutInverse.length > 0)
             possibleOptions = defaultOptionsWithoutInverse.concat(possibleOptions);
 
         possibleOptions.forEach(name => {

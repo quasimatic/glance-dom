@@ -4,7 +4,7 @@ import DefaultExtensions from '../extensions/default';
 import DefaultOptions from '../default-options';
 import processCommands from './processor';
 import requiredParameter from '../utils/required-parameter';
-import Parser from '../parser';
+import Parser from 'glance-parser';
 import log from '../utils/log';
 
 function createGlanceSelector() {
