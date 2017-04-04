@@ -7,9 +7,6 @@ The thing to search for
 ## reference
 The entire glance statement.
 
-## selector
-The entire glance statement.
-
 ## scope
 The scope is a target used to narrow down the item we're looking for.
 

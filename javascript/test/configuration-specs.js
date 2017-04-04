@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceSelector from '../src/glance';
+import glanceDOM from '../src/glance';
 
 describe('Configuation: containerElements', () => {
     it('should support configuring a different base container Element', () => {
@@ -11,7 +11,7 @@ describe('Configuation: containerElements', () => {
                 <div>item</div>
             </div>
         );
-        return glanceSelector('item', {containerElements: [dom.get('container')]}).should.deep.equal(dom.get('subject'));
+        return glanceDOM('item', {containerElements: [dom.get('container')]}).should.deep.equal(dom.get('subject'));
     });
 
     it('should support configuring a multiple base container Elements', () => {
@@ -26,6 +26,6 @@ describe('Configuation: containerElements', () => {
                 <div>item</div>
             </div>
         );
-        return glanceSelector('item', {containerElements: [dom.get('container-1'), dom.get('container-2')]}).should.deep.equal(dom.get('subject-1', 'subject-2'));
+        return glanceDOM('item', {containerElements: [dom.get('container-1'), dom.get('container-2')]}).should.deep.equal(dom.get('subject-1', 'subject-2'));
     });
 });

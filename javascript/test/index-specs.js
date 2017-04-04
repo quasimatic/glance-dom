@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceSelector from '../src/glance';
+import glanceDOM from '../src/glance';
 
 describe('Index', () => {
     it('should support a parent indexer', () => {
@@ -13,7 +13,7 @@ describe('Index', () => {
                 </h2>
             </div>
         );
-        return glanceSelector('h2#2 > Shared Title').should.deep.equal(dom.get('target'));
+        return glanceDOM('h2#2 > Shared Title').should.deep.equal(dom.get('target'));
     });
 
     it('should apply default filters before an index filter if index filter is first', () => {
@@ -25,7 +25,7 @@ describe('Index', () => {
             </div>
         );
 
-        return glanceSelector('item#2').should.deep.equal(dom.get('target'));
+        return glanceDOM('item#2').should.deep.equal(dom.get('target'));
     });
 
     it('should get the nth item', () => {
@@ -37,7 +37,7 @@ describe('Index', () => {
             </div>
         );
 
-        return glanceSelector('box1 > Item A#2').should.deep.equal(dom.get('target'));
+        return glanceDOM('box1 > Item A#2').should.deep.equal(dom.get('target'));
     });
 
     it('should get the nth scope for an item', () => {
@@ -55,7 +55,7 @@ describe('Index', () => {
             </div>
         );
 
-        return glanceSelector('box2>inner-box#2>Item A').should.deep.equal(dom.get('target'));
+        return glanceDOM('box2>inner-box#2>Item A').should.deep.equal(dom.get('target'));
     });
 
     it('should get the nth item with multiple scopes', () => {
@@ -68,6 +68,6 @@ describe('Index', () => {
             </div>
         );
 
-        return glanceSelector('Item A > Item B#1').should.deep.equal(dom.get('target'));
+        return glanceDOM('Item A > Item B#1').should.deep.equal(dom.get('target'));
     });
 });

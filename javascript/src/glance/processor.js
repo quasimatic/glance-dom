@@ -1,6 +1,6 @@
 import containers from './containers';
 
-function dispatch({command, extensions, glanceSelector, result, reference}) {
+function dispatch({command, extensions, glanceDOM, result, reference}) {
     switch (command.command) {
         case 'beforeall':
             extensions.getBeforeAllHooks().forEach(h => h({reference}));
@@ -37,7 +37,7 @@ function dispatch({command, extensions, glanceSelector, result, reference}) {
             result.targetElements = result.targetElements.concat(locator({
                 ...command,
                 extensions,
-                glanceSelector,
+                glanceDOM,
                 containerElements: result.containerElements
             }));
 
@@ -63,12 +63,12 @@ function dispatch({command, extensions, glanceSelector, result, reference}) {
     return result;
 }
 
-export default function({commands = [], extensions, glanceSelector, reference, containerElements}) {
+export default function({commands = [], extensions, glanceDOM, reference, containerElements}) {
     let result = commands.reduce((result, command) => dispatch({
         command,
         extensions,
         reference,
-        glanceSelector,
+        glanceDOM,
         result
     }), {containerElements});
 

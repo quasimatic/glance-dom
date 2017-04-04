@@ -4,9 +4,9 @@ using System.Reflection;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
 
-namespace Glance.DomSelector
+namespace Glance.Dom
 {
-    public class GlanceSelector
+    public class GlanceDom
     {
         private class GlanceLocator : By
         {
@@ -15,9 +15,9 @@ namespace Glance.DomSelector
             private void loadGlance(IJavaScriptExecutor driver)
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                var stream = assembly.GetManifestResourceStream("Glance.DomSelector.glance-selector.js");
-                var glanceSelectorScript = new StreamReader(stream).ReadToEnd();
-                driver.ExecuteScript(glanceSelectorScript);
+                var stream = assembly.GetManifestResourceStream("Glance.Dom.glance-dom.js");
+                var glanceDOMScript = new StreamReader(stream).ReadToEnd();
+                driver.ExecuteScript(glanceDOMScript);
             }
 
             public GlanceLocator(string reference)
@@ -29,7 +29,7 @@ namespace Glance.DomSelector
             {
                 var driver = (RemoteWebDriver) context;
                 loadGlance(driver);
-                string executeGlance = "return glanceSelector(arguments[0]);";
+                string executeGlance = "return glanceDOM(arguments[0]);";
                 var element = driver.ExecuteScript(executeGlance, this.reference);
                 return element as IWebElement;
             }
@@ -38,7 +38,7 @@ namespace Glance.DomSelector
             {
                 var driver = (RemoteWebDriver) context;
                 loadGlance(driver);
-                string executeGlance = "return glanceSelector(arguments[0]);";
+                string executeGlance = "return glanceDOM(arguments[0]);";
                 var elements = driver.ExecuteScript(executeGlance, reference) as ReadOnlyCollection<IWebElement>;
                 return elements;
             }

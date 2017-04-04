@@ -3,7 +3,7 @@ var webpack = require('webpack');
 module.exports = {
     entry: './javascript/src/browser/index.js',
     output: {
-        filename: './dist/glance-selector.js'
+        filename: './dist/glance-dom.js'
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({

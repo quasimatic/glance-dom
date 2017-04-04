@@ -31,10 +31,10 @@ export default class Extensions {
 
     getLocator(locator) {
         if (Object.prototype.toString.call(locator) === '[object Array]') {
-            return ({glanceSelector}) => locator.reduce((result, label) => result.concat(glanceSelector(label), []), []);
+            return ({glanceDOM}) => locator.reduce((result, label) => result.concat(glanceDOM(label), []), []);
         }
         else if (typeof(locator) === 'string') {
-            return ({glanceSelector}) => glanceSelector(locator);
+            return ({glanceDOM}) => glanceDOM(locator);
         }
         else if (typeof(locator) === 'function') {
             return locator;

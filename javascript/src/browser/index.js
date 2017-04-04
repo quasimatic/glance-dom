@@ -1,3 +1,3 @@
-import glanceSelector from '../glance';
+import glanceDOM from '../glance';
 
-window.glanceSelector = glanceSelector;
+window.glanceDOM = glanceDOM;

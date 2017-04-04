@@ -5,7 +5,7 @@ Function
 
 Arguments
 - glance
-- glanceSelector
+- glanceDOM
 - target
 - containerElements
 

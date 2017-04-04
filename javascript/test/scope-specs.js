@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceSelector from '../src/glance';
+import glanceDOM from '../src/glance';
 
 describe('Scope', () => {
     it('should narrow down to scope', () => {
@@ -12,7 +12,7 @@ describe('Scope', () => {
             <div>subject</div>
         </div>);
 
-        glanceSelector('scope > subject').should.deep.equal(dom.get('subject'));
+        glanceDOM('scope > subject').should.deep.equal(dom.get('subject'));
     });
 
     it('should limit container', () => {
@@ -28,6 +28,6 @@ describe('Scope', () => {
             </div>
         </div>);
 
-        glanceSelector('scope-1 > scope-2 > subject').should.deep.equal(dom.get('subject'));
+        glanceDOM('scope-1 > scope-2 > subject').should.deep.equal(dom.get('subject'));
     });
 });

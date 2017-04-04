@@ -1,4 +1,4 @@
-import glanceSelector from '../../src/glance';
+import glanceDOM from '../../src/glance';
 import dom from '../dom';
 
 describe('Extensions: locators', () => {
@@ -13,21 +13,21 @@ describe('Extensions: locators', () => {
     });
 
     it('should locate elements with a option', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 'custom-option': {
-                    locate: function ({glanceSelector}) {
-                        return glanceSelector('custom-input');
+                    locate: function ({glanceDOM}) {
+                        return glanceDOM('custom-input');
                     }
                 }
             }
         });
 
-        return glanceSelector('ignored#custom-option').should.deep.equal(dom.get('target-3'));
+        return glanceDOM('ignored#custom-option').should.deep.equal(dom.get('target-3'));
     });
 
     it('should locate elements for a custom option as a glance selector', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 'custom-option': {
                     locate: 'custom-input'
@@ -35,6 +35,6 @@ describe('Extensions: locators', () => {
             }
         });
 
-        return glanceSelector('ignored#custom-option').should.deep.equal(dom.get('target-3'));
+        return glanceDOM('ignored#custom-option').should.deep.equal(dom.get('target-3'));
     });
 });

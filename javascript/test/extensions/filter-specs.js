@@ -1,4 +1,4 @@
-import glanceSelector from '../../src/glance';
+import glanceDOM from '../../src/glance';
 import dom from '../dom';
 
 describe('Extensions: filters', () => {
@@ -13,7 +13,7 @@ describe('Extensions: filters', () => {
     });
 
     it('should filter elements', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 'every-other': {
                     filter: function ({elements}) {
@@ -24,11 +24,11 @@ describe('Extensions: filters', () => {
             }
         });
 
-        return glanceSelector('item#every-other').should.deep.equal(dom.get('target-1', 'target-2'));
+        return glanceDOM('item#every-other').should.deep.equal(dom.get('target-1', 'target-2'));
     });
 
     it('should filter elements as a function', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 'every-other': function ({elements}) {
                     let i = 0;
@@ -37,7 +37,7 @@ describe('Extensions: filters', () => {
             }
         });
 
-        return glanceSelector('item#every-other').should.deep.equal(dom.get('target-1', 'target-2'));
+        return glanceDOM('item#every-other').should.deep.equal(dom.get('target-1', 'target-2'));
     });
 
     it('should filter items for option', () => {
@@ -50,7 +50,7 @@ describe('Extensions: filters', () => {
             </div>
         );
 
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 'lessthan3characters': function ({elements}) {
                     return elements.filter(e => e.innerHTML.length < 3);
@@ -58,7 +58,7 @@ describe('Extensions: filters', () => {
             }
         });
 
-        return glanceSelector('1#lessthan3characters').should.deep.equal(dom.get('target-1', 'target-2'));
+        return glanceDOM('1#lessthan3characters').should.deep.equal(dom.get('target-1', 'target-2'));
     });
 
     it('should support setting the locator', () => {
@@ -69,7 +69,7 @@ describe('Extensions: filters', () => {
             </div>
         );
 
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 'exact-match': {
                     locate: function ({label, containerElements}) {
@@ -79,18 +79,18 @@ describe('Extensions: filters', () => {
             }
         });
 
-        return glanceSelector('something custom#exact-match').should.deep.equal(dom.get('target'));
+        return glanceDOM('something custom#exact-match').should.deep.equal(dom.get('target'));
     });
 
     it("should still use default filters if specified options don't have filters", function () {
         dom.render(<span id="target"></span>)
 
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             options: {
                 "optionwithoutfilter": {}
             }
         });
 
-        return glanceSelector("span#optionwithoutfilter").should.deep.equal(dom.get('target'));
+        return glanceDOM("span#optionwithoutfilter").should.deep.equal(dom.get('target'));
     });
 });

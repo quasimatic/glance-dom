@@ -1,5 +1,5 @@
 import dom from '../dom';
-import glanceSelector from '../../src/glance';
+import glanceDOM from '../../src/glance';
 
 describe('Events: beforeAll', () => {
     it('should fire before everything', () => {
@@ -7,8 +7,8 @@ describe('Events: beforeAll', () => {
 
         let beforeAll = sinon.spy();
 
-        glanceSelector.addExtension({'beforeAll': beforeAll});
-        glanceSelector('subject');
+        glanceDOM.addExtension({'beforeAll': beforeAll});
+        glanceDOM('subject');
 
         beforeAll.args[0][0].should.deep.equal({reference: "subject"})
     });
@@ -20,8 +20,8 @@ describe('Events: afterAll', () => {
 
         let afterAll = sinon.spy();
 
-        glanceSelector.addExtension({'afterAll': afterAll});
-        glanceSelector('subject');
+        glanceDOM.addExtension({'afterAll': afterAll});
+        glanceDOM('subject');
 
         afterAll.args[0][0].should.deep.equal({elements:[dom.get('subject')], reference: "subject"})
     });

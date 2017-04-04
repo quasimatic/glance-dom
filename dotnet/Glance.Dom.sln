@@ -1,9 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glance.DomSelector", "Glance.DomSelector\Glance.DomSelector.csproj", "{FC39F0B3-E921-45FF-85CB-7088E4505966}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glance.Dom", "Glance.Dom\Glance.Dom.csproj", "{FC39F0B3-E921-45FF-85CB-7088E4505966}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glance.DomSelector.Specs", "Glance.DomSelector.Specs\Glance.DomSelector.Specs.csproj", "{6DDC499E-B1E0-439E-9F40-228687D24628}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glance.Dom.Specs", "Glance.Dom.Specs\Glance.Dom.Specs.csproj", "{6DDC499E-B1E0-439E-9F40-228687D24628}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

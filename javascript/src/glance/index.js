@@ -7,7 +7,7 @@ import requiredParameter from '../utils/required-parameter';
 import Parser from 'glance-parser';
 import log from '../utils/log';
 
-function createGlanceSelector() {
+function createglanceDOM() {
     this.extensions = new Extensions(DefaultExtensions);
     this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
         let {containerElements = [document.documentElement]} = config;
@@ -16,7 +16,7 @@ function createGlanceSelector() {
 
         let commands = preprocessor.create(reference);
 
-        return processCommands({commands, extensions: this.extensions, glanceSelector: this.selector, containerElements, reference});
+        return processCommands({commands, extensions: this.extensions, glanceDOM: this.selector, containerElements, reference});
     };
 
     this.selector.addExtension = (extension) => {
@@ -30,5 +30,5 @@ function createGlanceSelector() {
     return this.selector;
 }
 
-export default new createGlanceSelector();
+export default new createglanceDOM();
 export {Parser, DefaultExtensions, DefaultOptions};

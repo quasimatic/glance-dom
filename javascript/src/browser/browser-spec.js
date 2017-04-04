@@ -1,7 +1,7 @@
 import browser from './index';
 
 describe('browser', () => {
-    it('glanceSelector should be global', () => {
-        window.glanceSelector.should.not.be.null;
+    it('glanceDOM should be global', () => {
+        window.glanceDOM.should.not.be.null;
     })
 })

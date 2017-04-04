@@ -1,10 +1,10 @@
 import dom from './dom';
-import glanceSelector from '../src/glance';
+import glanceDOM from '../src/glance';
 
 describe('Subjects', () => {
     it('should find subject', () => {
         dom.render(<div id="subject"></div>);
-        glanceSelector('subject').should.deep.equal(dom.get('subject'));
+        glanceDOM('subject').should.deep.equal(dom.get('subject'));
     });
 
     it('should find multiple subject', () => {
@@ -12,34 +12,34 @@ describe('Subjects', () => {
             <div id="subject-1">subject 1</div>
             <div id="subject-2">subject 2</div>
         </div>);
-        glanceSelector('subject').should.deep.equal(dom.get('subject-1', 'subject-2'));
+        glanceDOM('subject').should.deep.equal(dom.get('subject-1', 'subject-2'));
     });
 });
 
 describe('Subject: default locators', () => {
     it('should look by exact text match', () => {
         dom.render(<div id="subject">Content Item</div>);
-        glanceSelector('Content Item').should.deep.equal(dom.get('subject'));
+        glanceDOM('Content Item').should.deep.equal(dom.get('subject'));
     });
 
     it('should look by content as contains', () => {
         dom.render(<div id="subject">Item Contains stuff</div>);
-        return glanceSelector('Item Contains').should.deep.equal(dom.get('subject'));
+        return glanceDOM('Item Contains').should.deep.equal(dom.get('subject'));
     });
 
     it('will look by id', () => {
         dom.render(<div id="label-id"></div>);
-        return glanceSelector('label-id').should.deep.equal(dom.get('label-id'));
+        return glanceDOM('label-id').should.deep.equal(dom.get('label-id'));
     });
 
     it('should look by class', () => {
         dom.render(<div id="subject" className="div-class"></div>);
-        return glanceSelector('div-class').should.deep.equal(dom.get('subject'));
+        return glanceDOM('div-class').should.deep.equal(dom.get('subject'));
     });
 
     it('should look by node type', () => {
         dom.render(<button id="subject"></button>);
-        return glanceSelector('button').should.deep.equal(dom.get('subject'));
+        return glanceDOM('button').should.deep.equal(dom.get('subject'));
     });
 });
 
@@ -50,7 +50,7 @@ describe('Subject: default filters', () => {
             <div id="subject">foo</div>
         </div>);
 
-        return glanceSelector('foo#2').should.deep.equal(dom.get('subject'));
+        return glanceDOM('foo#2').should.deep.equal(dom.get('subject'));
     });
 
     it('should filter for visible elements', () => {
@@ -61,7 +61,7 @@ describe('Subject: default filters', () => {
             </div>
         );
 
-        return glanceSelector('Duplicate').should.deep.equal(dom.get('subject-1'));
+        return glanceDOM('Duplicate').should.deep.equal(dom.get('subject-1'));
     });
 
     it('should get duplicates for visible items only', () => {
@@ -74,6 +74,6 @@ describe('Subject: default filters', () => {
             </div>
         );
 
-        return glanceSelector('item').should.deep.equal(dom.get('subject-1', 'subject-2'));
+        return glanceDOM('item').should.deep.equal(dom.get('subject-1', 'subject-2'));
     });
 });

@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium.Remote;
 
-namespace Glance.DomSelector.Specs
+namespace Glance.Dom.Specs
 {
     [TestFixture]
-    public class GlanceSelectorSpecs
+    public class GlanceDomSpecs
     {
         [Test]
         public void ShouldFindOneElement()
@@ -13,7 +13,7 @@ namespace Glance.DomSelector.Specs
             {
                 driver.Navigate().GoToUrl("http://quasimatic.org/take-a-glance/?level=2");
 
-                var glance = new GlanceSelector();
+                var glance = new GlanceDom();
 
                 var element = driver.FindElement(glance.Locate("square"));
 
@@ -28,7 +28,7 @@ namespace Glance.DomSelector.Specs
             {
                 driver.Navigate().GoToUrl("http://quasimatic.org/take-a-glance/?level=6");
 
-                var glance = new GlanceSelector();
+                var glance = new GlanceDom();
 
                 var elements = driver.FindElements(glance.Locate("square"));
 

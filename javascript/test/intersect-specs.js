@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceSelector from '../src/glance';
+import glanceDOM from '../src/glance';
 
 describe('Intersect', () => {
     it('should limit to intersecting elements', () => {
@@ -9,7 +9,7 @@ describe('Intersect', () => {
             <div></div>
         </div>);
 
-        glanceSelector('subject ^ div').should.deep.equal(dom.get('subject'));
+        glanceDOM('subject ^ div').should.deep.equal(dom.get('subject'));
     });
 
     it('should limit multiple sets of intersecting elements', () => {
@@ -24,7 +24,7 @@ describe('Intersect', () => {
             </div>
         </div>);
 
-        glanceSelector('subject ^ div').should.deep.equal(dom.get('subject-1', 'subject-2'));
+        glanceDOM('subject ^ div').should.deep.equal(dom.get('subject-1', 'subject-2'));
     });
 
     it('should limit multiple sets of intersecting elements', () => {
@@ -39,7 +39,7 @@ describe('Intersect', () => {
             </div>
         </div>);
 
-        glanceSelector('scope ^ div > subject').should.deep.equal(dom.get('subject'));
+        glanceDOM('scope ^ div > subject').should.deep.equal(dom.get('subject'));
     });
 
     it('should interesect on class even if one is a leaf node', () => {
@@ -49,8 +49,8 @@ describe('Intersect', () => {
             </svg>
         </div>);
 
-        // TODO glanceSelector('blue ^ circle').should.deep.equal(dom.get('target'));
-        glanceSelector('circle ^ blue').should.deep.equal(dom.get('target'));
+        // TODO glanceDOM('blue ^ circle').should.deep.equal(dom.get('target'));
+        glanceDOM('circle ^ blue').should.deep.equal(dom.get('target'));
     });
 
     it('should narrow down element with inner selectors', () => {
@@ -60,7 +60,7 @@ describe('Intersect', () => {
             <span>item</span>
         </div>);
 
-        return glanceSelector('item ^ block').should.deep.equal(dom.get('target'));
+        return glanceDOM('item ^ block').should.deep.equal(dom.get('target'));
     });
 
     it('should narrow down elements with inner selectors', () => {
@@ -70,6 +70,6 @@ describe('Intersect', () => {
             <span id="target-2" className="block">item</span>
         </div>);
 
-        return glanceSelector('item ^ block').should.deep.equal(dom.get('target-1', 'target-2'));
+        return glanceDOM('item ^ block').should.deep.equal(dom.get('target-1', 'target-2'));
     });
 });

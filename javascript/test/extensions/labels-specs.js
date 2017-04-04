@@ -1,4 +1,4 @@
-import glanceSelector from '../../src/glance';
+import glanceDOM from '../../src/glance';
 import dom from '../dom';
 
 describe('Extensions: labels', () => {
@@ -13,58 +13,58 @@ describe('Extensions: labels', () => {
     });
 
     it('should locate elements for a custom label', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             labels: {
                 'custom-label': {
-                    locate: function ({glanceSelector}) {
-                        return glanceSelector('target');
+                    locate: function ({glanceDOM}) {
+                        return glanceDOM('target');
                     }
                 }
             }
         });
 
-        return glanceSelector('custom-label').should.deep.equal(dom.get('target'));
+        return glanceDOM('custom-label').should.deep.equal(dom.get('target'));
     });
 
     it('should locate elements for a custom label as a function', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             labels: {
-                'custom-label': function ({glanceSelector}) {
-                    return glanceSelector('target');
+                'custom-label': function ({glanceDOM}) {
+                    return glanceDOM('target');
                 }
             }
         });
 
-        return glanceSelector('custom-label').should.deep.equal(dom.get('target'));
+        return glanceDOM('custom-label').should.deep.equal(dom.get('target'));
     });
 
-    it('should locate elements for a custom label as a glanceSelector selector', () => {
-        glanceSelector.addExtension({
+    it('should locate elements for a custom label as a glanceDOM selector', () => {
+        glanceDOM.addExtension({
             labels: {
                 'custom-label': 'target'
             }
         });
 
-        return glanceSelector('custom-label').should.deep.equal(dom.get('target'));
+        return glanceDOM('custom-label').should.deep.equal(dom.get('target'));
     });
 
     it('should locate elements for a custom label as an array', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             labels: {
                 'custom-label': ['missing', 'target', 'another']
             }
         });
 
-        return glanceSelector('custom-label').should.deep.equal(dom.get('target', 'another'));
+        return glanceDOM('custom-label').should.deep.equal(dom.get('target', 'another'));
     });
 
     it('should locate elements with a scope as a custom label as an array', () => {
-        glanceSelector.addExtension({
+        glanceDOM.addExtension({
             labels: {
                 'custom-label': ['missing', 'target', 'something-else']
             }
         });
 
-        return glanceSelector('custom-label > item-1').should.deep.equal(dom.get('item-1'));
+        return glanceDOM('custom-label > item-1').should.deep.equal(dom.get('item-1'));
     });
 });
