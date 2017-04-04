@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glance.Dom", "Glance.Dom\Glance.Dom.csproj", "{FC39F0B3-E921-45FF-85CB-7088E4505966}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glance.Dom.Specs", "Glance.Dom.Specs\Glance.Dom.Specs.csproj", "{6DDC499E-B1E0-439E-9F40-228687D24628}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FC39F0B3-E921-45FF-85CB-7088E4505966}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC39F0B3-E921-45FF-85CB-7088E4505966}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC39F0B3-E921-45FF-85CB-7088E4505966}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC39F0B3-E921-45FF-85CB-7088E4505966}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DDC499E-B1E0-439E-9F40-228687D24628}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DDC499E-B1E0-439E-9F40-228687D24628}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DDC499E-B1E0-439E-9F40-228687D24628}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DDC499E-B1E0-439E-9F40-228687D24628}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

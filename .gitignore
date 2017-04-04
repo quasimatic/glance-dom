@@ -1,0 +1,11 @@
+.idea
+
+lib
+dist
+node_modules
+_book
+
+bin
+obj
+*.user
+packages
