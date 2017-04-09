@@ -5,7 +5,7 @@
   "main": "javascript/lib/glance/index.js",
   "scripts": {
     "build": "rm -rf javascript/lib && babel javascript/src -d javascript/lib",
-    "build:browser": "webpack",
+    "build:browser": "webpack --config webpack.browser.js && webpack --config webpack.jquery.js",
     "prepublish": "npm run build",
     "docs:clean": "rm -rf docs/_book",
     "docs:prepare": "cd docs && gitbook install",
@@ -44,6 +44,7 @@
     "eslint": "^3.19.0",
     "gitbook-cli": "^2.3.0",
     "glance-parser": "0.0.1",
+    "jquery": "^3.2.1",
     "mocha": "^3.2.0",
     "pegjs": "^0.10.0",
     "phantomjs-polyfill": "0.0.2",
