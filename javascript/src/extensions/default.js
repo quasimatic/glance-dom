@@ -11,5 +11,6 @@ import leafNodeTarget from './filters/leaf-node-target';
 import inputAfter from './filters/input-after';
 import index from './filters/index';
 import containedNearScope from './filters/contained-near-scope';
+import closest from './filters/closest';
 
-export default [customLabel, containsText, exactText, value, className, attribute, nodeType, css, visible, leafNodeTarget, inputAfter, containedNearScope, index];
+export default [customLabel, containsText, exactText, value, className, attribute, nodeType, css, visible, leafNodeTarget, inputAfter, containedNearScope, index, closest];
