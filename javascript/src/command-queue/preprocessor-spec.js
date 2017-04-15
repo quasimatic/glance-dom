@@ -153,7 +153,7 @@ describe('Preprocessor', () => {
             },
             {
                 command: 'filter',
-                option: 'shortest-path',
+                option: 'contained-near-scope',
                 label: 'subject',
                 targetIndex: 0,
                 totalTargets: 1
@@ -259,7 +259,7 @@ describe('Preprocessor', () => {
             },
             {
                 command: 'filter',
-                option: 'shortest-path',
+                option: 'contained-near-scope',
                 label: 'scope',
                 targetIndex: 0,
                 totalTargets: 2
@@ -359,7 +359,7 @@ describe('Preprocessor', () => {
             },
             {
                 command: 'filter',
-                option: 'shortest-path',
+                option: 'contained-near-scope',
                 label: 'subject',
                 targetIndex: 1,
                 totalTargets: 2
@@ -465,7 +465,7 @@ describe('Preprocessor', () => {
             },
             {
                 command: 'filter',
-                option: 'shortest-path',
+                option: 'contained-near-scope',
                 label: 'subject',
                 targetIndex: 0,
                 totalTargets: 2
@@ -564,7 +564,7 @@ describe('Preprocessor', () => {
             },
             {
                 command: 'filter',
-                option: 'shortest-path',
+                option: 'contained-near-scope',
                 label: 'intersect',
                 targetIndex: 1,
                 totalTargets: 2

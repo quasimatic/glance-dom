@@ -9,7 +9,7 @@ import attribute from './locators/attribute';
 import visible from './filters/visible';
 import leafNodeTarget from './filters/leaf-node-target';
 import inputAfter from './filters/input-after';
-import shortestPath from './filters/shortest-path';
 import index from './filters/index';
+import containedNearScope from './filters/contained-near-scope';
 
-export default [customLabel, containsText, exactText, value, className, attribute, nodeType, css, visible, leafNodeTarget, inputAfter, shortestPath, index];
+export default [customLabel, containsText, exactText, value, className, attribute, nodeType, css, visible, leafNodeTarget, inputAfter, containedNearScope, index];

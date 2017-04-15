@@ -12,6 +12,6 @@ export default [
     'visible',
     'leaf-node-target',
     'input-after',
-    'shortest-path',
+    'contained-near-scope',
     'index'
 ];

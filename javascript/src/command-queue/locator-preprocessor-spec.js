@@ -1,20 +1,21 @@
 import Extensions from '../extensions';
 import Preprocessor from './locator-preprocessor';
 
-let extensions = new Extensions([{
-	options: {
-		'default-locator-1': {
-			locate: 'custom'
-		},
-		'default-locator-2': {
-			locate: 'custom'
-		}
-	}
-}]);
-
+let extensions;
 let defaultOptions = ['default-locator-1', 'default-locator-2'];
 
 describe('Preprocessor: locators', () => {
+	beforeEach(() => extensions = new Extensions([{
+		options: {
+			'default-locator-1': {
+				locate: 'custom'
+			},
+			'default-locator-2': {
+				locate: 'custom'
+			}
+		}
+	}]));
+
 	it('should support no options', () => {
 		let preprocessor = new Preprocessor();
 		preprocessor.extensions.extensions.length.should.equal(0);
