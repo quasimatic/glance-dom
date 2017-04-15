@@ -1,4 +1,4 @@
 import glanceDOM from '../glance';
-import jquery from 'jquery';
+import $ from 'jquery';
 
 window.$glance = (reference) => $(glanceDOM(reference));
