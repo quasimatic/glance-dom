@@ -47,8 +47,6 @@
     "jquery": "^3.2.1",
     "mocha": "^3.2.0",
     "pegjs": "^0.10.0",
-    "phantomjs-polyfill": "0.0.2",
-    "phantomjs2-ext": "^0.2.2",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "wallaby-webpack": "0.0.38",
