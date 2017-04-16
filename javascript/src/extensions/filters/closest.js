@@ -15,8 +15,6 @@ function distToSegment(base, item1, item2) {
 	if (l === 0) return distance(base, item1);
 	let t = ((base.x - item1.x) * (item2.x - item1.x) + (base.y - item1.y) * (item2.y - item1.y)) / l;
 
-	console.log(t)
-
 	if (t < 0) return distance(base, item1);
 	if (t > 1) return distance(base, item2);
 
