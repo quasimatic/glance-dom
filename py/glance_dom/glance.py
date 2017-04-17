@@ -3,21 +3,29 @@ class GlanceDom(object):
     def __init__(self, driver):
         self._driver = driver
 
-    @property
-    def driver(self):
-        return self._driver
-
     def init_glance(self):
-        if not self.is_init():
-            self.driver.execute_script(get_glance_dom())
+        if not self._is_init():
+            self._driver.execute_script(get_glance_dom())
 
-    def is_init(self):
-        return self.driver.execute_script('return something')
+    def _is_init(self):
+        script_alt = 'try {' \
+                     'return $.isFunction(glanceDOM);' \
+                     '} catch (e) {' \
+                     'if (e instanceof ReferenceError)) {' \
+                     'return false; }'
+
+        script = 'if ($.isFunction(glanceDOM)) {' \
+                 'return true;' \
+                 '} else {' \
+                 'return false; }'
+
+        return self._driver.execute_script(script)
 
     def get_element(self, reference, options=None):
+        self.init_glance()
         options = ' '.join(options) if options else ''
         argument = '{reference} {options}'.format(reference=reference, options=options)
-        return self.driver.execute_script('return glanceDOM(arguments[0])', argument)
+        return self._driver.execute_script('return glanceDOM(arguments[0])', argument)
 
 
 def get_glance_dom():
