@@ -1,7 +1,9 @@
-import dom from './dom';
-import glanceDOM from '../src/glance';
+import dom from '../dom';
+import glanceDOM from '../../src/glance/index';
 
 describe('Configuation: containerElements', () => {
+    afterEach(() => glanceDOM.reset())
+
     it('should support configuring a different base container Element', () => {
         dom.render(
             <div>
