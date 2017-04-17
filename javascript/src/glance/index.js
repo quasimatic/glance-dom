@@ -1,34 +1,63 @@
 import Preprocessor from '../command-queue/preprocessor';
-import Extensions from '../extensions';
-import DefaultExtensions from '../extensions/default';
-import DefaultOptions from '../default-options';
 import processCommands from './processor';
 import requiredParameter from '../utils/required-parameter';
 import Parser from 'glance-parser';
 import log from '../utils/log';
+import DefaultExtensions from '../extensions/default';
+import DefaultOptions from '../default-options';
+import Settings from './settings';
 
-function createglanceDOM() {
-    this.extensions = new Extensions(DefaultExtensions);
-    this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
-        let {containerElements = [document.documentElement]} = config;
+function createGlanceDOM() {
+	this.preprocessor;
 
-        let preprocessor = new Preprocessor({extensions: this.extensions, defaultOptions: DefaultOptions});
+	this.settings = new Settings();
 
-        let commands = preprocessor.create(reference);
+	this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
+		this.settings.configure(config);
 
-        return processCommands({commands, extensions: this.extensions, glanceDOM: this.selector, containerElements, reference});
-    };
+		let commands = this.preprocessor.create(reference);
 
-    this.selector.addExtension = (extension) => {
-        this.extensions.add(extension);
-    };
+		return processCommands({
+			...this.settings.config,
+			commands,
+			glanceDOM: this.selector,
+			reference
+		});
+	};
 
-    this.selector.setLogLevel = (level) => {
-        log.setLogLevel(level);
-    };
+	this.selector.addExtension = (extension) => {
+		this.settings.addExtension(extension);
+	};
 
-    return this.selector;
+	this.selector.addLabel = (label, value) => {
+		this.settings.addLabel(label, value);
+	};
+
+	this.selector.addOption = (option, value) => {
+		this.settings.addOption(option, value);
+	};
+
+	this.selector.setDefaultOptions = (options) => {
+		this.settings.setDefaultOptions(options);
+	};
+
+	this.selector.reset = () => {
+		this.settings = new Settings();
+		this.preprocessor = new Preprocessor(this.settings.config);
+	};
+
+	this.selector.getConfig = () => {
+		return this.settings.config;
+	};
+
+	this.selector.setLogLevel = (level) => {
+		this.settings.setLogLevel(level);
+	};
+
+	this.selector.reset();
+
+	return this.selector;
 }
 
-export default new createglanceDOM();
+export default new createGlanceDOM();
 export {Parser, DefaultExtensions, DefaultOptions};
