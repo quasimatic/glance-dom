@@ -6,10 +6,7 @@ module.exports = {
         filename: './dist/glance-dom.js'
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            sourceMap: false,
-            mangle: false
-        })
+        new webpack.optimize.UglifyJsPlugin()
     ],
     module: {
         loaders: [
