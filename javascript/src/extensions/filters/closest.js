@@ -1,5 +1,4 @@
 import log from '../../utils/log';
-import _ from 'lodash';
 
 function sqr(x) {
 	return x * x;
@@ -35,6 +34,24 @@ function getSizeAndLocation(element) {
 	};
 }
 
+function shortestDistance(a, t) {
+	let p1 = t;
+	let p2 = {
+		x: t.x + t.width,
+		y: t.y
+	};
+	let p3 = {
+		x: t.x + t.width,
+		y: t.y + t.height
+	};
+	let p4 = {
+		x: t.x,
+		y: t.y + t.height
+	};
+
+	return Math.min(distToSegment(a, p1, p2), distToSegment(a, p2, p3), distToSegment(a, p4, p3), distToSegment(a, p1, p4));
+}
+
 export default {
 	options: {
 		'closest': {
@@ -52,22 +69,10 @@ export default {
 
 					let targets = elements.map(e => getSizeAndLocation(e));
 
-					let sorted = _.sortBy(targets.filter((t) => t.element !== baseID), function(t) {
-						let p1 = t;
-						let p2 = {
-							x: t.x + t.width,
-							y: t.y
-						};
-						let p3 = {
-							x: t.x + t.width,
-							y: t.y + t.height
-						};
-						let p4 = {
-							x: t.x,
-							y: t.y + t.height
-						};
-
-						return Math.min(distToSegment(a, p1, p2), distToSegment(a, p2, p3), distToSegment(a, p4, p3), distToSegment(a, p1, p4));
+					let sorted = targets.filter((t) => t.element !== baseID).sort(function(x, y) {
+						let l = shortestDistance(a, x);
+						let r = shortestDistance(a, y);
+						return (l < r) ? -1 : (l > r) ? 1 : 0;
 					});
 
 					return sorted[0].element;
