@@ -42,7 +42,10 @@ class GlanceDom(object):
         :return: list of elements or empty list
         """
         self.init_glance()
-        return self._get(reference)
+        elements = self._get(reference)
+
+        # Single element should also be returned as list
+        return elements if isinstance(elements, list) else [elements]
 
     def _get(self, reference):
         return self._driver.execute_script('return glanceDOM(arguments[0])', reference)
