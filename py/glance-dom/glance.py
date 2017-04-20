@@ -19,7 +19,7 @@ class GlanceDom(object):
         :return:
         """
         if not self._is_init():
-            self._driver.execute_script(get_glance_dom())
+            self._driver.execute_script(read_glance_dom())
 
     def get_element(self, reference):
         """
@@ -51,10 +51,12 @@ class GlanceDom(object):
         return self._driver.execute_script('return typeof(glanceDOM) === "function"')
 
 
-def get_glance_dom():
+def read_glance_dom():
     """
 
     :return:
     """
-    with open('scr/glance-dom.js', 'r') as js_file:
-        return js_file.read()
+    import os
+    import pkgutil
+
+    return pkgutil.get_data(__package__, os.path.join('scr', 'glance-dom.js')).decode('utf8')

@@ -1,10 +1,10 @@
 from distutils.core import setup
 
 setup(
-    name='glance_dom',
-    packages=['glance_dom'],
+    name='glance-dom',
+    packages=['glance-dom'],
     package_data={
-        'glance_dom': ['scr/glance-dom.js'],
+        'glance-dom': ['scr/glance-dom.js'],
     },
     version='0.1',
     description='A selenium automation tool that utilizes contextual labels to automate faster and loosen the ties to '
