@@ -2,7 +2,7 @@
   "name": "glance-dom",
   "version": "0.10.0",
   "description": "Glance DOM library",
-  "main": "javascript/lib/glance-dom.js",
+  "main": "javascript/lib/glance-dom-node.js",
   "scripts": {
     "build": "npm run build:browser && npm run build:node",
     "build:node": "rm -rf javascript/lib && babel javascript/src -d javascript/lib",
