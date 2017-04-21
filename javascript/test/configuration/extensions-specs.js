@@ -1,5 +1,5 @@
 import dom from '../dom';
-import glanceDOM from '../../src/glance/index';
+import glanceDOM from '../../src/glance-dom';
 
 describe('Configuation: extensions', () => {
 	afterEach(() => glanceDOM.reset());

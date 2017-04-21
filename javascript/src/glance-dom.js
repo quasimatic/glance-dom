@@ -1,11 +1,11 @@
-import Preprocessor from '../command-queue/preprocessor';
-import processCommands from './processor';
-import requiredParameter from '../utils/required-parameter';
+import Preprocessor from './command-queue/preprocessor';
+import processCommands from './processor/processor';
+import requiredParameter from './utils/required-parameter';
 import Parser from 'glance-parser';
-import log from '../utils/log';
-import DefaultExtensions from '../extensions/default';
-import DefaultOptions from '../default-options';
-import Settings from './settings';
+import log from './utils/log';
+import DefaultExtensions from './extensions/default';
+import DefaultOptions from './processor/default-options';
+import Settings from './processor/settings';
 
 function createGlanceDOM() {
 	this.preprocessor;

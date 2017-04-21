@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceDOM from '../src/glance';
+import glanceDOM from '../src/glance-dom';
 
 describe('Intersect', () => {
     it('should limit to intersecting elements', () => {

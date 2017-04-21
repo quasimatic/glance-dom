@@ -1,5 +1,5 @@
-import glanceDOM from './index';
-import log from '../utils/log';
+import glanceDOM from './glance-dom';
+import log from './utils/log';
 
 describe('Glance Selector', () => {
 	afterEach(() => glanceDOM.reset());

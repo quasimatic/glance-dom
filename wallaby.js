@@ -16,6 +16,9 @@ module.exports = function(wallaby) {
 					}
 				}
 			]
+		},
+		node: {
+			fs: "empty"
 		}
 	});
 

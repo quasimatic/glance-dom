@@ -2,7 +2,7 @@
   "name": "glance-dom",
   "version": "0.10.0",
   "description": "Glance DOM library",
-  "main": "javascript/lib/glance/index.js",
+  "main": "javascript/lib/glance-dom.js",
   "scripts": {
     "build": "npm run build:browser && npm run build:node",
     "build:node": "rm -rf javascript/lib && babel javascript/src -d javascript/lib",
@@ -45,6 +45,7 @@
     "eslint": "^3.19.0",
     "gitbook-cli": "^2.3.0",
     "glance-parser": "0.0.1",
+    "inject-loader": "^3.0.0",
     "jquery": "^3.2.1",
     "mocha": "^3.2.0",
     "pegjs": "^0.10.0",

@@ -1,4 +1,4 @@
-import glanceDOM from '../../src/glance';
+import glanceDOM from '../../src/glance-dom';
 import dom from '../dom';
 
 describe('Extensions: labels', () => {

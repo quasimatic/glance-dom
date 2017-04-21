@@ -1,6 +1,6 @@
 import Preprocessor from './preprocessor';
 import defaultExtensions from '../extensions/default.js';
-import defaultOptions from '../default-options';
+import defaultOptions from '../processor/default-options';
 import Extension from '../extensions';
 
 let extensions = new Extension(defaultExtensions);
