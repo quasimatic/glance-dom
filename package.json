@@ -4,8 +4,9 @@
   "description": "Glance DOM library",
   "main": "javascript/lib/glance/index.js",
   "scripts": {
-    "build": "rm -rf javascript/lib && babel javascript/src -d javascript/lib",
-    "build:browser": "webpack --config webpack.browser.js && webpack --config webpack.jquery.js",
+    "build": "npm run build:browser && npm run build:node",
+    "build:node": "rm -rf javascript/lib && babel javascript/src -d javascript/lib",
+    "build:browser": "rm -rf dist && webpack --config webpack-browser.js && webpack --config webpack-jquery.js",
     "prepublish": "npm run build",
     "docs:clean": "rm -rf docs/_book",
     "docs:prepare": "cd docs && gitbook install",
