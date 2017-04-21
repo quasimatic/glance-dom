@@ -11,16 +11,16 @@ describe('Proximity: closest', () => {
 				<div id='scope'
 					 style={{position: 'fixed', left: '0px', top: '0px', width: '100px', height: '100px'}}/>
 				<div id='subject-1'
-					 style={{position: 'fixed', left: '250px', top: '250px', width: '50px', height: '50px'}}/>
-				<div id='subject-2'
 					 style={{position: 'fixed', left: '150px', top: '150px', width: '50px', height: '50px'}}/>
+				<div id='subject-2'
+					 style={{position: 'fixed', left: '250px', top: '250px', width: '50px', height: '50px'}}/>
 			</div>
 		);
 
 		return filter({
 			elements: dom.getArray('subject-1', 'subject-2'),
 			scopeElements: dom.getArray('scope')
-		}).should.deep.equal(dom.getArray('subject-2'));
+		}).should.deep.equal(dom.getArray('subject-1'));
 	});
 
 	it('should exclude itself', () => {
@@ -180,4 +180,40 @@ describe('Proximity: closest', () => {
 			scopeElements: dom.getArray('scope')
 		}).should.deep.equal(dom.getArray('subject-2'));
 	});
+
+	it('should get the subject even when it has no size', () => {
+		dom.render(
+			<div>
+				<div id='scope'
+					 style={{position: 'fixed', left: '200px', top: '200px', width: '50px', height: '50px'}}/>
+				<div id='subject-1'
+					 style={{position: 'fixed', left: '450px', top: '450px', width: '50px', height: '50px'}}/>
+				<div id='subject-2'
+					 style={{position: 'fixed', left: '300px', top: '300px', width: '0px', height: '0px'}}/>
+			</div>
+		);
+
+		return filter({
+			elements: dom.getArray('subject-1', 'subject-2'),
+			scopeElements: dom.getArray('scope')
+		}).should.deep.equal(dom.getArray('subject-2'));
+	});
+
+	it('should get the first subject in the dom if 2 elements have even distance', () => {
+		dom.render(
+			<div>
+				<div id='scope'
+					 style={{position: 'fixed', left: '200px', top: '200px', width: '50px', height: '50px'}}/>
+				<div id='subject-1'
+					 style={{position: 'fixed', left: '300px', top: '300px', width: '50px', height: '50px'}}/>
+				<div id='subject-2'
+					 style={{position: 'fixed', left: '300px', top: '300px', width: '50px', height: '50px'}}/>
+			</div>
+		);
+
+		return filter({
+			elements: dom.getArray('subject-1', 'subject-2'),
+			scopeElements: dom.getArray('scope')
+		}).should.deep.equal(dom.getArray('subject-1'));
+	})
 });
