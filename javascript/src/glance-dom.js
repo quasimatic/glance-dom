@@ -1,63 +1,62 @@
-import Preprocessor from './command-queue/preprocessor';
-import processCommands from './processor/processor';
-import requiredParameter from './utils/required-parameter';
+import fs from 'fs';
 import Parser from 'glance-parser';
-import log from './utils/log';
-import DefaultExtensions from './extensions/default';
 import DefaultOptions from './processor/default-options';
-import Settings from './processor/settings';
 
 function createGlanceDOM() {
-	this.preprocessor;
+	this.ensureGlanceDOMLoadedAndExecute = (...args) => {
+		if (!this.execute) throw Error('Please provide an execute function using setExecute');
 
-	this.settings = new Settings();
-
-	this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
-		this.settings.configure(config);
-
-		let commands = this.preprocessor.create(reference);
-
-		return processCommands({
-			...this.settings.config,
-			commands,
-			glanceDOM: this.selector,
-			reference
+		let glanceLoaded = this.execute(function() {
+			return typeof(glanceDOM) === 'function';
 		});
+
+		if (glanceLoaded.then) {
+			return glanceLoaded.then(loaded => {
+				if (!loaded) {
+					let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
+					return this.execute(glanceDOMScript).then(() => this.execute.apply(this.execute, args));
+				}
+				else {
+					return this.execute.apply(this.execute, args);
+				}
+			});
+		}
+		else {
+			if (!glanceLoaded) {
+				let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
+				this.execute(glanceDOMScript);
+			}
+
+			return this.execute.apply(this.execute, args);
+		}
 	};
 
-	this.selector.addExtension = (extension) => {
-		this.settings.addExtension(extension);
+	this.selector = (reference, config = {}) => {
+		return this.ensureGlanceDOMLoadedAndExecute(function(reference, config) {
+			return glanceDOM(reference, config);
+		}, reference, config);
 	};
 
-	this.selector.addLabel = (label, value) => {
-		this.settings.addLabel(label, value);
-	};
-
-	this.selector.addOption = (option, value) => {
-		this.settings.addOption(option, value);
-	};
+	this.selector.parser = Parser;
+	this.selector.defaultOptions = DefaultOptions;
 
 	this.selector.setDefaultOptions = (options) => {
-		this.settings.setDefaultOptions(options);
-	};
-
-	this.selector.reset = () => {
-		this.settings = new Settings();
-		this.preprocessor = new Preprocessor(this.settings.config);
+		return this.ensureGlanceDOMLoadedAndExecute(function(options) {
+			return glanceDOM.setDefaultOptions(options);
+		}, options);
 	};
 
 	this.selector.getConfig = () => {
-		return this.settings.config;
+		return this.ensureGlanceDOMLoadedAndExecute(function() {
+			return glanceDOM.getConfig();
+		});
 	};
 
-	this.selector.setLogLevel = (level) => {
-		this.settings.setLogLevel(level);
+	this.selector.setExecute = (execute) => {
+		this.execute = execute;
 	};
-
-	this.selector.reset();
 
 	return this.selector;
 }
 
 export default new createGlanceDOM();
-export {Parser, DefaultExtensions, DefaultOptions};

@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceDOM from '../src/glance-dom';
+import glanceDOM from '../src/glance-dom-browser';
 
 describe('Scope', () => {
 	it('should narrow down to scope', () => {

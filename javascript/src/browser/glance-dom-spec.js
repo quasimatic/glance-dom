@@ -1,4 +1,4 @@
-import browser from './glance-dom';
+require('./glance-dom');
 
 describe('Glance Dom Browser', () => {
 	it('glanceDOM should be global', () => {
