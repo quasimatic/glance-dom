@@ -19,12 +19,9 @@ class GlanceDom(object):
         :return:
         """
         if not self._is_loaded():
-            glance_dom = read_glance_dom()
-            script = "window.localStorage.setItem('glanceDOM', {});".format(glance_dom)
-            self._driver.execute_script(script)
-
-        if not self._is_running():
-            self._driver.execute_script("eval(window.localStorage.getItem('glanceDOM'));")
+            script = 'window.localStorage.setItem("glanceDOM", arguments[0]);' \
+                     'eval(arguments[0]);'
+            self._driver.execute_script(script, read_glance_dom())
 
     def get_element(self, reference):
         """
@@ -56,10 +53,8 @@ class GlanceDom(object):
         return self._driver.execute_script('return glanceDOM(arguments[0])', reference)
 
     def _is_loaded(self):
-        return not self._driver.execute_script("return window.localStorage.getItem('glanceDOM') === null;")
-
-    def _is_running(self):
-        return self._driver.execute_script('return typeof(glanceDOM) === "function"')
+        return self._driver.execute_script('return typeof(glanceDOM) === "function" || '
+                                           'eval(window.localStorage.getItem("glanceDOM"));')
 
 
 def read_glance_dom():
