@@ -24,7 +24,7 @@ class GlanceDom(object):
             self._driver.execute_script(script)
 
         if not self._is_running():
-            self._driver.execute_script("eval(window.localStorage.getItem('glanceDOM');")
+            self._driver.execute_script("eval(window.localStorage.getItem('glanceDOM'));")
 
     def get_element(self, reference):
         """
