@@ -1,4 +1,4 @@
-require('./glance-dom-jquery');
+require('./jquery');
 
 describe('Glance Dom Browser Jquery', () => {
 	it('glance jquery should be global', () => {

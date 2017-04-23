@@ -1,4 +1,4 @@
-require('./glance-dom');
+require('./index');
 
 describe('Glance Dom Browser', () => {
 	it('glanceDOM should be global', () => {

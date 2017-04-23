@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './javascript/src/browser/glance-dom.js',
+    entry: './javascript/src/browser/index.js',
     output: {
         filename: './dist/glance-dom.js'
     },
