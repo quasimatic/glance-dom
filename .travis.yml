@@ -1,4 +1,6 @@
 language: javascript
+node_js:
+  - "7"
 install:
   - npm install
 script:
