@@ -1,27 +1,25 @@
-import Preprocessor from '../command-queue/preprocessor';
-import processCommands from './processor';
-import requiredParameter from '../utils/required-parameter';
+import Preprocessor from './command-queue/preprocessor';
+import processCommands from './processor/processor';
+import requiredParameter from './utils/required-parameter';
 import Parser from 'glance-parser';
-import log from '../utils/log';
-import DefaultExtensions from '../extensions/default';
-import DefaultOptions from '../default-options';
-import Settings from './settings';
+import log from './utils/log';
+import DefaultExtensions from './extensions/default';
+import DefaultOptions from './processor/default-options';
+import Settings from './processor/settings';
 
 function createGlanceDOM() {
-	this.preprocessor;
-
-	this.settings = new Settings();
-
 	this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
-		this.settings.configure(config);
+		return this.execute(() => {
+			this.settings.configure(config);
 
-		let commands = this.preprocessor.create(reference);
+			let commands = this.preprocessor.create(reference);
 
-		return processCommands({
-			...this.settings.config,
-			commands,
-			glanceDOM: this.selector,
-			reference
+			return processCommands({
+				...this.settings.config,
+				commands,
+				glanceDOM: this.selector,
+				reference
+			});
 		});
 	};
 
@@ -42,6 +40,10 @@ function createGlanceDOM() {
 	};
 
 	this.selector.reset = () => {
+		this.execute = (func, ...args) => {
+			return func.apply(func, args);
+		};
+
 		this.settings = new Settings();
 		this.preprocessor = new Preprocessor(this.settings.config);
 	};
@@ -53,6 +55,13 @@ function createGlanceDOM() {
 	this.selector.setLogLevel = (level) => {
 		this.settings.setLogLevel(level);
 	};
+
+	this.selector.setExecute = (execute) => {
+		this.execute = execute;
+	};
+
+	this.selector.parser = Parser;
+	this.selector.defaultOptions = DefaultOptions;
 
 	this.selector.reset();
 

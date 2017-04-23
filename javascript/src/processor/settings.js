@@ -1,6 +1,6 @@
 import Extensions from '../extensions';
 import DefaultExtensions from '../extensions/default';
-import DefaultOptions from '../default-options';
+import DefaultOptions from './default-options';
 import log from '../utils/log';
 
 class Settings {

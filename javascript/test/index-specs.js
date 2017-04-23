@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceDOM from '../src/glance';
+import glanceDOM from '../src/glance-dom-browser';
 
 describe('Index', () => {
     it('should support a parent indexer', () => {

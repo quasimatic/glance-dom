@@ -1,7 +1,7 @@
-import browser from './index';
+require('./index');
 
-describe('browser', () => {
-    it('glanceDOM should be global', () => {
-        window.glanceDOM.should.not.be.null;
-    })
-})
+describe('Glance Dom Browser', () => {
+	it('glanceDOM should be global', () => {
+		window.glanceDOM.should.not.be.null;
+	});
+});

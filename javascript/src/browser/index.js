@@ -1,3 +1,3 @@
-import glanceDOM from '../glance';
+import glanceDOM from '../glance-dom-browser';
 
 window.glanceDOM = glanceDOM;

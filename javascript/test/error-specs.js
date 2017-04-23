@@ -1,5 +1,5 @@
 import dom from './dom';
-import glanceDOM from '../src/glance';
+import glanceDOM from '../src/glance-dom-browser';
 
 describe('Errors', () => {
     it('should find nothing with an empty selector', () => {

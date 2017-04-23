@@ -1,13 +1,14 @@
 var webpack = require('webpack');
 
 module.exports = {
-    entry: './javascript/src/browser/glance-jquery.js',
+    entry: './javascript/src/browser/index.js',
     output: {
-        filename: './dist/glance-jquery.js'
+        filename: './dist/glance-dom.js'
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin()
     ],
+
     module: {
         loaders: [
             {
