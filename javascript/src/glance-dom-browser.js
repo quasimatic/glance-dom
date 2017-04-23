@@ -8,14 +8,6 @@ import DefaultOptions from './processor/default-options';
 import Settings from './processor/settings';
 
 function createGlanceDOM() {
-	this.preprocessor;
-
-	this.execute = (func, ...args) => {
-		return func.apply(func, args);
-	};
-
-	this.settings = new Settings();
-
 	this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
 		return this.execute(() => {
 			this.settings.configure(config);
@@ -48,6 +40,10 @@ function createGlanceDOM() {
 	};
 
 	this.selector.reset = () => {
+		this.execute = (func, ...args) => {
+			return func.apply(func, args);
+		};
+
 		this.settings = new Settings();
 		this.preprocessor = new Preprocessor(this.settings.config);
 	};
