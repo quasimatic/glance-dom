@@ -54,7 +54,7 @@ class GlanceDom(object):
 
     def _is_loaded(self):
         return self._driver.execute_script('return typeof(glanceDOM) === "function" || '
-                                           'eval(window.localStorage.getItem("glanceDOM"));')
+                                           '!!eval(window.localStorage.getItem("glanceDOM"));')
 
 
 def read_glance_dom():
