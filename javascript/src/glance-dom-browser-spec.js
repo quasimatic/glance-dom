@@ -1,5 +1,6 @@
 import glanceDOM from './glance-dom-browser';
 import log from './utils/log';
+const version = require('../../package.json').version;
 
 describe('Glance Selector', () => {
 	afterEach(() => glanceDOM.reset());
@@ -40,4 +41,8 @@ describe('Glance Selector', () => {
 		glanceDOM('subject');
 		customExecute.callCount.should.equal(1);
 	});
+
+	it('should get version', () => {
+	   glanceDOM.version.should.equal(version);
+	})
 });

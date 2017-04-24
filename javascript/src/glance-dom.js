@@ -1,6 +1,7 @@
 import fs from 'fs';
 import Parser from 'glance-parser';
 import DefaultOptions from './processor/default-options';
+import version from './version.json';
 
 function createGlanceDOM() {
 	this.ensureGlanceDOMLoadedAndExecute = (...args) => {
@@ -61,6 +62,12 @@ function createGlanceDOM() {
 	this.selector.setExecute = (execute) => {
 		this.execute = execute;
 	};
+
+	Object.defineProperty(this.selector, 'version', {
+		get: () => {
+			return version;
+		}
+	});
 
 	return this.selector;
 }
