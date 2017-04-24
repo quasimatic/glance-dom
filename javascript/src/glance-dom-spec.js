@@ -2,6 +2,7 @@ import glanceDOMBrowser from './glance-dom-browser';
 import sinon from 'sinon';
 import Parser from 'glance-parser';
 import DefaultOptions from '../src/processor/default-options';
+const version = require('../../package.json').version;
 
 let glanceDOMInjector = require('inject-loader!./glance-dom');
 
@@ -88,10 +89,14 @@ describe('Glance DOM for node', () => {
 	});
 
 	it('should load from local storage', () => {
-	   glanceDOM('subject');
-	   window.glanceDOM = null;
-	   glanceDOM('subject');
+		glanceDOM('subject');
+		window.glanceDOM = null;
+		glanceDOM('subject');
 
 		readFileSyncSpy.callCount.should.equal(1);
-	})
+	});
+
+	it('should get version', () => {
+		glanceDOM.version.should.equal(version);
+	});
 });

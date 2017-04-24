@@ -31,7 +31,8 @@ module.exports = function(wallaby) {
 
 			{pattern: 'node_modules/chai/chai.js', instrument: false},
 
-			{pattern: 'javascript/src/**/*.js', load: false},
+			{pattern: 'javascript/src/**/*.js*', load: false},
+			{pattern: 'package.json', load: false},
 			{pattern: '!javascript/src/**/*-spec.js', load: false},
 			{pattern: 'javascript/test/**/*.js', load: false},
 			{pattern: '!javascript/test/**/*-specs.js', load: false}
@@ -45,7 +46,7 @@ module.exports = function(wallaby) {
 		filesWithNoCoverageCalculated: ['javascript/src/parser/index.js'],
 
 		compilers: {
-			'**/*.js*': wallaby.compilers.babel({
+			'**/*.js': wallaby.compilers.babel({
 				presets: ['es2015', 'react', 'stage-0'],
 				babel: require('babel-core')
 			})
