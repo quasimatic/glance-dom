@@ -15,7 +15,7 @@
     "docs:build": "npm run docs:prepare && cd docs && rm -rf _book && gitbook build",
     "docs:publish": "npm run docs:clean && npm run docs:build && npm run build:browser && cd docs/_book && cp -rf ../../dist . && git init && git fetch git@github.com:quasimatic/glance-dom.git gh-pages && git checkout -b gh-pages && git add . && git commit -am 'update book' && git push git@github.com:quasimatic/glance-dom.git gh-pages --force",
     "test": "echo 'Please test using wallaby'",
-    "postversion": "node build/version.js"
+    "version": "node build/version.js"
   },
   "repository": {
     "type": "git",
