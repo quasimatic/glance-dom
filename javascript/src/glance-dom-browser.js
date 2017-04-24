@@ -6,7 +6,7 @@ import log from './utils/log';
 import DefaultExtensions from './extensions/default';
 import DefaultOptions from './processor/default-options';
 import Settings from './processor/settings';
-const version = require('./version.json');
+import version from './version';
 
 function createGlanceDOM() {
 	this.selector = (reference = requiredParameter('Selector required'), config = {}) => {

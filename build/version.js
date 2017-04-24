@@ -10,15 +10,12 @@ function updateVersion(file, pattern) {
 //
 // Javascript
 //
-fs.writeFileSync('javascript/src/version.json', JSON.stringify(version), 'utf8');
+// fs.writeFileSync('javascript/src/version.json', JSON.stringify(version), 'utf8');
+updateVersion('javascript/src/version.js', /(export default ")(.*)(")/);
 
 //
 // Python
 //
-// var setuppy = fs.readFileSync('py/setup.py', 'utf8');
-// var updatedSetupPy = setuppy.replace(/version='.*'/, 'version=\'' + version + '\'').replace(/\/tarball\/0\.3\.3/, '/tarbar/' + version);
-// fs.writeFileSync('py/setup.py', updatedSetupPy, 'utf8');
-
 updateVersion('py/setup.py', /(version=')(.*)(')/);
 updateVersion('py/setup.py', /(\/tarball\/)(.*)(')/);
 

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import Parser from 'glance-parser';
 import DefaultOptions from './processor/default-options';
-import version from './version.json';
+import version from './version';
 
 function createGlanceDOM() {
 	this.ensureGlanceDOMLoadedAndExecute = (...args) => {
