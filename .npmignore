@@ -1,3 +1,11 @@
 dotnet
 javascript/src
 docs
+build
+py
+node_modules
+webpack*
+wallaby*
+.travis.yml
+.npmrc
+.eslintrc
