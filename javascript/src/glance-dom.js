@@ -7,14 +7,17 @@ function createGlanceDOM() {
 		if (!this.execute) throw Error('Please provide an execute function using setExecute');
 
 		let glanceLoaded = this.execute(function() {
-			return typeof(glanceDOM) === 'function';
+			return typeof(glanceDOM) === 'function' || !!eval(window.localStorage.getItem('glanceDOM'));
 		});
 
 		if (glanceLoaded.then) {
 			return glanceLoaded.then(loaded => {
 				if (!loaded) {
 					let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
-					return this.execute(glanceDOMScript).then(() => this.execute.apply(this.execute, args));
+					return this.execute(function(script) {
+						window.localStorage.setItem('glanceDOM', script);
+						eval(script);
+					}, glanceDOMScript).then(() => this.execute.apply(this.execute, args));
 				}
 				else {
 					return this.execute.apply(this.execute, args);
@@ -24,7 +27,10 @@ function createGlanceDOM() {
 		else {
 			if (!glanceLoaded) {
 				let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
-				this.execute(glanceDOMScript);
+				this.execute(function(script) {
+					window.localStorage.setItem('glanceDOM', script);
+					eval(script);
+				}, glanceDOMScript);
 			}
 
 			return this.execute.apply(this.execute, args);

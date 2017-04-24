@@ -4,8 +4,9 @@ import Parser from 'glance-parser';
 import DefaultOptions from '../src/processor/default-options';
 
 let glanceDOMInjector = require('inject-loader!./glance-dom');
-let readFileSyncSpy = sinon.spy((file) => {
-	return () => window.glanceDOM = glanceDOMBrowser;
+
+let readFileSyncSpy = sinon.spy(() => {
+	return 'window.glanceDOM = window.glanceDOMBrowser;';
 });
 
 let glanceDOM = glanceDOMInjector({
@@ -14,12 +15,19 @@ let glanceDOM = glanceDOMInjector({
 
 describe('Glance DOM for node', () => {
 	beforeEach(() => {
+		window.localStorage.clear();
 		window.glanceDOM = null;
-		glanceDOM.setExecute(null);
+		window.glanceDOMBrowser = glanceDOMBrowser;
+
+		let executeSpy = sinon.spy((func, ...args) => {
+			return func.apply(func, args);
+		});
+		glanceDOM.setExecute(executeSpy);
 		readFileSyncSpy.reset();
 	});
 
 	it('should throw an error if an execute function is not provided', () => {
+		glanceDOM.setExecute(null);
 		expect(() => glanceDOM('subject')).to.throw('Please provide an execute function using setExecute');
 	});
 
@@ -46,12 +54,6 @@ describe('Glance DOM for node', () => {
 	});
 
 	it('should not load glanceDOM if already loaded', () => {
-		let executeSpy = sinon.spy((func, ...args) => {
-			return func.apply(func, args);
-		});
-
-		glanceDOM.setExecute(executeSpy);
-
 		glanceDOM('subject');
 		glanceDOM('subject');
 
@@ -81,15 +83,15 @@ describe('Glance DOM for node', () => {
 	});
 
 	it('should provide a way to set the default options', () => {
-		let executeSpy = sinon.spy((func, ...args) => {
-			return func.apply(func, args);
-		});
-
-		glanceDOM.setExecute(executeSpy);
-
 		glanceDOM.setDefaultOptions(['abc', '123']);
-
 		glanceDOM.getConfig().defaultOptions.should.deep.equal(['abc', '123']);
 	});
-})
-;
+
+	it('should load from local storage', () => {
+	   glanceDOM('subject');
+	   window.glanceDOM = null;
+	   glanceDOM('subject');
+
+		readFileSyncSpy.callCount.should.equal(1);
+	})
+});
