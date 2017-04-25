@@ -60,5 +60,9 @@ describe('Log', () => {
 		log.reset('info');
 		log.level.should.equal('info');
 	});
+
+	it('should throw an error for invalid log level', () => {
+		expect(() => log.setLogLevel('mumbo jumbo')).to.throw('Invalid log level. Valid options are error, warn, info, debug, trace');
+	});
 });
 

@@ -11,7 +11,8 @@ export default {
 	logs: [],
 
 	setLogLevel(level) {
-		this.level = level || 'error';
+		if(isNaN(LogLevels[level])) throw new Error('Invalid log level. Valid options are error, warn, info, debug, trace');
+		this.level = level;
 	},
 
 	error(...messages) {

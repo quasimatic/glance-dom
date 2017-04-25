@@ -13,10 +13,6 @@ class Settings {
 		};
 	}
 
-	configure(config) {
-		this.config = {...this.config, ...config};
-	}
-
 	addExtension(extension) {
 		this.config.extensions.add(extension);
 	}

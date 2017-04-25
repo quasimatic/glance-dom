@@ -67,7 +67,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 	return result;
 }
 
-export default function({commands = [], extensions, glanceDOM, reference, containerElements, advanced = false}) {
+export default function({commands, extensions, glanceDOM, reference, containerElements, advanced = false}) {
 	let result = commands.reduce((result, command) => {
 			if (result.elementsNotFound) return result;
 
