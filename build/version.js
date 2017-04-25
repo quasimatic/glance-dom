@@ -10,7 +10,6 @@ function updateVersion(file, pattern) {
 //
 // Javascript
 //
-// fs.writeFileSync('javascript/src/version.json', JSON.stringify(version), 'utf8');
 updateVersion('javascript/src/version.js', /(export default ")(.*)(")/);
 
 //

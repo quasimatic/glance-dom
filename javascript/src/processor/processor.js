@@ -27,6 +27,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			if (result.subjectElements.length > 0) {
 				let subjectLookup = new Set(result.subjectElements);
 				result.subjectElements = result.targetElements.filter(e => subjectLookup.has(e));
+				log.debug('Intersected elements:', result.subjectElements.length);
 			}
 			else {
 				result.subjectElements = result.targetElements;
@@ -37,26 +38,44 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 
 		case 'locate':
 			let locator = extensions.getLocatorForOption(command.option, command.label);
-
-			result.targetElements = result.targetElements.concat(locator({
+			let located = locator({
 				...command,
 				extensions,
 				glanceDOM,
 				containerElements: result.containerElements
-			}));
+			});
+
+			if (located.length > 0) log.debug('Located:', located.length);
+
+			result.targetElements = result.targetElements.concat(located);
 
 			result.targetElements = [...new Set(result.targetElements)];
 
 			break;
 
+		case 'afterlocating':
+			log.debug('Located total:', result.targetElements.length);
+			break;
+
 		case 'filter':
 			let filter = extensions.getFilterForOption(command.option);
-			result.targetElements = filter({
+			let remaining = filter({
 				...command,
 				extensions,
 				elements: result.targetElements,
 				scopeElements: result.scopeElements
 			});
+
+			if (result.targetElements.length !== remaining.length) {
+				log.debug(`Filtered out ${result.targetElements.length - remaining.length}`);
+				log.debug(`Remaining ${remaining.length}`);
+			}
+
+			result.targetElements = remaining;
+			break;
+
+		case 'afterfiltering':
+			log.debug(`Elements found for "${command.label}": ${result.targetElements.length}`)
 			break;
 
 		case 'afterall':
@@ -81,6 +100,8 @@ export default function({commands, extensions, glanceDOM, reference, containerEl
 		},
 		{containerElements}
 	);
+
+	log.debug(`Elements found: ${result.subjectElements.length}`);
 
 	if (advanced)
 		return {
