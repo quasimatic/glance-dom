@@ -74,6 +74,12 @@ function CreateGlanceDOM() {
 		this.addedExtensions.push(extension);
 	};
 
+	this.selector.addLabel = (label, value) => {
+		let labels = {};
+		labels[label] = value;
+		this.addedExtensions.push({labels});
+	};
+
 	Object.defineProperty(this.selector, 'version', {
 		get: () => {
 			return version;

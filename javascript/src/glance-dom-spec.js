@@ -133,7 +133,15 @@ describe('Glance DOM for node', () => {
 		glanceDOMBrowser.reset();
 		window.glanceDOM = null;
 
-		glanceDOM('custom').should.deep.equal(dom.get('subject'))
+		glanceDOM('custom').should.deep.equal(dom.get('subject'));
 	});
 
+	it('should add label', () => {
+		dom.render(<div id='subject'/>);
+
+		glanceDOM.addLabel('custom', 'subject');
+
+		glanceDOM('custom').should.deep.equal(dom.get('subject'));
+
+	});
 });
