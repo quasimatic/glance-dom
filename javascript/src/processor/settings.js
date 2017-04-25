@@ -1,19 +1,16 @@
 import Extensions from '../extensions';
 import DefaultExtensions from '../extensions/default';
 import DefaultOptions from './default-options';
-import log from '../utils/log';
 
 class Settings {
 	constructor() {
 		this.config = {
 			containerElements: [document.documentElement],
 			extensions: new Extensions(DefaultExtensions),
-			defaultOptions: DefaultOptions
+			defaultOptions: DefaultOptions,
+			advanced: false,
+			logLevel: 'error'
 		};
-	}
-
-	configure(config) {
-		this.config = {...this.config, ...config};
 	}
 
 	addExtension(extension) {
@@ -37,7 +34,7 @@ class Settings {
 	}
 
 	setLogLevel(level) {
-		log.setLogLevel(level);
+		this.config.logLevel = level;
 	}
 }
 

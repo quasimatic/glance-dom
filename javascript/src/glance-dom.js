@@ -3,35 +3,42 @@ import Parser from 'glance-parser';
 import DefaultOptions from './processor/default-options';
 import version from './version';
 
-function createGlanceDOM() {
+function CreateGlanceDOM() {
+	this.addedExtensions = [];
+
+	this.loadGlanceDOM = () => {
+		let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
+		return this.execute(function(script, extensions) {
+			window.localStorage.setItem('glanceDOM', script);
+			eval(script);
+
+			extensions.forEach(glanceDOM.addExtension);
+
+		}, glanceDOMScript, this.addedExtensions);
+	};
+
 	this.ensureGlanceDOMLoadedAndExecute = (...args) => {
 		if (!this.execute) throw Error('Please provide an execute function using setExecute');
 
-		let glanceLoaded = this.execute(function() {
-			return typeof(glanceDOM) === 'function' || !!eval(window.localStorage.getItem('glanceDOM'));
-		});
+		let glanceLoaded = this.execute(function(extensions) {
+			if (typeof(glanceDOM) === 'function') return true;
+			if (!!eval(window.localStorage.getItem('glanceDOM'))) {
+				extensions.forEach(glanceDOM.addExtension);
+				return true;
+			}
+
+			return false;
+		}, this.addedExtensions);
 
 		if (glanceLoaded.then) {
 			return glanceLoaded.then(loaded => {
-				if (!loaded) {
-					let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
-					return this.execute(function(script) {
-						window.localStorage.setItem('glanceDOM', script);
-						eval(script);
-					}, glanceDOMScript).then(() => this.execute.apply(this.execute, args));
-				}
-				else {
-					return this.execute.apply(this.execute, args);
-				}
+				let promise = loaded ? Promise.resolve() : this.loadGlanceDOM();
+				return promise.then(() => this.execute.apply(this.execute, args));
 			});
 		}
 		else {
 			if (!glanceLoaded) {
-				let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
-				this.execute(function(script) {
-					window.localStorage.setItem('glanceDOM', script);
-					eval(script);
-				}, glanceDOMScript);
+				this.loadGlanceDOM();
 			}
 
 			return this.execute.apply(this.execute, args);
@@ -63,6 +70,16 @@ function createGlanceDOM() {
 		this.execute = execute;
 	};
 
+	this.selector.addExtension = (extension) => {
+		this.addedExtensions.push(extension);
+	};
+
+	this.selector.addLabel = (label, value) => {
+		let labels = {};
+		labels[label] = value;
+		this.addedExtensions.push({labels});
+	};
+
 	Object.defineProperty(this.selector, 'version', {
 		get: () => {
 			return version;
@@ -72,4 +89,4 @@ function createGlanceDOM() {
 	return this.selector;
 }
 
-export default new createGlanceDOM();
+export default new CreateGlanceDOM();

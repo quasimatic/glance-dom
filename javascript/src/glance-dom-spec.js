@@ -2,6 +2,8 @@ import glanceDOMBrowser from './glance-dom-browser';
 import sinon from 'sinon';
 import Parser from 'glance-parser';
 import DefaultOptions from '../src/processor/default-options';
+import dom from '../test/dom';
+
 const version = require('../../package.json').version;
 
 let glanceDOMInjector = require('inject-loader!./glance-dom');
@@ -40,12 +42,12 @@ describe('Glance DOM for node', () => {
 
 		glanceDOM('subject');
 
-		executeSpy.called.should.be.true;
+		executeSpy.called.should.equal(true);
 	});
 
 	it('should support an execute function that returns a promise', () => {
 		let executeSpy = sinon.spy((func, ...args) => {
-			return new Promise(function(resolve, reject) {
+			return new Promise(function(resolve) {
 				return resolve(func.apply(func, args));
 			});
 		});
@@ -63,7 +65,7 @@ describe('Glance DOM for node', () => {
 
 	it('should not load glanceDOM if already loaded when using promises', () => {
 		let executeSpy = sinon.spy((func, ...args) => {
-			return new Promise(function(resolve, reject) {
+			return new Promise(function(resolve) {
 				return resolve(func.apply(func, args));
 			});
 		});
@@ -98,5 +100,48 @@ describe('Glance DOM for node', () => {
 
 	it('should get version', () => {
 		glanceDOM.version.should.equal(version);
+	});
+
+	it('should prevent changing version', () => {
+		glanceDOM.version = '13333';
+		glanceDOM.version.should.equal(version);
+	});
+
+	it('should add extensions', () => {
+		dom.render(<div id='subject'/>);
+
+		glanceDOM.addExtension({
+			labels: {
+				'custom': 'subject'
+			}
+		});
+
+		glanceDOM('custom').should.deep.equal(dom.get('subject'));
+	});
+
+	it('should persist added extensions', () => {
+		dom.render(<div id='subject'/>);
+
+		glanceDOM.addExtension({
+			labels: {
+				'custom': 'subject'
+			}
+		});
+
+		glanceDOM('custom');
+
+		glanceDOMBrowser.reset();
+		window.glanceDOM = null;
+
+		glanceDOM('custom').should.deep.equal(dom.get('subject'));
+	});
+
+	it('should add label', () => {
+		dom.render(<div id='subject'/>);
+
+		glanceDOM.addLabel('custom', 'subject');
+
+		glanceDOM('custom').should.deep.equal(dom.get('subject'));
+
 	});
 });

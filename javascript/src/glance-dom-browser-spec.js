@@ -1,31 +1,28 @@
 import glanceDOM from './glance-dom-browser';
-import log from './utils/log';
 const version = require('../../package.json').version;
 
 describe('Glance Selector', () => {
 	afterEach(() => glanceDOM.reset());
 
 	it('should set log level', () => {
-		var logSpy = sinon.spy(log, 'setLogLevel');
 		glanceDOM.setLogLevel('info');
-		logSpy.calledWith('info').should.equal(true);
-		log.setLogLevel.restore();
+		glanceDOM.getConfig().logLevel.should.deep.equal('info');
 	});
 
 	it('should provide a way to add an extension', () => {
-		var extensionsSpy = sinon.spy(glanceDOM.getConfig().extensions, 'add');
+		let extensionsSpy = sinon.spy(glanceDOM.getConfig().extensions, 'add');
 		glanceDOM.addExtension({labels: {'custom': 'label'}});
 		extensionsSpy.calledWith({labels: {'custom': 'label'}}).should.equal(true);
 	});
 
 	it('should provide a way to add a label', () => {
-		var extensionsSpy = sinon.spy(glanceDOM.getConfig().extensions, 'add');
+		let extensionsSpy = sinon.spy(glanceDOM.getConfig().extensions, 'add');
 		glanceDOM.addLabel('custom', 'label');
 		extensionsSpy.calledWith({labels: {'custom': 'label'}}).should.equal(true);
 	});
 
 	it('should provide a way to add an option', () => {
-		var extensionsSpy = sinon.spy(glanceDOM.getConfig().extensions, 'add');
+		let extensionsSpy = sinon.spy(glanceDOM.getConfig().extensions, 'add');
 		glanceDOM.addOption('custom', 'option');
 		extensionsSpy.calledWith({options: {'custom': 'option'}}).should.equal(true);
 	});
@@ -43,6 +40,6 @@ describe('Glance Selector', () => {
 	});
 
 	it('should get version', () => {
-	   glanceDOM.version.should.equal(version);
-	})
+		glanceDOM.version.should.equal(version);
+	});
 });
