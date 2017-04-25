@@ -1,4 +1,5 @@
 import containers from './containers';
+import log from '../utils/log';
 
 function dispatch({command, extensions, glanceDOM, result, reference}) {
 	switch (command.command) {
@@ -66,7 +67,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 	return result;
 }
 
-export default function({commands = [], extensions, glanceDOM, reference, containerElements}) {
+export default function({commands = [], extensions, glanceDOM, reference, containerElements, advanced = false}) {
 	let result = commands.reduce((result, command) => {
 			if (result.elementsNotFound) return result;
 
@@ -81,5 +82,11 @@ export default function({commands = [], extensions, glanceDOM, reference, contai
 		{containerElements}
 	);
 
-	return result.subjectElements.length === 1 ? result.subjectElements[0] : result.subjectElements;
+	if (advanced)
+		return {
+			elements: result.subjectElements,
+			logs: log.logs
+		};
+	else
+		return result.subjectElements.length === 1 ? result.subjectElements[0] : result.subjectElements;
 };

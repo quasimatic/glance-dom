@@ -6,17 +6,18 @@ import log from './utils/log';
 import DefaultExtensions from './extensions/default';
 import DefaultOptions from './processor/default-options';
 import Settings from './processor/settings';
-import version from './version';
+import version from'./version';
 
-function createGlanceDOM() {
+function CreateGlanceDOM() {
 	this.selector = (reference = requiredParameter('Selector required'), config = {}) => {
 		return this.execute(() => {
-			this.settings.configure(config);
+			log.reset(config.logLevel || this.settings.config.logLevel);
 
 			let commands = this.preprocessor.create(reference);
 
 			return processCommands({
 				...this.settings.config,
+				...config,
 				commands,
 				glanceDOM: this.selector,
 				reference
@@ -75,5 +76,5 @@ function createGlanceDOM() {
 	return this.selector;
 }
 
-export default new createGlanceDOM();
+export default new CreateGlanceDOM();
 export {Parser, DefaultExtensions, DefaultOptions};
