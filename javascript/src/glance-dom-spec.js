@@ -21,6 +21,7 @@ describe('Glance DOM for node', () => {
 		window.localStorage.clear();
 		window.glanceDOM = null;
 		window.glanceDOMBrowser = glanceDOMBrowser;
+		glanceDOMBrowser.reset();
 
 		let executeSpy = sinon.spy((func, ...args) => {
 			return func.apply(func, args);
@@ -28,6 +29,8 @@ describe('Glance DOM for node', () => {
 		glanceDOM.setExecute(executeSpy);
 		readFileSyncSpy.reset();
 	});
+
+	afterEach(() => glanceDOMBrowser.reset());
 
 	it('should throw an error if an execute function is not provided', () => {
 		glanceDOM.setExecute(null);
@@ -86,8 +89,8 @@ describe('Glance DOM for node', () => {
 	});
 
 	it('should provide a way to set the default options', () => {
-		glanceDOM.setDefaultOptions(['abc', '123']);
-		glanceDOM.getConfig().defaultOptions.should.deep.equal(['abc', '123']);
+		glanceDOM.setDefaultOptions(['abc', 'def']);
+		glanceDOM.getConfig().defaultOptions.should.deep.equal(['abc', 'def']);
 	});
 
 	it('should load from local storage', () => {

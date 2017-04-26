@@ -75,7 +75,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			break;
 
 		case 'afterfiltering':
-			log.debug(`Elements found for "${command.label}": ${result.targetElements.length}`)
+			log.debug(`Elements found for "${command.label}": ${result.targetElements.length}`);
 			break;
 
 		case 'afterall':
@@ -101,7 +101,8 @@ export default function({commands, extensions, glanceDOM, reference, containerEl
 		{containerElements}
 	);
 
-	log.debug(`Elements found: ${result.subjectElements.length}`);
+	if (result.subjectElements)
+		log.debug(`Elements found: ${result.subjectElements.length}`);
 
 	if (advanced)
 		return {

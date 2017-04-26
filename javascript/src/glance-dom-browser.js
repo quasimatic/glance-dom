@@ -13,7 +13,7 @@ function CreateGlanceDOM() {
 		return this.execute(() => {
 			log.reset(config.logLevel || this.settings.config.logLevel);
 
-			let commands = this.preprocessor.create(reference);
+			let commands = (new Preprocessor({...this.settings.config, ...config})).create(reference);
 
 			return processCommands({
 				...this.settings.config,
@@ -47,7 +47,6 @@ function CreateGlanceDOM() {
 		};
 
 		this.settings = new Settings();
-		this.preprocessor = new Preprocessor(this.settings.config);
 	};
 
 	this.selector.getConfig = () => {
