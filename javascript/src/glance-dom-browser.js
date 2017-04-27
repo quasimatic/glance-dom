@@ -61,6 +61,11 @@ function CreateGlanceDOM() {
 		this.execute = execute;
 	};
 
+	this.selector.preprocess = (reference, config = {}) => {
+		log.reset(config.logLevel || this.settings.config.logLevel);
+		return (new Preprocessor({...this.settings.config, ...config})).create(reference);
+	};
+
 	this.selector.parser = Parser;
 	this.selector.defaultOptions = DefaultOptions;
 

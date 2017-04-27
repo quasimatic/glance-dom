@@ -1,4 +1,5 @@
 import glanceDOM from './glance-dom-browser';
+import Preprocessor from './command-queue/preprocessor';
 const version = require('../../package.json').version;
 
 describe('Glance Selector', () => {
@@ -41,5 +42,10 @@ describe('Glance Selector', () => {
 
 	it('should get version', () => {
 		glanceDOM.version.should.equal(version);
+	});
+
+	it('should provide a way to run the preprocessor', () => {
+		let commands = glanceDOM.preprocess('subject');
+		commands.should.deep.equal(new Preprocessor(glanceDOM.getConfig()).create('subject'));
 	});
 });
