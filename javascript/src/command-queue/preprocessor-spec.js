@@ -36,8 +36,8 @@ describe('Preprocessor', () => {
 			{command: 'afterlocating', label: 'scope', options: []},
 			{command: 'beforefiltering', label: 'scope', options: []},
 			{command: 'afterfiltering', label: 'scope', options: []},
-			{command: 'intersect'}
-		]);
+			{command: 'intersect'},
+			{command: 'afterall'}]);
 	});
 
 	it('should support a afterAll hook', () => {
@@ -52,14 +52,14 @@ describe('Preprocessor', () => {
 		let commands = preprocessor.create('scope');
 
 		commands.should.deep.equal([
+			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'scope', options: []},
 			{command: 'afterlocating', label: 'scope', options: []},
 			{command: 'beforefiltering', label: 'scope', options: []},
 			{command: 'afterfiltering', label: 'scope', options: []},
 			{command: 'intersect'},
-			{command: 'afterall'}
-		]);
+			{command: 'afterall'}]);
 	});
 
 	it('should queue up for subject', () => {
@@ -67,6 +67,7 @@ describe('Preprocessor', () => {
 		let commands = preprocessor.create('subject');
 
 		commands.should.deep.equal([
+			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
 			{
@@ -170,8 +171,8 @@ describe('Preprocessor', () => {
 				totalTargets: 1
 			},
 			{command: 'afterfiltering', label: 'subject', options: []},
-			{command: 'intersect'}
-		]);
+			{command: 'intersect'},
+			{command: 'afterall'}]);
 	});
 
 	it('should queue up for scope and subject', () => {
@@ -179,6 +180,7 @@ describe('Preprocessor', () => {
 		let commands = preprocessor.create('scope > subject');
 
 		commands.should.deep.equal([
+			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'scope', options: []},
 			{
@@ -386,8 +388,8 @@ describe('Preprocessor', () => {
 				totalTargets: 2
 			},
 			{command: 'afterfiltering', label: 'subject', options: []},
-			{command: 'intersect'}
-		]);
+			{command: 'intersect'},
+			{command: 'afterall'}]);
 	});
 
 	it('should queue up for intersects', () => {
@@ -395,6 +397,7 @@ describe('Preprocessor', () => {
 		let commands = preprocessor.create('subject ^ intersect');
 
 		commands.should.deep.equal([
+			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
 			{
@@ -601,6 +604,7 @@ describe('Preprocessor', () => {
 				totalTargets: 2
 			},
 			{command: 'afterfiltering', label: 'intersect', options: []},
-			{command: 'intersect'}]);
+			{command: 'intersect'},
+			{command: 'afterall'}]);
 	});
 });

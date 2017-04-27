@@ -40,4 +40,14 @@ describe('Advanced', () => {
 			advanced: true
 		}).should.have.property('logs').and.deep.equal(expected);
 	});
+
+	it('should get container elements', () => {
+		dom.render(
+			<div id="container">
+				<div id="scope"/>
+				<div id='subject'/>
+			</div>);
+
+		glanceDOM('scope > subject', {advanced: true}).should.have.property('containerElements').and.deep.equal(dom.getArray('container'));
+	});
 });

@@ -79,6 +79,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			break;
 
 		case 'afterall':
+			result.containerElements = containers(result.scopeElements, result.subjectElements);
 			extensions.getAfterAllHooks().forEach(h => h({reference, elements: result.subjectElements}));
 			break;
 	}
@@ -106,6 +107,7 @@ export default function({commands, extensions, glanceDOM, reference, containerEl
 
 	if (advanced)
 		return {
+			...result,
 			elements: result.subjectElements,
 			logs: log.logs
 		};

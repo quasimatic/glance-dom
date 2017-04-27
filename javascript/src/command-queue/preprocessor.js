@@ -18,11 +18,11 @@ export default class Preprocessor {
 		let totalTargets = scopes.reduce((total, s) => total + s.length, 0);
 		let commands = [];
 
-		if (this.extensions.getBeforeAllHooks().length > 0) commands.push({command: 'beforeall'});
+		commands.push({command: 'beforeall'});
 
 		commands = commands.concat(scopes.reduce((result, scope) => result.concat({command: 'containers'}, this.processIntersect(scope, totalTargets)), []));
 
-		if (this.extensions.getAfterAllHooks().length > 0) commands.push({command: 'afterall'});
+		commands.push({command: 'afterall'});
 
 		return commands;
 	}
