@@ -66,6 +66,19 @@ function CreateGlanceDOM() {
 		return (new Preprocessor({...this.settings.config, ...config})).create(reference);
 	};
 
+	this.selector.process = (commands, config = {}) => {
+		log.reset(config.logLevel || this.settings.config.logLevel);
+
+		commands = [].concat(commands);
+
+		return processCommands({
+			...this.settings.config,
+			...config,
+			commands,
+			glanceDOM: this.selector
+		});
+	};
+
 	this.selector.parser = Parser;
 	this.selector.defaultOptions = DefaultOptions;
 

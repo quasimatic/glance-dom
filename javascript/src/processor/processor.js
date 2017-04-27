@@ -12,12 +12,8 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 				result.containerElements = containers(result.scopeElements, result.subjectElements);
 			}
 
-			if (result.subjectElements) {
-				if (result.subjectElements.length === 0)
-					result.elementsNotFound = true;
-
+			if(result.subjectElements.length > 0)
 				result.scopeElements = result.subjectElements;
-			}
 
 			result.targetElements = [];
 			result.subjectElements = [];
@@ -32,6 +28,9 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			else {
 				result.subjectElements = result.targetElements;
 			}
+
+			if (result.subjectElements.length === 0)
+				result.elementsNotFound = true;
 
 			result.targetElements = [];
 			break;
@@ -87,7 +86,10 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 	return result;
 }
 
-export default function({commands, extensions, glanceDOM, reference, containerElements, advanced = false}) {
+export default function({commands, extensions, glanceDOM, reference, containerElements, advanced, state = {}}) {
+	state.containerElements = state.containerElements || containerElements;
+	state.subjectElements = state.subjectElements || [];
+
 	let result = commands.reduce((result, command) => {
 			if (result.elementsNotFound) return result;
 
@@ -99,15 +101,15 @@ export default function({commands, extensions, glanceDOM, reference, containerEl
 				result
 			});
 		},
-		{containerElements}
+		state
 	);
 
-	if (result.subjectElements)
-		log.debug(`Elements found: ${result.subjectElements.length}`);
+	log.debug(`Elements found: ${result.subjectElements.length}`);
 
 	if (advanced)
 		return {
 			...result,
+			reference: reference,
 			elements: result.subjectElements,
 			logs: log.logs
 		};

@@ -45,7 +45,10 @@ describe('Glance Selector', () => {
 	});
 
 	it('should provide a way to run the preprocessor', () => {
-		let commands = glanceDOM.preprocess('subject');
-		commands.should.deep.equal(new Preprocessor(glanceDOM.getConfig()).create('subject'));
+		glanceDOM.preprocess('subject').should.deep.equal(new Preprocessor(glanceDOM.getConfig()).create('subject'));
+	});
+
+	it('should provide a way to run the processor', () => {
+		glanceDOM.process([], {advanced: true}).should.have.property('containerElements');
 	});
 });
