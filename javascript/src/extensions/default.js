@@ -6,11 +6,11 @@ import className from './locators/class';
 import nodeType from './locators/node-type';
 import css from './locators/css';
 import attribute from './locators/attribute';
-import visible from './filters/visible';
+import visibility from './filters/visibility';
 import leafNodeTarget from './filters/leaf-node';
 import inputAfter from './filters/input-after';
 import index from './filters/index';
 import containedNearScope from './filters/contained-near-scope';
 import closest from './filters/closest';
 
-export default [customLabel, containsText, exactText, value, className, attribute, nodeType, css, visible, leafNodeTarget, inputAfter, containedNearScope, index, closest];
+export default [customLabel, containsText, exactText, value, className, attribute, nodeType, css, visibility, leafNodeTarget, inputAfter, containedNearScope, index, closest];

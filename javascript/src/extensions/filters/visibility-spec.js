@@ -1,10 +1,11 @@
 import dom from '../../../test/dom';
-import visible from './visible';
+import visibility from './visibility';
 
-let filter = visible.options['visible'].filter;
+let visibleFilter = visibility.options['visible'].filter;
+let hiddenFilter = visibility.options['hidden'].filter;
 
 describe('Filter: Visible', () => {
-    it('should filter out non visible items', () => {
+    it('should visibleFilter out non visible items', () => {
         dom.render(
             <div>
                 <div id="target">item</div>
@@ -12,7 +13,7 @@ describe('Filter: Visible', () => {
             </div>
         );
 
-        filter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
+        visibleFilter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
     });
 
     it('should find fixed position items', () => {
@@ -23,7 +24,7 @@ describe('Filter: Visible', () => {
             </div>
         );
 
-        filter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
+        visibleFilter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
     });
 
     it('should find for text nodes', () => {
@@ -34,7 +35,7 @@ describe('Filter: Visible', () => {
             </div>
         );
 
-        filter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
+        visibleFilter({elements: dom.get('target', 'item-1')}).should.deep.equal([dom.get('target')]);
     });
 });
 
@@ -47,7 +48,7 @@ describe('Filter: Hidden', () => {
             </div>
         );
 
-        filter({elements: dom.get('subject', 'item-1')}, true).should.deep.equal([dom.get('subject')]);
+        hiddenFilter({elements: dom.get('subject', 'item-1')}, true).should.deep.equal([dom.get('subject')]);
     });
 
     it('should find hidden visibility hidden items', () => {
@@ -58,6 +59,6 @@ describe('Filter: Hidden', () => {
             </div>
         );
 
-        filter({elements: dom.get('subject', 'item-1')}, true).should.deep.equal([dom.get('subject')]);
+       hiddenFilter({elements: dom.get('subject', 'item-1')}, true).should.deep.equal([dom.get('subject')]);
     });
 });

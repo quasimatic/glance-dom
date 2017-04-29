@@ -84,19 +84,7 @@ export default class Extensions {
         return extensions
             .filter(e => e.options)
             .reduce((l, e) => {
-                let inverses = Object.keys(e.options).reduce((r, k) => {
-                    if (e.options[k].inverse) {
-                        r[e.options[k].inverse] = {
-                            inverse: k,
-                            filter: (data, inverse) => {
-                                return e.options[k].filter(data, !inverse);
-                            }
-                        };
-                    }
-                    return r;
-                }, {});
-
-                return {...l, ...e.options, ...inverses};
+                return {...l, ...e.options};
             }, {});
     }
 

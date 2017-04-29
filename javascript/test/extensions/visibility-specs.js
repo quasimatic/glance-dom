@@ -1,7 +1,7 @@
 import glanceDOM from '../../src/glance-dom-browser';
 import dom from '../dom';
 
-describe('Extensions: Inverse Filters', () => {
+describe('Extensions: Visibility Filters', () => {
     beforeEach(() => dom.render(<div>
         <div id='visible'>item</div>
         <div id='hidden' style={{display: 'none'}}>item</div>
