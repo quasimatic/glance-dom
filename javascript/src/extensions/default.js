@@ -7,7 +7,7 @@ import nodeType from './locators/node-type';
 import css from './locators/css';
 import attribute from './locators/attribute';
 import visible from './filters/visible';
-import leafNodeTarget from './filters/leaf-node-target';
+import leafNodeTarget from './filters/leaf-node';
 import inputAfter from './filters/input-after';
 import index from './filters/index';
 import containedNearScope from './filters/contained-near-scope';

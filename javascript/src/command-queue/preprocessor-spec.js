@@ -70,105 +70,28 @@ describe('Preprocessor', () => {
 			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
-			{
-				command: 'locate',
-				option: 'custom-label',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'contains-text',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'value',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
+			{command: 'locate', option: 'custom-label', label: 'subject'},
+			{command: 'locate', option: 'contains-text', label: 'subject'},
+			{command: 'locate', option: 'value', label: 'subject'},
 			{
 				command: 'locate',
 				option: 'attribute-placeholder',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
+				label: 'subject'
 			},
-			{
-				command: 'locate',
-				option: 'attribute-name',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'attribute-id',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'class',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'attribute-alt',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'attribute-type',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'locate',
-				option: 'node-type',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
+			{command: 'locate', option: 'attribute-name', label: 'subject'},
+			{command: 'locate', option: 'attribute-id', label: 'subject'},
+			{command: 'locate', option: 'class', label: 'subject'},
+			{command: 'locate', option: 'attribute-alt', label: 'subject'},
+			{command: 'locate', option: 'attribute-type', label: 'subject'},
+			{command: 'locate', option: 'node-type', label: 'subject'},
 			{command: 'afterlocating', label: 'subject', options: []},
 			{command: 'beforefiltering', label: 'subject', options: []},
-			{
-				command: 'filter',
-				option: 'visible',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'filter',
-				option: 'leaf-node-target',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
-			{
-				command: 'filter',
-				option: 'input-after',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
-			},
+			{command: 'filter', option: 'visible', label: 'subject'},
+			{command: 'filter', option: 'input-after', label: 'subject'},
 			{
 				command: 'filter',
 				option: 'contained-near-scope',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 1
+				label: 'subject'
 			},
 			{command: 'afterfiltering', label: 'subject', options: []},
 			{command: 'intersect'},
@@ -183,209 +106,55 @@ describe('Preprocessor', () => {
 			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'scope', options: []},
-			{
-				command: 'locate',
-				option: 'custom-label',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'contains-text',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'value',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'custom-label', label: 'scope'},
+			{command: 'locate', option: 'contains-text', label: 'scope'},
+			{command: 'locate', option: 'value', label: 'scope'},
 			{
 				command: 'locate',
 				option: 'attribute-placeholder',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
+				label: 'scope'
 			},
-			{
-				command: 'locate',
-				option: 'attribute-name',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-id',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'class',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-alt',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-type',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'node-type',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'attribute-name', label: 'scope'},
+			{command: 'locate', option: 'attribute-id', label: 'scope'},
+			{command: 'locate', option: 'class', label: 'scope'},
+			{command: 'locate', option: 'attribute-alt', label: 'scope'},
+			{command: 'locate', option: 'attribute-type', label: 'scope'},
+			{command: 'locate', option: 'node-type', label: 'scope'},
 			{command: 'afterlocating', label: 'scope', options: []},
 			{command: 'beforefiltering', label: 'scope', options: []},
-			{
-				command: 'filter',
-				option: 'visible',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'leaf-node-target',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'input-after',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
-			},
+			{command: 'filter', option: 'visible', label: 'scope'},
+			{command: 'filter', option: 'input-after', label: 'scope'},
 			{
 				command: 'filter',
 				option: 'contained-near-scope',
-				label: 'scope',
-				targetIndex: 0,
-				totalTargets: 2
+				label: 'scope'
 			},
 			{command: 'afterfiltering', label: 'scope', options: []},
 			{command: 'intersect'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
-			{
-				command: 'locate',
-				option: 'custom-label',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'contains-text',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'value',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'custom-label', label: 'subject'},
+			{command: 'locate', option: 'contains-text', label: 'subject'},
+			{command: 'locate', option: 'value', label: 'subject'},
 			{
 				command: 'locate',
 				option: 'attribute-placeholder',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'subject'
 			},
-			{
-				command: 'locate',
-				option: 'attribute-name',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-id',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'class',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-alt',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-type',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'node-type',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'attribute-name', label: 'subject'},
+			{command: 'locate', option: 'attribute-id', label: 'subject'},
+			{command: 'locate', option: 'class', label: 'subject'},
+			{command: 'locate', option: 'attribute-alt', label: 'subject'},
+			{command: 'locate', option: 'attribute-type', label: 'subject'},
+			{command: 'locate', option: 'node-type', label: 'subject'},
 			{command: 'afterlocating', label: 'subject', options: []},
 			{command: 'beforefiltering', label: 'subject', options: []},
-			{
-				command: 'filter',
-				option: 'visible',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'leaf-node-target',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'input-after',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'filter', option: 'visible', label: 'subject'},
+			{command: 'filter', option: 'input-after', label: 'subject'},
 			{
 				command: 'filter',
 				option: 'contained-near-scope',
-				label: 'subject',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'subject'
 			},
 			{command: 'afterfiltering', label: 'subject', options: []},
 			{command: 'intersect'},
@@ -400,208 +169,70 @@ describe('Preprocessor', () => {
 			{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
-			{
-				command: 'locate',
-				option: 'custom-label',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'contains-text',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'value',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'custom-label', label: 'subject'},
+			{command: 'locate', option: 'contains-text', label: 'subject'},
+			{command: 'locate', option: 'value', label: 'subject'},
 			{
 				command: 'locate',
 				option: 'attribute-placeholder',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
+				label: 'subject'
 			},
-			{
-				command: 'locate',
-				option: 'attribute-name',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-id',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'class',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-alt',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'attribute-type',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'node-type',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'attribute-name', label: 'subject'},
+			{command: 'locate', option: 'attribute-id', label: 'subject'},
+			{command: 'locate', option: 'class', label: 'subject'},
+			{command: 'locate', option: 'attribute-alt', label: 'subject'},
+			{command: 'locate', option: 'attribute-type', label: 'subject'},
+			{command: 'locate', option: 'node-type', label: 'subject'},
 			{command: 'afterlocating', label: 'subject', options: []},
 			{command: 'beforefiltering', label: 'subject', options: []},
-			{
-				command: 'filter',
-				option: 'visible',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'leaf-node-target',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'input-after',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
-			},
+			{command: 'filter', option: 'visible', label: 'subject'},
+			{command: 'filter', option: 'input-after', label: 'subject'},
 			{
 				command: 'filter',
 				option: 'contained-near-scope',
-				label: 'subject',
-				targetIndex: 0,
-				totalTargets: 2
+				label: 'subject'
 			},
 			{command: 'afterfiltering', label: 'subject', options: []},
 			{command: 'intersect'},
 			{command: 'beforelocating', label: 'intersect', options: []},
-			{
-				command: 'locate',
-				option: 'custom-label',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'custom-label', label: 'intersect'},
 			{
 				command: 'locate',
 				option: 'contains-text',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'intersect'
 			},
-			{
-				command: 'locate',
-				option: 'value',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'value', label: 'intersect'},
 			{
 				command: 'locate',
 				option: 'attribute-placeholder',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'intersect'
 			},
 			{
 				command: 'locate',
 				option: 'attribute-name',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'intersect'
 			},
-			{
-				command: 'locate',
-				option: 'attribute-id',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'locate',
-				option: 'class',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'attribute-id', label: 'intersect'},
+			{command: 'locate', option: 'class', label: 'intersect'},
 			{
 				command: 'locate',
 				option: 'attribute-alt',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'intersect'
 			},
 			{
 				command: 'locate',
 				option: 'attribute-type',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'intersect'
 			},
-			{
-				command: 'locate',
-				option: 'node-type',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'locate', option: 'node-type', label: 'intersect'},
 			{command: 'afterlocating', label: 'intersect', options: []},
 			{command: 'beforefiltering', label: 'intersect', options: []},
-			{
-				command: 'filter',
-				option: 'visible',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'leaf-node-target',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
-			{
-				command: 'filter',
-				option: 'input-after',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
-			},
+			{command: 'filter', option: 'visible', label: 'intersect'},
+			{command: 'filter', option: 'input-after', label: 'intersect'},
 			{
 				command: 'filter',
 				option: 'contained-near-scope',
-				label: 'intersect',
-				targetIndex: 1,
-				totalTargets: 2
+				label: 'intersect'
 			},
 			{command: 'afterfiltering', label: 'intersect', options: []},
 			{command: 'intersect'},

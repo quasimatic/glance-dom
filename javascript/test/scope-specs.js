@@ -38,4 +38,18 @@ describe('Scope', () => {
 
 		glanceDOM('scope > subject').should.deep.equal([]);
 	});
+
+	it('should get sibling item if contained in scope and not a leaf node', () => {
+		dom.render(<div>
+			<div id="scope" className='subject-container'>
+				<div id="subject">
+					<div/>
+					text
+				</div>
+			</div>
+			<div>subject</div>
+		</div>);
+
+		glanceDOM('scope > subject').should.deep.equal(dom.get('subject'));
+	});
 });

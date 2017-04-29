@@ -10,7 +10,6 @@ export default [
     'attribute-type',
     'node-type',
     'visible',
-    'leaf-node-target',
     'input-after',
     'contained-near-scope',
     'index'

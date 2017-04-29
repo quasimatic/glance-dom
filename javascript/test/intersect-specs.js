@@ -4,9 +4,9 @@ import glanceDOM from '../src/glance-dom-browser';
 describe('Intersect', () => {
     it('should limit to intersecting elements', () => {
         dom.render(<div>
-            <div id='subject'></div>
+            <div id='subject'/>
             <span>subject</span>
-            <div></div>
+            <div/>
         </div>);
 
         glanceDOM('subject ^ div').should.deep.equal(dom.get('subject'));
@@ -30,8 +30,8 @@ describe('Intersect', () => {
     it('should limit multiple sets of intersecting elements', () => {
         dom.render(<div>
             <div>
-                <div id='scope'></div>
-                <div id='subject'></div>
+                <div id='scope'/>
+                <div id='subject'/>
             </div>
             <div>
                 <span>scope</span>
@@ -45,11 +45,10 @@ describe('Intersect', () => {
     it('should interesect on class even if one is a leaf node', () => {
         dom.render(<div id="target" className="blue circle">
             <svg>
-                <circle></circle>
+                <circle/>
             </svg>
         </div>);
 
-        // TODO glanceDOM('blue ^ circle').should.deep.equal(dom.get('target'));
         glanceDOM('circle ^ blue').should.deep.equal(dom.get('target'));
     });
 
