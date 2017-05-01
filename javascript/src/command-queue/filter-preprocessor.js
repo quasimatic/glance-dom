@@ -9,35 +9,27 @@ export default class FilterPreprocessor {
 		this.defaultOptions = defaultOptions;
 	}
 
-	getFilterCommands(target) {
-		let extensions = this.extensions;
-		let locators = [];
-		let labels = extensions.getLabels();
-
-		if (labels[target.label] && Object.prototype.toString.call(labels[target.label]) !== '[object Array]' && labels[target.label].filter) {
-			locators = [{command: 'filter', option: 'custom-label', label: target.label}];
-		}
-
-		return this.filtersFromOptions(target, locators, extensions);
+	getFilterCommands(options) {
+		let filters = [];
+		return this.filtersFromOptions(options, filters);
 	}
 
-	filtersFromOptions(target, locators, extensions) {
-		let updatedOptionTarget = this.configureOptionsWithFilters(target);
+	filtersFromOptions(options, filters) {
+		let updatedOptions = this.configureOptionsWithFilters(options);
 
-		updatedOptionTarget.options.forEach(name => locators.push({
+		updatedOptions.forEach(name => filters.push({
 			command: 'filter',
-			option: name,
-			label: target.label
+			option: name
 		}));
 
-		return locators;
+		return filters;
 	}
 
-	configureOptionsWithFilters(target) {
+	configureOptionsWithFilters(proviedOptions) {
 		let extensions = this.extensions;
 		let defaultOptions = this.defaultOptions;
 		let options = extensions.getOptions();
-		let possibleOptions = target.options;
+		let possibleOptions = proviedOptions;
 		let validOptions = [];
 
 		let defaultOptionsNotSpecified = defaultOptions.filter(d => possibleOptions.indexOf(d) === -1);
@@ -48,7 +40,7 @@ export default class FilterPreprocessor {
 		possibleOptions.forEach(name => {
 			let possibleOption = options[name];
 			if (possibleOption && (typeof(possibleOption) === 'function' || possibleOption.filter)) {
-				if (possibleOption.check && !possibleOption.check({label: target.label, option: name, options: target.options})) {
+				if (possibleOption.check && !possibleOption.check({option: name, options:proviedOptions})) {
 					return false;
 				}
 				validOptions = validOptions.concat(name);
@@ -56,7 +48,7 @@ export default class FilterPreprocessor {
 			else {
 				let catchAlls = extensions.getExtensions().filter(e => {
 					if (e.filter) {
-						return e.filter.check({label: target.label, option: name});
+						return e.filter.check({option: name});
 					}
 
 					return false;
@@ -68,6 +60,6 @@ export default class FilterPreprocessor {
 			}
 		});
 
-		return {...target, options: validOptions};
+		return validOptions;
 	}
 };

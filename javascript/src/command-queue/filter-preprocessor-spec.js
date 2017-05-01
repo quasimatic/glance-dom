@@ -43,12 +43,9 @@ describe('Preprocessor: filters', () => {
 	it('should apply default filters', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 
-		let commands = preprocessor.getFilterCommands({
-			label: 'subject',
-			options: []
-		});
+		let commands = preprocessor.getFilterCommands([]);
 
-		commands.should.deep.equal([{command: 'filter', label: 'subject', option: 'default-filter-1'}]);
+		commands.should.deep.equal([{command: 'filter', option: 'default-filter-1'}]);
 	});
 
 	it('should not apply option without filter', () => {
@@ -64,9 +61,9 @@ describe('Preprocessor: filters', () => {
 
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['custom-label']});
+		let commands = preprocessor.getFilterCommands(['custom-label']);
 
-		commands.should.deep.equal([{command: 'filter', label: 'subject', option: 'default-filter-1'}]);
+		commands.should.deep.equal([{command: 'filter', option: 'default-filter-1'}]);
 	});
 
 	it('should apply additional filter by option', () => {
@@ -81,46 +78,12 @@ describe('Preprocessor: filters', () => {
 
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['custom-filter']});
+		let commands = preprocessor.getFilterCommands(['custom-filter']);
 
 		commands.should.deep.equal([
-			{command: 'filter', label: 'subject', option: 'default-filter-1'},
-			{command: 'filter', label: 'subject', option: 'custom-filter'}
+			{command: 'filter', option: 'default-filter-1'},
+			{command: 'filter', option: 'custom-filter'}
 		]);
-	});
-
-	it('should apply custom label filter with defaults', () => {
-		extensions.add({
-			labels: {
-				'custom-label': {
-					filter: () => {
-					}
-				}
-			}
-		});
-
-		let preprocessor = new Preprocessor({extensions, defaultOptions});
-
-		let commands = preprocessor.getFilterCommands({label: 'custom-label', options: []});
-
-		commands.should.deep.equal([
-			{command: 'filter', label: 'custom-label', option: 'custom-label'},
-			{command: 'filter', label: 'custom-label', option: 'default-filter-1'}
-		]);
-	});
-
-	it('should not apply to custom label locator as an array', () => {
-		extensions.add({
-			labels: {
-				'custom-label': ['item-1', 'item-2']
-			}
-		});
-
-		let preprocessor = new Preprocessor({extensions, defaultOptions});
-
-		let commands = preprocessor.getFilterCommands({label: 'custom-label', options: []});
-
-		commands.should.deep.equal([{command: 'filter', label: 'custom-label', option: 'default-filter-1'}]);
 	});
 
 	it('should apply dynamic filter with defaults', () => {
@@ -134,63 +97,63 @@ describe('Preprocessor: filters', () => {
 
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['dynamic']});
+		let commands = preprocessor.getFilterCommands(['dynamic']);
 
 		commands.should.deep.equal([
-			{command: 'filter', label: 'subject', option: 'default-filter-1'},
-			{command: 'filter', label: 'subject', option: 'dynamic'}
+			{command: 'filter', option: 'default-filter-1'},
+			{command: 'filter', option: 'dynamic'}
 		]);
 	});
 
 	it('should apply filter if inverse is not provided', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['in-filter']});
+		let commands = preprocessor.getFilterCommands(['in-filter']);
 
 		commands.should.deep.equal([
-			{command: 'filter', label: 'subject', option: 'default-filter-1'},
-			{command: 'filter', label: 'subject', option: 'in-filter'}
+			{command: 'filter', option: 'default-filter-1'},
+			{command: 'filter', option: 'in-filter'}
 		]);
 	});
 
 	it('should apply filter if inverse is not provided with defaults', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions: defaultOptions.concat('in-filter')});
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: []});
+		let commands = preprocessor.getFilterCommands([]);
 
 		commands.should.deep.equal([
-			{command: 'filter', label: 'subject', option: 'default-filter-1'},
-			{command: 'filter', label: 'subject', option: 'in-filter'}]);
+			{command: 'filter', option: 'default-filter-1'},
+			{command: 'filter', option: 'in-filter'}]);
 	});
 
 	it('should apply filter if default explicity specified', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions: ['in-filter'].concat(defaultOptions)});
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['in-filter']});
+		let commands = preprocessor.getFilterCommands(['in-filter']);
 
 		commands.should.deep.equal([
-			{command: 'filter', label: 'subject', option: 'default-filter-1'},
-			{command: 'filter', label: 'subject', option: 'in-filter'}]);
+			{command: 'filter', option: 'default-filter-1'},
+			{command: 'filter', option: 'in-filter'}]);
 	});
 
 	it('should remove option if filter and inverse declared', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['in-filter', 'out-filter']});
+		let commands = preprocessor.getFilterCommands(['in-filter', 'out-filter']);
 
-		commands.should.deep.equal([{command: 'filter', label: 'subject', option: 'default-filter-1'}]);
+		commands.should.deep.equal([{command: 'filter', option: 'default-filter-1'}]);
 	});
 
 	it('should remove option if filter and inverse declared with defaults', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['in-filter', 'out-filter']});
+		let commands = preprocessor.getFilterCommands(['in-filter', 'out-filter']);
 
-		commands.should.deep.equal([{command: 'filter', label: 'subject', option: 'default-filter-1'}]);
+		commands.should.deep.equal([{command: 'filter', option: 'default-filter-1'}]);
 	});
 
 	it('should override default option if inverse is specified', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions: defaultOptions.concat('in-filter')});
-		let commands = preprocessor.getFilterCommands({label: 'subject', options: ['out-filter']});
+		let commands = preprocessor.getFilterCommands(['out-filter']);
 
 		commands.should.deep.equal([
-			{command: 'filter', label: 'subject', option: 'default-filter-1'},
-			{command: 'filter', label: 'subject', option: 'out-filter'}
+			{command: 'filter', option: 'default-filter-1'},
+			{command: 'filter', option: 'out-filter'}
 		]);
 	});
 });

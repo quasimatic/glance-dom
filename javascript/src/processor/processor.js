@@ -12,27 +12,29 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 				result.containerElements = containers(result.scopeElements, result.subjectElements);
 			}
 
-			if(result.subjectElements.length > 0)
+			if (result.subjectElements.length > 0)
 				result.scopeElements = result.subjectElements;
 
+			result.locatedElements = [];
 			result.targetElements = [];
 			result.subjectElements = [];
 			break;
 
 		case 'intersect':
-			if (result.subjectElements.length > 0) {
-				let subjectLookup = new Set(result.subjectElements);
-				result.subjectElements = result.targetElements.filter(e => subjectLookup.has(e));
-				log.debug('Intersected elements:', result.subjectElements.length);
+			if (result.targetElements.length > 0) {
+				let targetLookup = new Set(result.targetElements);
+				result.targetElements = result.locatedElements.filter(e => targetLookup.has(e));
+				log.debug('Intersected elements:', result.targetElements.length);
 			}
 			else {
-				result.subjectElements = result.targetElements;
+				result.targetElements = result.locatedElements;
 			}
 
-			if (result.subjectElements.length === 0)
+			if (result.targetElements.length === 0)
 				result.elementsNotFound = true;
 
-			result.targetElements = [];
+			result.locatedElements = [];
+
 			break;
 
 		case 'locate':
@@ -46,14 +48,14 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 
 			if (located.length > 0) log.debug('Located:', located.length);
 
-			result.targetElements = result.targetElements.concat(located);
+			result.locatedElements = result.locatedElements.concat(located);
 
-			result.targetElements = [...new Set(result.targetElements)];
+			result.locatedElements = [...new Set(result.locatedElements)];
 
 			break;
 
 		case 'afterlocating':
-			log.debug('Located total:', result.targetElements.length);
+			log.debug('Located total:', result.locatedElements.length);
 			break;
 
 		case 'filter':
@@ -75,6 +77,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 
 		case 'afterfiltering':
 			log.debug(`Elements found for "${command.label}": ${result.targetElements.length}`);
+			result.subjectElements = result.targetElements;
 			break;
 
 		case 'afterall':

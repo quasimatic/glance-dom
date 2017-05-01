@@ -26,16 +26,20 @@ export default class Preprocessor {
 	}
 
 	processIntersect(intersects) {
-		return intersects.reduce((result, target) => {
+		let located = intersects.reduce((result, target) => {
 			return result.concat(
 				{command: 'beforelocating', ...target},
 				this.locators(target),
 				{command: 'afterlocating', ...target},
-				{command: 'beforefiltering', ...target},
-				this.filters(target),
-				{command: 'afterfiltering', ...target},
 				{command: 'intersect'});
 		}, []);
+
+		let options = intersects.reduce((r, t) => r.concat(t.options), []);
+
+		return located.concat(
+			{command: 'beforefiltering', options},
+			this.filters(options),
+			{command: 'afterfiltering', options});
 	}
 
 	locators(target) {
@@ -43,8 +47,8 @@ export default class Preprocessor {
 		return collector.getLocatorCommands(target);
 	}
 
-	filters(target) {
+	filters(options) {
 		let collector = new FilterCollector(this);
-		return collector.getFilterCommands(target);
+		return collector.getFilterCommands(options);
 	}
 };
