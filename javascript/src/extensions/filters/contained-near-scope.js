@@ -1,5 +1,4 @@
 import log from '../../utils/log';
-import containsElement from '../../utils/contains-element';
 
 export default {
 	options: {
@@ -15,7 +14,7 @@ export default {
 					let p = scope;
 
 					do {
-						let found = elements.filter(element => p === element || containsElement(p, element));
+						let found = elements.filter(element => p === element || p.contains(element));
 
 						if (found.length > 0 || containerLookup.has(p)) {
 							result = result.concat(found);
