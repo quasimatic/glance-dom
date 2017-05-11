@@ -92,6 +92,8 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 export default function({commands, extensions, glanceDOM, reference, containerElements, advanced, state = {}}) {
 	state.containerElements = state.containerElements || containerElements;
 	state.subjectElements = state.subjectElements || [];
+	state.locatedElements = state.locatedElements || [];
+	state.targetElements = state.targetElements || [];
 
 	let result = commands.reduce((result, command) => {
 			if (result.elementsNotFound) return result;
