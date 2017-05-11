@@ -9,8 +9,8 @@ export default [
     'attribute-alt',
     'attribute-type',
     'node-type',
+	'visible',
     'lowest-level-matches',
-    'visible',
     'input-after',
     'contained-near-scope',
     'index'
