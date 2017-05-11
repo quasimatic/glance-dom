@@ -55,7 +55,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			break;
 
 		case 'afterlocating':
-			log.debug('Located total:', result.locatedElements.length);
+			log.debug(`Located ${result.locatedElements.length} elements for ${command.label}`);
 			break;
 
 		case 'filter':
@@ -76,7 +76,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			break;
 
 		case 'afterfiltering':
-			log.debug(`Elements found for "${command.label}": ${result.targetElements.length}`);
+			log.debug(`Elements remaining after filter: ${result.targetElements.length}`);
 			result.subjectElements = result.targetElements;
 			break;
 
