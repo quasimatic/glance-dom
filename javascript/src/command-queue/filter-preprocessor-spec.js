@@ -156,4 +156,32 @@ describe('Preprocessor: filters', () => {
 			{command: 'filter', option: 'out-filter'}
 		]);
 	});
+
+	it('should disable default filters', () => {
+		let preprocessor = new Preprocessor({extensions, defaultOptions});
+		let commands = preprocessor.getFilterCommands(['no-default-filters']);
+
+		commands.should.deep.equal([]);
+	});
+
+	it('should disable default filters and add explicit ones', () => {
+		let preprocessor = new Preprocessor({extensions, defaultOptions});
+		let commands = preprocessor.getFilterCommands(['no-default-filters', 'in-filter']);
+
+		commands.should.deep.equal([{command: 'filter', option: 'in-filter'}]);
+	});
+
+	it('should disable default filters and add explicit ones even if no default filters is last', () => {
+		let preprocessor = new Preprocessor({extensions, defaultOptions});
+		let commands = preprocessor.getFilterCommands(['in-filter', 'no-default-filters']);
+
+		commands.should.deep.equal([{command: 'filter', option: 'in-filter'}]);
+	});
+
+	it('should disable default filters and repply one explicity', () => {
+		let preprocessor = new Preprocessor({extensions, defaultOptions});
+		let commands = preprocessor.getFilterCommands(['no-default-filters', 'default-filter-1']);
+
+		commands.should.deep.equal([{command: 'filter', option: 'default-filter-1'}]);
+	});
 });
