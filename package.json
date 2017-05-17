@@ -48,10 +48,11 @@
     "gitbook-cli": "^2.3.0",
     "inject-loader": "^3.0.0",
     "jquery": "^3.2.1",
-    "mocha": "^3.3.0",
+    "mocha": "^3.4.1",
     "pegjs": "^0.10.0",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "sinon": "^2.2.0",
     "wallaby-webpack": "0.0.38",
     "webpack": "^2.5.1"
   },
@@ -66,7 +67,6 @@
     ]
   },
   "dependencies": {
-    "glance-parser": "0.0.1",
-    "sinon": "^2.2.0"
+    "glance-parser": "0.0.1"
   }
 }
