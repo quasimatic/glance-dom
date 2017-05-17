@@ -7,14 +7,12 @@ setup(
         'glance_dom': ['scr/glance-dom.js'],
     },
     version='0.11.4',
-    description='A selenium automation tool that utilizes contextual labels to automate faster and loosen the ties to '
-                'to automate faster and loosen the ties to '
-                'the DOM.',
+    description='Quickly reference DOM elements with minimal inspection.',
     long_description=open('README.rst').read(),
     author='Dan Gilkerson',
-    author_email='info@quasimatic.org',
-    url='https://github.com/quasimatic/glance_dom',
-    download_url='https://github.com/quasimatic/glance_dom/tarball/0.11.4',
+    author_email='dangilkerson@quasimatic.com',
+    url='https://github.com/quasimatic/glance-dom',
+    download_url='https://github.com/quasimatic/glance-dom/tarball/0.11.2',
     keywords=['testing', 'webdriver', 'selenium'],
     classifiers=[],
 )
