@@ -1,4 +1,4 @@
-from exceptions import NoReferenceError, TooBroadReferenceError
+from .exceptions import NoReferenceError, TooBroadReferenceError
 
 
 class GlanceDom(object):
