@@ -1,1 +1,1 @@
-from .glance import *
+from .glance import *  # noqa
