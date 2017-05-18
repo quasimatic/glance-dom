@@ -3,7 +3,7 @@ Glance DOM
 
 Quickly reference DOM elements with minimal inspection.
 
-To learn more about glance visit the `Glance Website <http://quasimatic.org/glance>`_.
+To learn more about Glance DOM visit the `Glance Website <http://quasimatic.org/glance>`_.
 
 Installation
 ************
