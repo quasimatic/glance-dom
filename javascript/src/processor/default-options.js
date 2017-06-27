@@ -6,6 +6,7 @@ export default [
     'attribute-name',
     'attribute-id',
     'class',
+    'image',
     'attribute-alt',
     'attribute-type',
     'node-type',
