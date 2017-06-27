@@ -12,7 +12,6 @@ setup(
     author='Dan Gilkerson',
     author_email='dangilkerson@quasimatic.com',
     url='https://github.com/quasimatic/glance-dom',
-    download_url='https://github.com/quasimatic/glance-dom/tarball/0.11.2',
     keywords=['testing', 'webdriver', 'selenium'],
     classifiers=[],
 )
