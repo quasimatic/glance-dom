@@ -14,7 +14,9 @@ export default class LocatorPreprocessor {
 		let locators = [];
 		let labels = extensions.getLabels();
 
-		if ((typeof(labels[target.label]) === 'object' && labels[target.label].locate) || labels[target.label]) {
+		let delcaredOptions = this.optionsWithLocators(target.options, target.label);
+
+		if (delcaredOptions.length === 0 && ((typeof(labels[target.label]) === 'object' && labels[target.label].locate) || labels[target.label])) {
 			locators = [{command: 'locate', option: 'custom-label', label: target.label}];
 		}
 
