@@ -1,2 +1,3 @@
 # Glance DOM
 include glance_dom/scr/glance-dom.js
+include README.rst
