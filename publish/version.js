@@ -15,8 +15,8 @@ updateVersion('javascript/src/version.js', /(export default ")(.*)(")/);
 //
 // Python
 //
-updateVersion('py/setup.py', /(version=')(.*)(')/);
-updateVersion('py/setup.py', /(\/tarball\/)(.*)(')/);
+updateVersion('python/setup.py', /(version=')(.*)(')/);
+updateVersion('python/setup.py', /(\/tarball\/)(.*)(')/);
 
 //
 // Dotnet
