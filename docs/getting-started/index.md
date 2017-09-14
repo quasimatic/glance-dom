@@ -16,7 +16,7 @@ var element = glanceDOM("click me");
 ### Node
 
 ```shell
-npm install glance-dom-selector
+npm install glance-dom
 ```
 
 #### Example
