@@ -1,2 +1,3 @@
 * [Introduction](readme.md)
-* [Getting Started](introduction/getting-started.md)
+* [Getting Started](getting-started/index.md)
+  * [Python](getting-started/python.md)
