@@ -1,3 +1,4 @@
+************
 Installation
 ************
 
@@ -5,8 +6,9 @@ Installation requires ``pip``:
 
     pip install glance-dom
 
+************
 Usage
-*****
+************
 
 Instantiate Glance DOM using a browser driver (for example,
 [WebDriver](http://www.seleniumhq.org/projects/webdriver/)).
@@ -32,8 +34,9 @@ Instantiate Glance DOM using a browser driver (for example,
 
 You can also get a list of matching elements using ``get_elements``
 
+************
 Exceptions
-__________
+************
 
 ``get_element`` will raise ``NoReferenceError`` if the ``reference`` did not match any elements.
 Similarly it will raise ``TooBroadReferenceError`` it there are more than one match.
