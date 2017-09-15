@@ -35,5 +35,35 @@ namespace Glance.Dom.Specs
                 Assert.AreEqual(2, elements.Count);
             }
         }
+
+        [Test]
+        public void ShouldFindOneElementByGetMethod()
+        {
+            using (var driver = new RemoteWebDriver(DesiredCapabilities.Chrome()))
+            {
+                driver.Navigate().GoToUrl("http://quasimatic.org/take-a-glance/?level=2");
+
+                var glance = new GlanceDom(driver);
+
+                var element = glance.GetElement("square");
+
+                Assert.NotNull(element);
+            }
+        }
+        
+        [Test]
+        public void ShouldFindMultipleElementByGetMethod()
+        {
+            using (var driver = new RemoteWebDriver(DesiredCapabilities.Chrome()))
+            {
+                driver.Navigate().GoToUrl("http://quasimatic.org/take-a-glance/?level=7");
+
+                var glance = new GlanceDom(driver);
+
+                var elements = glance.GetElements("circle");
+
+                Assert.AreEqual(2, elements.Count);
+            }
+        }
     }
 }
