@@ -26,13 +26,13 @@ namespace Glance.Dom.Specs
         {
             using (var driver = new RemoteWebDriver(DesiredCapabilities.Chrome()))
             {
-                driver.Navigate().GoToUrl("http://quasimatic.org/take-a-glance/?level=6");
+                driver.Navigate().GoToUrl("http://quasimatic.org/take-a-glance/?level=7");
 
                 var glance = new GlanceDom();
 
-                var elements = driver.FindElements(glance.Locate("square"));
+                var elements = driver.FindElements(glance.Locate("circle"));
 
-                Assert.AreEqual(elements.Count, 3);
+                Assert.AreEqual(2, elements.Count);
             }
         }
     }

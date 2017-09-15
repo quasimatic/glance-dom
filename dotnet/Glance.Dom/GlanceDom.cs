@@ -14,10 +14,20 @@ namespace Glance.Dom
 
             private void loadGlance(IJavaScriptExecutor driver)
             {
-                var assembly = Assembly.GetExecutingAssembly();
-                var stream = assembly.GetManifestResourceStream("Glance.Dom.glance-dom.js");
-                var glanceDOMScript = new StreamReader(stream).ReadToEnd();
-                driver.ExecuteScript(glanceDOMScript);
+                if (!IsLoaded(driver))
+                {
+                    var assembly = Assembly.GetExecutingAssembly();
+                    var stream = assembly.GetManifestResourceStream("Glance.Dom.glance-dom.js");
+                    var glanceDOMScript = new StreamReader(stream).ReadToEnd();
+                    var script = "window.localStorage.setItem('glanceDOM', arguments[0]); eval(arguments[0]);";
+                    driver.ExecuteScript(script, glanceDOMScript);    
+                }
+            }
+
+            private bool IsLoaded(IJavaScriptExecutor driver)
+            {
+                var script = "return typeof(glanceDOM) === 'function' || !!eval(window.localStorage.getItem('glanceDOM'));";
+                return (bool) driver.ExecuteScript(script);
             }
 
             public GlanceLocator(string reference)
