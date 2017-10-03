@@ -1,8 +1,8 @@
 # Installation
 
-Installation requires ``pip``:
+Installation requires ``npm``:
 
-    pip install glance-dom
+    npm install glance-dom
 
 # Usage
 

@@ -1,3 +1,5 @@
 * [Introduction](readme.md)
 * [Getting Started](getting-started/index.md)
+  * [Javascript](getting-started/javascript.md)
   * [Python](getting-started/python.md)
+  * [Dotnet](getting-started/dotnet.md)
