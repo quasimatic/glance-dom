@@ -89,4 +89,6 @@ function CreateGlanceDOM() {
 	return this.selector;
 }
 
-export default new CreateGlanceDOM();
+let Glance = new CreateGlanceDOM();
+Glance.default = Glance;
+module.exports = Glance;
