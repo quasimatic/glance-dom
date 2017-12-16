@@ -2,7 +2,8 @@ dotnet
 javascript/src
 docs
 build
-py
+python
+publish
 node_modules
 webpack*
 wallaby*
