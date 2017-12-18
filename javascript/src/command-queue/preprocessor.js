@@ -1,4 +1,4 @@
-import parser from 'glance-parser';
+import parse from 'glance-parser';
 import LocatorCollector from './locator-preprocessor';
 import FilterCollector from './filter-preprocessor';
 import Extensions from '../extensions';
@@ -13,7 +13,7 @@ export default class Preprocessor {
 	}
 
 	create(reference) {
-		let scopes = parser.parse(reference);
+		let scopes = parse(reference);
 		let commands = [];
 
 		commands.push({command: 'beforeall'});

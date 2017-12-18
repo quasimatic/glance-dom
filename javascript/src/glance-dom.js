@@ -9,7 +9,13 @@ function CreateGlanceDOM() {
 	this.loadGlanceDOM = () => {
 		let glanceDOMScript = fs.readFileSync(`${__dirname}/../../dist/glance-dom.js`, 'utf-8');
 		return this.execute(function(script, extensions) {
-			window.localStorage.setItem('glanceDOM', script);
+			try {
+				window.localStorage.setItem('glanceDOM', script);
+			}
+			catch (e) {
+
+			}
+
 			eval(script);
 
 			extensions.forEach(glanceDOM.addExtension);
@@ -22,9 +28,15 @@ function CreateGlanceDOM() {
 
 		let glanceLoaded = this.execute(function(extensions) {
 			if (typeof(glanceDOM) === 'function') return true;
-			if (!!eval(window.localStorage.getItem('glanceDOM'))) {
-				extensions.forEach(glanceDOM.addExtension);
-				return true;
+
+			try {
+				if (!!eval(window.localStorage.getItem('glanceDOM'))) {
+					extensions.forEach(glanceDOM.addExtension);
+					return true;
+				}
+			}
+			catch (e) {
+
 			}
 
 			return false;

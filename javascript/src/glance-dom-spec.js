@@ -106,7 +106,10 @@ describe('Glance DOM for node', () => {
 	});
 
 	it('should prevent changing version', () => {
-		glanceDOM.version = '13333';
+		expect(() => {
+			glanceDOM.version = '13333';
+		}).to.throw('setting a property that has only a getter');
+
 		glanceDOM.version.should.equal(version);
 	});
 
