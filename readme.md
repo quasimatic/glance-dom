@@ -4,6 +4,12 @@ Glance is a simple way to reference elements in the DOM. It’s intention and ho
 
 To best understand how it works, experimenting with it goes a long way. You can learn how to read Glance by playing a game… [Come Take A Glance](http://quasimatic.org/take-a-glance/). Learn even more at [Quasimatic.org](https://quasimatic.org/glance)
 
+## Documentation
+
+For details on all good things that are Glance, come [read the docs](http://quasimatic.org/glance-dom).
+
+
+
 ## Installing
 
 ### Browser
