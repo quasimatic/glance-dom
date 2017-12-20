@@ -3,3 +3,4 @@
   * [Javascript](getting-started/javascript.md)
   * [Python](getting-started/python.md)
   * [Dotnet](getting-started/dotnet.md)
+* [Options](options/index.md)
