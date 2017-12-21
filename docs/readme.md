@@ -6,9 +6,9 @@ Glance is a referencing language that uses labels and optionally has a context t
 
 To learn more about glance visit the [Glance Website](http://quasimatic.org/glance)
 
-## Other Languages
-
+## Supported languages
+- [Javascript](getting-started/javascript.md)
+- [Python](getting-started/python.md)
+- [Dotnet](getting-started/dotnet.md)
 - Java (coming soon)
 - Ruby (coming soon)
-- Python (coming soon)
-- .Net (coming soon®)
