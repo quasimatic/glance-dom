@@ -60,11 +60,34 @@ describe('Amount: Single', () => {
 	it('should work on scope and not apply to target', () => {
 		dom.render(<div>
 			<div id="scope">
-				<div id='target-1'>item 1</div>d
+				<div id='target-1'>item 1</div>
+				d
 				<div id='target-2'>item 2</div>
 			</div>
 		</div>);
 
 		return glanceDOM('scope #single > item').should.deep.equal(dom.get('target-1', 'target-2'));
+	});
+});
+
+describe('Amount: single and many', () => {
+	it('should throw an unsupported error', () => {
+		dom.render(<div></div>);
+
+		return (() => glanceDOM('target #single #many')).should.throw('Using single and many together is not supported. Please pick one');
+	});
+
+	it('should throw an unsupported error', () => {
+		dom.render(<div></div>);
+
+		return (() => glanceDOM('target #many #single')).should.throw('Using single and many together is not supported. Please pick one');
+	});
+
+	it('should work if used in scope and target', () => {
+		dom.render(<div id='scope'>
+			<div id='target'></div>
+		</div>);
+
+		return glanceDOM('scope #many > target #single').should.deep.equal(dom.get('target'));
 	});
 });

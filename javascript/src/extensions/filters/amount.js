@@ -3,6 +3,12 @@ import log from '../../utils/log';
 let single = {
 	options: {
 		single: {
+			check: function({options}) {
+				if (options.indexOf('single') !== -1 && options.indexOf('many') !== -1)
+					throw new Error('Using single and many together is not supported. Please pick one');
+
+				return true;
+			},
 			filter: function({elements}) {
 				log.debug('Returning single element');
 
@@ -23,7 +29,13 @@ let single = {
 let many = {
 	options: {
 		many: {
-			filter: function({elements}) {
+			check: function({options}) {
+				if (options.indexOf('single') !== -1 && options.indexOf('many') !== -1)
+					throw new Error('Using single and many together is not supported. Please pick one');
+
+				return true;
+			},
+			filter: function({elements, options}) {
 				log.debug('Return all elements');
 
 				return elements;

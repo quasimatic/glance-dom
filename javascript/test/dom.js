@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 export default {
 	get(...ids) {
-		var result = ids.map(id => document.querySelector(`#${id}`));
+		let result = ids.map(id => document.querySelector(`#${id}`));
 		return result.length === 1 ? result[0] : result;
 	},
 
@@ -13,7 +13,7 @@ export default {
 
 	render(jsx) {
 		document.body.innerHTML = '';
-		var div = document.createElement('div');
+		let div = document.createElement('div');
 		document.body.appendChild(div);
 		return ReactDOM.render(jsx, div);
 	}
