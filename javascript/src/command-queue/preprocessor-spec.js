@@ -66,8 +66,7 @@ describe('Preprocessor', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 		let commands = preprocessor.create('subject');
 
-		commands.should.deep.equal([
-			{command: 'beforeall'},
+		commands.should.deep.equal([{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
 			{command: 'locate', option: 'custom-label', label: 'subject'},
@@ -92,6 +91,7 @@ describe('Preprocessor', () => {
 			{command: 'filter', option: 'lowest-level-matches'},
 			{command: 'filter', option: 'input-after'},
 			{command: 'filter', option: 'contained-near-scope'},
+			{command: 'filter', option: 'many'},
 			{command: 'afterfiltering', options: []},
 			{command: 'afterall'}]);
 	});
@@ -100,8 +100,7 @@ describe('Preprocessor', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 		let commands = preprocessor.create('scope > subject');
 
-		commands.should.deep.equal([
-			{command: 'beforeall'},
+		commands.should.deep.equal([{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'scope', options: []},
 			{command: 'locate', option: 'custom-label', label: 'scope'},
@@ -126,6 +125,7 @@ describe('Preprocessor', () => {
 			{command: 'filter', option: 'lowest-level-matches'},
 			{command: 'filter', option: 'input-after'},
 			{command: 'filter', option: 'contained-near-scope'},
+			{command: 'filter', option: 'many'},
 			{command: 'afterfiltering', options: []},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
@@ -151,6 +151,7 @@ describe('Preprocessor', () => {
 			{command: 'filter', option: 'lowest-level-matches'},
 			{command: 'filter', option: 'input-after'},
 			{command: 'filter', option: 'contained-near-scope'},
+			{command: 'filter', option: 'many'},
 			{command: 'afterfiltering', options: []},
 			{command: 'afterall'}]);
 	});
@@ -159,8 +160,7 @@ describe('Preprocessor', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 		let commands = preprocessor.create('subject ^ intersect');
 
-		commands.should.deep.equal([
-			{command: 'beforeall'},
+		commands.should.deep.equal([{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
 			{command: 'locate', option: 'custom-label', label: 'subject'},
@@ -219,6 +219,7 @@ describe('Preprocessor', () => {
 			{command: 'filter', option: 'lowest-level-matches'},
 			{command: 'filter', option: 'input-after'},
 			{command: 'filter', option: 'contained-near-scope'},
+			{command: 'filter', option: 'many'},
 			{command: 'afterfiltering', options: []},
 			{command: 'afterall'}]);
 	});
@@ -227,8 +228,7 @@ describe('Preprocessor', () => {
 		let preprocessor = new Preprocessor({extensions, defaultOptions});
 		let commands = preprocessor.create('subject ^ intersect');
 
-		commands.should.deep.equal([
-			{command: 'beforeall'},
+		commands.should.deep.equal([{command: 'beforeall'},
 			{command: 'containers'},
 			{command: 'beforelocating', label: 'subject', options: []},
 			{command: 'locate', option: 'custom-label', label: 'subject'},
@@ -287,6 +287,7 @@ describe('Preprocessor', () => {
 			{command: 'filter', option: 'lowest-level-matches'},
 			{command: 'filter', option: 'input-after'},
 			{command: 'filter', option: 'contained-near-scope'},
+			{command: 'filter', option: 'many'},
 			{command: 'afterfiltering', options: []},
 			{command: 'afterall'}]);
 	});

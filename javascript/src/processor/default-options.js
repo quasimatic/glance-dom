@@ -13,5 +13,6 @@ export default [
 	'visible',
 	'lowest-level-matches',
 	'input-after',
-	'contained-near-scope'
+	'contained-near-scope',
+	'many'
 ];

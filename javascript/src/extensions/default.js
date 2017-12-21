@@ -16,5 +16,6 @@ import closest from './filters/closest';
 import levelMatches from './filters/level-matches';
 import input from './special-labels/input';
 import indexKeywords from './special-options/index-keywords';
+import {single, many} from './filters/amount';
 
-export default [customLabel, containsText, exactText, value, className, image, attribute, nodeType, css, input, levelMatches, visibility, leafNodeTarget, inputAfter, containedNearScope, index, negativeIndex, indexKeywords, closest];
+export default [customLabel, containsText, exactText, value, className, image, attribute, nodeType, css, input, levelMatches, visibility, leafNodeTarget, inputAfter, containedNearScope, index, negativeIndex, indexKeywords, closest, single, many];
