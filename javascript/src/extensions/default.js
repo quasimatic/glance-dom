@@ -3,7 +3,7 @@ import containsText from './locators/contains-text';
 import exactText from './locators/exact-text';
 import value from './locators/value';
 import className from './locators/class';
-import nodeType from './locators/node-type';
+import nodeType from './locators/in-tag-name';
 import css from './locators/css';
 import image from './locators/image';
 import attribute from './locators/attribute';
@@ -15,5 +15,6 @@ import containedNearScope from './filters/contained-near-scope';
 import closest from './filters/closest';
 import levelMatches from './filters/level-matches';
 import input from './special-labels/input';
+import indexKeywords from './special-options/index-keywords';
 
-export default [customLabel, containsText, exactText, value, className, image, attribute, nodeType, css, input, levelMatches, visibility, leafNodeTarget, inputAfter, containedNearScope, index, negativeIndex, closest];
+export default [customLabel, containsText, exactText, value, className, image, attribute, nodeType, css, input, levelMatches, visibility, leafNodeTarget, inputAfter, containedNearScope, index, negativeIndex, indexKeywords, closest];

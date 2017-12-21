@@ -1,8 +1,8 @@
 import dom from '../../../test/dom';
-import extension from './node-type';
+import extension from './in-tag-name';
 
 describe('Locator: Exact Match', () => {
-    let findByNodeType = extension.options['node-type'].locate;
+    let findByNodeType = extension.options['in-tag-name'].locate;
 
     it('should find by node type', () => {
         dom.render(<p id="subject"></p>);

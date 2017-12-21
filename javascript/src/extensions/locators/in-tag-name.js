@@ -3,7 +3,7 @@ import log from "../../utils/log"
 
 export default {
     options: {
-        "node-type": {
+        "in-tag-name": {
             locate: function ({label, containerElements}) {
                 log.debug("Searching by node type:", label);
 
