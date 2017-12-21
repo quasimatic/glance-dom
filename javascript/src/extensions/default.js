@@ -10,10 +10,10 @@ import attribute from './locators/attribute';
 import visibility from './filters/visibility';
 import leafNodeTarget from './filters/leaf-node';
 import inputAfter from './filters/input-after';
-import index from './filters/index';
+import {index, negativeIndex} from './filters/indexing';
 import containedNearScope from './filters/contained-near-scope';
 import closest from './filters/closest';
 import levelMatches from './filters/level-matches';
 import input from './special-labels/input';
 
-export default [customLabel, containsText, exactText, value, className, image, attribute, nodeType, css, input, levelMatches, visibility, leafNodeTarget, inputAfter, containedNearScope, index, closest];
+export default [customLabel, containsText, exactText, value, className, image, attribute, nodeType, css, input, levelMatches, visibility, leafNodeTarget, inputAfter, containedNearScope, index, negativeIndex, closest];
