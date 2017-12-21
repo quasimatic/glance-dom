@@ -44,6 +44,10 @@ export default class FilterPreprocessor {
 
 		possibleOptions.forEach(name => {
 			let possibleOption = options[name];
+			if(typeof(possibleOption) === 'string') {
+				name = possibleOption;
+			}
+
 			if (possibleOption && (typeof(possibleOption) === 'function' || possibleOption.filter)) {
 				if (possibleOption.check && !possibleOption.check({option: name, options:providedOptions})) {
 					return false;
