@@ -13,7 +13,6 @@ To learn more about glance visit the [Glance Website](http://quasimatic.org/glan
 
 ## Coming Soon
 
-- C# .Net (coming soon®)
-- [Dotnet](getting-started/dotnet.md)
+- [.NET](getting-started/dotnet.md) (coming soon®)
 - Java (coming soon)
 - Ruby (coming soon)
