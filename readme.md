@@ -9,16 +9,16 @@ To best understand how it works, experimenting with it goes a long way. You can 
 For details on all good things that are Glance, come [read the docs](http://quasimatic.org/glance-dom).
 
 
-
-## Installing
-
 ### Browser
+
+If you want to use Glance DOM in your Browser simply include it in a ```<script>``` tag on your page as shown below and then use it as shown below in example-script.js
+
 ```javascript
 <script src="http://quasimatic.org/glance-dom/dist/glance-dom.js"></script>
 ```
 
-#### Example
-script.js
+example-script.js - 
+
 ```javascript
 var element = glanceDOM("click me");
 ```
