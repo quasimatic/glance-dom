@@ -14,10 +14,15 @@ For details on all good things that are Glance, come [read the docs](http://quas
 If you want to use Glance DOM in your Browser simply include it in a ```<script>``` tag on your page as shown below and then use it as shown below in example-script.js
 
 ```javascript
-<script src="http://quasimatic.org/glance-dom/dist/glance-dom.js"></script>
+<html>
+  <body>
+    <script src="http://quasimatic.org/glance-dom/dist/glance-dom.js" type="text/javascript"></script>
+    <script src="example-script.js" type="text/javascript"></script>
+  </body>
+</html>
 ```
 
-example-script.js - 
+And then in your ```example-script.js``` file you can find the element that contains "click me" by executing the following:
 
 ```javascript
 var element = glanceDOM("click me");
