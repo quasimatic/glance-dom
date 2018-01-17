@@ -1,5 +1,7 @@
 import containers from './containers';
 import log from '../utils/log';
+import reduce from '@arr/reduce';
+import filter from '@arr/filter';
 
 function dispatch({command, extensions, glanceDOM, result, reference}) {
 	switch (command.command) {
@@ -23,7 +25,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 		case 'intersect':
 			if (result.targetElements.length > 0) {
 				let targetLookup = new Set(result.targetElements);
-				result.targetElements = result.locatedElements.filter(e => targetLookup.has(e));
+				result.targetElements = filter(result.locatedElements, e => targetLookup.has(e));
 				log.debug('Intersected elements:', result.targetElements.length);
 			}
 			else {
@@ -59,8 +61,8 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			break;
 
 		case 'filter':
-			let filter = extensions.getFilterForOption(command.option);
-			let remaining = filter({
+			let filterOption = extensions.getFilterForOption(command.option);
+			let remaining = filterOption({
 				...command,
 				extensions,
 				elements: result.targetElements,
@@ -95,7 +97,7 @@ export default function({commands, extensions, glanceDOM, reference, containerEl
 	state.locatedElements = state.locatedElements || [];
 	state.targetElements = state.targetElements || [];
 
-	let result = commands.reduce((result, command) => {
+	let result = reduce(commands, (result, command) => {
 			if (result.elementsNotFound) return result;
 
 			return dispatch({

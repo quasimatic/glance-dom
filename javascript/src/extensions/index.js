@@ -1,3 +1,7 @@
+import reduce from '@arr/reduce';
+import filter from '@arr/filter';
+import map from '@arr/map';
+
 export default class Extensions {
 	constructor(extensions = []) {
 		this.extensions = extensions;
@@ -21,17 +25,19 @@ export default class Extensions {
 	}
 
 	getDynamicLocator(option, label) {
-		let catchAlls = this.extensions.filter(e => e.locator ? e.locator.check({label, option}) : false)
-			.map(e => e.locator.locate);
+		let catchAlls = map(filter(this.extensions, e => e.locator ? e.locator.check({
+			label,
+			option
+		}) : false), e => e.locator.locate);
 
 		if (catchAlls.length > 0) {
-			return (data) => catchAlls.reduce((result, locate) => result.concat(locate(data)), []);
+			return (data) => reduce(catchAlls, (result, locate) => result.concat(locate(data)), []);
 		}
 	}
 
 	getLocator(locator) {
 		if (Object.prototype.toString.call(locator) === '[object Array]') {
-			return ({glanceDOM}) => locator.reduce((result, label) => result.concat(glanceDOM(label), []), []);
+			return ({glanceDOM}) => reduce(locator, (result, label) => result.concat(glanceDOM(label), []), []);
 		}
 		else if (typeof(locator) === 'string') {
 			return ({glanceDOM}) => glanceDOM(locator);
@@ -54,11 +60,13 @@ export default class Extensions {
 	}
 
 	getDynamicFilter(option, label) {
-		let catchAlls = this.extensions.filter(e => e.filter ? e.filter.check({label, option}) : false)
-			.map(e => e.filter.filter);
+		let catchAlls = map(filter(this.extensions, e => e.filter ? e.filter.check({
+			label,
+			option
+		}) : false), e => e.filter.filter);
 
 		if (catchAlls.length > 0) {
-			return (data) => catchAlls.reduce((result, filter) => result.concat(filter(data)), []);
+			return (data) => reduce(catchAlls, (result, filter) => result.concat(filter(data)), []);
 		}
 	}
 
@@ -75,25 +83,21 @@ export default class Extensions {
 	}
 
 	static labels(extensions) {
-		return extensions
-			.filter(e => e.labels)
-			.reduce((l, e) => Object.assign(l, e.labels), {});
+		return reduce(filter(extensions, e => e.labels), (l, e) => Object.assign(l, e.labels), {});
 	}
 
 	static options(extensions) {
-		return extensions
-			.filter(e => e.options)
-			.reduce((l, e) => {
-				return {...l, ...e.options};
-			}, {});
+		return reduce(filter(extensions, e => e.options), (l, e) => {
+			return {...l, ...e.options};
+		}, {});
 	}
 
 	getBeforeAllHooks() {
-		return this.extensions.filter(e => e.beforeAll).map(e => e.beforeAll);
+		return map(filter(this.extensions, e => e.beforeAll), e => e.beforeAll);
 	}
 
 	getAfterAllHooks() {
-		return this.extensions.filter(e => e.afterAll).map(e => e.afterAll);
+		return map(filter(this.extensions, e => e.afterAll), e => e.afterAll);
 	}
 
 };

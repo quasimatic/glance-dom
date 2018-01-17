@@ -1,4 +1,6 @@
 import log from '../../utils/log';
+import filter from '@arr/filter';
+import map from '@arr/map';
 
 function sqr(x) {
 	return x * x;
@@ -58,7 +60,7 @@ export default {
 			filter: function({elements, scopeElements}) {
 				log.debug('Filtering for closest element to scope');
 
-				return scopeElements.map(scope => {
+				return map(scopeElements, scope => {
 					let base = getSizeAndLocation(scope);
 
 					let baseID = base.element;
@@ -67,9 +69,9 @@ export default {
 					a.x = a.x + (base.width / 2);
 					a.y = a.y + (base.height / 2);
 
-					let targets = elements.map(e => getSizeAndLocation(e));
+					let targets = map(elements, e => getSizeAndLocation(e));
 
-					let sorted = targets.filter((t) => t.element !== baseID).sort(function(x, y) {
+					let sorted = filter(targets, (t) => t.element !== baseID).sort(function(x, y) {
 						let l = shortestDistance(a, x);
 						let r = shortestDistance(a, y);
 						return (l < r) ? -1 : (l > r) ? 1 : 0;

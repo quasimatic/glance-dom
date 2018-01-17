@@ -1,4 +1,5 @@
 import log from '../../utils/log';
+import filter from '@arr/filter';
 
 export default {
 	options: {
@@ -9,7 +10,7 @@ export default {
 			filter: function visible({elements}) {
 				log.debug('Filtering for visible elements');
 
-				return elements.filter(function(e) {
+				return filter(elements, function(e) {
 					if (e.tagName.toLowerCase() === 'option' || e.offsetParent) {
 						return true;
 					}
@@ -27,7 +28,7 @@ export default {
 			filter: function visible({elements}) {
 				log.debug('Filtering for hidden elements');
 
-				return elements.filter(function(e) {
+				return filter(elements, function(e) {
 					let style = window.getComputedStyle(e);
 					return style.display === 'none' || style.visibility === 'hidden';
 				});

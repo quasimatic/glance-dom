@@ -1,7 +1,9 @@
+import reduce from '@arr/reduce';
+
 export default function (elements, containerElements, includeSelf = true) {
     let containerLookup = new Set(containerElements);
 
-    return [].concat(elements).reduce((result, element) => {
+    return reduce([].concat(elements), (result, element) => {
         let parent = includeSelf ? element : element.parentNode;
         let parents = [];
         while (parent !== null && parent.outerHTML !== null) {

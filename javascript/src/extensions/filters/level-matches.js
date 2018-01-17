@@ -1,4 +1,6 @@
 import log from '../../utils/log';
+import filter from '@arr/filter';
+import some from '@arr/some';
 
 export default {
 	options: {
@@ -9,7 +11,7 @@ export default {
 			filter: function closestdom({elements}) {
 				log.debug('Filtering for the lowest level matches');
 
-				return elements.filter(element => !elements.some(e => element !== e && element.contains(e)));
+				return filter(elements, element => !some(elements, e => element !== e && element.contains(e)));
 			}
 		},
 		'highest-level-matches': {
@@ -19,7 +21,7 @@ export default {
 			filter: function closestdom({elements}) {
 				log.debug('Filtering for the highest level matches');
 
-				return elements.filter(element => elements.some(e => element !== e && !e.contains(element)));
+				return filter(elements, element => some(elements, e => element !== e && !e.contains(element)));
 			}
 		}
 	}

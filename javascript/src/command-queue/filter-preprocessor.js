@@ -1,4 +1,5 @@
 import Extensions from '../extensions';
+import filter from '@arr/filter';
 
 export default class FilterPreprocessor {
 	constructor({extensions = new Extensions(), defaultOptions = []} = {
@@ -32,30 +33,30 @@ export default class FilterPreprocessor {
 		let possibleOptions = providedOptions;
 		let validOptions = [];
 
-		if(!providedOptions.includes("no-default-filters")) {
-			let defaultOptionsNotSpecified = defaultOptions.filter(d => possibleOptions.indexOf(d) === -1);
+		if (!providedOptions.includes('no-default-filters')) {
+			let defaultOptionsNotSpecified = filter(defaultOptions, d => possibleOptions.indexOf(d) === -1);
 
 			if (defaultOptionsNotSpecified.length > 0)
 				possibleOptions = defaultOptionsNotSpecified.concat(possibleOptions);
 		}
 		else {
-			possibleOptions = providedOptions.filter(o => o !== "no-default-filters");
+			possibleOptions = filter(providedOptions, o => o !== 'no-default-filters');
 		}
 
 		possibleOptions.forEach(name => {
 			let possibleOption = options[name];
-			if(typeof(possibleOption) === 'string') {
+			if (typeof(possibleOption) === 'string') {
 				name = possibleOption;
 			}
 
 			if (possibleOption && (typeof(possibleOption) === 'function' || possibleOption.filter)) {
-				if (possibleOption.check && !possibleOption.check({option: name, options:providedOptions})) {
+				if (possibleOption.check && !possibleOption.check({option: name, options: providedOptions})) {
 					return false;
 				}
 				validOptions = validOptions.concat(name);
 			}
 			else {
-				let catchAlls = extensions.getExtensions().filter(e => {
+				let catchAlls = filter(extensions.getExtensions(), e => {
 					if (e.filter) {
 						return e.filter.check({option: name});
 					}

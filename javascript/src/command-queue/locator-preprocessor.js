@@ -1,4 +1,6 @@
 import Extensions from '../extensions';
+import filter from '@arr/filter';
+import map from '@arr/map';
 
 export default class LocatorPreprocessor {
 	constructor({extensions = new Extensions(), defaultOptions = []} = {
@@ -57,7 +59,7 @@ export default class LocatorPreprocessor {
 				validOptions = validOptions.concat(name);
 			}
 			else {
-				let catchAlls = extensions.getExtensions().filter(e => {
+				let catchAlls = filter(extensions.getExtensions(), e => {
 					if (e.locator) {
 						return e.locator.check({label, option: name});
 					}
@@ -66,7 +68,7 @@ export default class LocatorPreprocessor {
 				});
 
 				if (catchAlls.length > 0) {
-					validOptions = validOptions.concat(catchAlls.map(e => (name)));
+					validOptions = validOptions.concat(map(catchAlls, e => (name)));
 				}
 			}
 		});

@@ -1,4 +1,6 @@
 import log from '../../utils/log';
+import reduce from '@arr/reduce';
+import filter from '@arr/filter';
 
 export default {
 	options: {
@@ -10,11 +12,11 @@ export default {
 
 				if (scopeElements.length === 0) return elements;
 
-				let foundElements = scopeElements.reduce((result, scope) => {
+				let foundElements = reduce(scopeElements, (result, scope) => {
 					let p = scope;
 
 					do {
-						let found = elements.filter(element => p === element || p.contains(element));
+						let found = filter(elements, element => p === element || p.contains(element));
 
 						if (found.length > 0 || containerLookup.has(p)) {
 							result = result.concat(found);

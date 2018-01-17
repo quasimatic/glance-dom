@@ -2,6 +2,7 @@ import parse from 'glance-parser';
 import LocatorCollector from './locator-preprocessor';
 import FilterCollector from './filter-preprocessor';
 import Extensions from '../extensions';
+import reduce from '@arr/reduce';
 
 export default class Preprocessor {
 	constructor({extensions = new Extensions(), defaultOptions = []} = {
@@ -18,7 +19,7 @@ export default class Preprocessor {
 
 		commands.push({command: 'beforeall'});
 
-		commands = commands.concat(scopes.reduce((result, scope) => result.concat({command: 'containers'}, this.processIntersect(scope)), []));
+		commands = commands.concat(reduce(scopes, (result, scope) => result.concat({command: 'containers'}, this.processIntersect(scope)), []));
 
 		commands.push({command: 'afterall'});
 
@@ -26,7 +27,7 @@ export default class Preprocessor {
 	}
 
 	processIntersect(intersects) {
-		let located = intersects.reduce((result, target) => {
+		let located = reduce(intersects, (result, target) => {
 			return result.concat(
 				{command: 'beforelocating', ...target},
 				this.locators(target),
@@ -34,7 +35,7 @@ export default class Preprocessor {
 				{command: 'intersect'});
 		}, []);
 
-		let options = intersects.reduce((r, t) => r.concat(t.options), []);
+		let options = reduce(intersects, (r, t) => r.concat(t.options), []);
 
 		return located.concat(
 			{command: 'beforefiltering', options},
