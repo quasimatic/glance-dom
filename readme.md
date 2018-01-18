@@ -16,6 +16,8 @@ If you want to use Glance DOM in your Browser simply include it in a ```<script>
 ```javascript
 <html>
   <body>
+    <button type="submit">Buy It!</button>
+    
     <script src="http://quasimatic.org/glance-dom/dist/glance-dom.js" type="text/javascript"></script>
     <script src="example-script.js" type="text/javascript"></script>
   </body>
@@ -25,8 +27,10 @@ If you want to use Glance DOM in your Browser simply include it in a ```<script>
 And then in your ```example-script.js``` file you can find the element that contains "click me" by executing the following:
 
 ```javascript
-var element = glanceDOM("click me");
+var element = glanceDOM("Buy It!");
 ```
+
+Once executed, ```element``` will contain the ```button``` element that contains the text "Buy It!". You never had to drop down to using any kind of CSS selector, or God forbid XPATH :)
 
 ### Node
 
