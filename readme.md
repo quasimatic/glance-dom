@@ -6,7 +6,7 @@ To best understand how it works, experimenting with it goes a long way. You can 
 
 ## Documentation
 
-For details on all good things that are Glance, come [read the docs](http://quasimatic.org/glance-dom).
+For details on all good things that are Glance, come [read the docs here](http://quasimatic.org/glance-dom).
 
 
 ### Browser
