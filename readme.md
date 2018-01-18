@@ -23,6 +23,7 @@ If you want to use Glance DOM in your Browser simply include it in a ```<script>
   </body>
 </html>
 ```
+###### NOTE: In the above example Glance is being served over http. It is also available at https://quasimatic.org/glance-dom/dist/glance-dom.js
 
 And then in your ```example-script.js``` file you can find the element that contains "click me" by executing the following:
 
