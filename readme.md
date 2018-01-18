@@ -8,7 +8,7 @@ To best understand how it works, experimenting with it goes a long way. You can 
 
 For details on all good things that are Glance, come [read the docs here](http://quasimatic.org/glance-dom). 
 
-Documenting everything is currently being worked on so if there are differences between what you see here and what you see in the GitBook, please bare with us as we're working hard to pull them together.
+Documenting everything is currently being worked on so if there are differences between what you see here and what you see in the GitBook, please bare with us as we're working hard to pull them together. Nothing is inconsistant between the two, but you might find some here and some there for just a while.
 
 
 ### Browser
