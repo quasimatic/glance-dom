@@ -1,6 +1,6 @@
 # Glance DOM
 
-Glance is a simple way to reference elements in the DOM. It’s intention and hope is to keep you from looking at the DOM in order to gain a handle to an element. However, if you do inspect the DOM (for example to grab a class or an id off of an element in case that's your only option) then referencing elements by classes and id’s are supported too. 
+Glance is a simple way to reference elements in the DOM. It’s intention and hope is to keep you from looking at the DOM in order to gain a handle to an element. However, if you do inspect the DOM (for example to grab a ```class``` or an ```id``` off of an element in case that's your only option) then referencing elements by classes and id’s are supported too. 
 
 To best understand how it works, experimenting with it goes a long way. You can learn how to read Glance by playing a game… [Come Take A Glance](http://quasimatic.org/take-a-glance/). Learn even more at [Quasimatic.org](https://quasimatic.org/glance)
 
