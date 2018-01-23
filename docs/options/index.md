@@ -2,6 +2,10 @@
 
 These options are added to end of a Glance label to allow us to change how the object is found or filtered
 
+
+ * [#contains-text](contains-text.md)
+ * [#exact-text](exact-text.md)
+
 <dl>
   <dt>#attribute-&lt;attribute name&gt;</dt>
   <dd>limit the search to the specified attribute name<br><br>
@@ -15,17 +19,10 @@ These options are added to end of a Glance label to allow us to change how the o
   <dd>visibly closest element to the scope<br><br>
   Example Code: https://codepen.io/quasimatic/pen/YVoEYo
   </dd>
-  <dt>#contains-text</dt>
-  <dd>selector given can be part of a longer text string<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/bWPwjK
   </dd>
   <dt>#css</dt>
   <dd>applies selector as a css query<br><br>
   Example Code: http://codepen.io/quasimatic/pen/xdJKJP
-  </dd>
-  <dt>#exact-text</dt>
-  <dd>find only elements that are an exact textual match<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/qmzVJv
   </dd>
   <dt>#hidden</dt>
   <dd>limit the search to hidden elements</dd>
