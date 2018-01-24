@@ -1,6 +1,12 @@
 ## default options
 implicit options on the target.
 
+##case-insensitive
+Treating or interpreting upper- and lowercase letters as being the same.
+
+##case-sensitive
+Treating or interpreting upper- and lowercase letters as being different.
+
 ## filter
 Option used for limiting the found targets down to some smaller set.
 
