@@ -5,12 +5,10 @@ These options are added to end of a Glance label to allow us to change how the o
 
  * [#contains-text](contains-text.md)
  * [#exact-text](exact-text.md)
+ * [#attribute-&lt;attribute name&gt;](attribute-attributename.md)
 
 <dl>
-  <dt>#attribute-&lt;attribute name&gt;</dt>
-  <dd>limit the search to the specified attribute name<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/zwQVEL
-  </dd>
+
   <dt>#class</dt>
   <dd>limit the selector to class attribute<br><br>
   Example Code: https://codepen.io/quasimatic/pen/OmebeK

@@ -6,6 +6,7 @@
   * [Java](getting-started/java.md) - coming soon
   * [Ruby](getting-started/ruby.md) - coming soon
 * [Options](options/index.md)
+   * [#attribute-attributename](options/attribute-attributename.md)
    * [#contains-text](options/contains-text.md)
    * [#exact-text](options/exact-text.md)
 * [Glossary](glossary.md)
