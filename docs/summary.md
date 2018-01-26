@@ -7,6 +7,7 @@
   * [Ruby](getting-started/ruby.md) - coming soon
 * [Options](options/index.md)
    * [#attribute-attributename](options/attribute-attributename.md)
+   * [#class](options/class.md)
    * [#contains-text](options/contains-text.md)
    * [#exact-text](options/exact-text.md)
 * [Glossary](glossary.md)

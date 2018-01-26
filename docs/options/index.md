@@ -6,6 +6,7 @@ These options are added to end of a Glance label to allow us to change how the o
  * [#contains-text](contains-text.md)
  * [#exact-text](exact-text.md)
  * [#attribute-&lt;attribute name&gt;](attribute-attributename.md)
+ * [#class](class.md)
 
 <dl>
 
