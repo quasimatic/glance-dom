@@ -1,4 +1,4 @@
-\#contains-text
+####\#contains-text
 
 Element properties that have the phrase you are looking for. This defaults to case-insensitive searching.
 
