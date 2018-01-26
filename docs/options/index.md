@@ -7,18 +7,9 @@ These options are added to end of a Glance label to allow us to change how the o
  * [#exact-text](exact-text.md)
  * [#attribute-&lt;attribute name&gt;](attribute-attributename.md)
  * [#class](class.md)
+ * [#closest](closest.md)
 
 <dl>
-
-  <dt>#class</dt>
-  <dd>limit the selector to class attribute<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/OmebeK
-  </dd>
-  <dt>#closest</dt>
-  <dd>visibly closest element to the scope<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/YVoEYo
-  </dd>
-  </dd>
   <dt>#css</dt>
   <dd>applies selector as a css query<br><br>
   Example Code: http://codepen.io/quasimatic/pen/xdJKJP
