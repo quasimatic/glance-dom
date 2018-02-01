@@ -7,6 +7,9 @@ Treating or interpreting upper- and lowercase letters as being the same.
 ##case-sensitive
 Treating or interpreting upper- and lowercase letters as being different.
 
+##container
+the determined boundary for a scope and a subject which can be the scope but may not be.
+
 ## filter
 Option used for limiting the found targets down to some smaller set.
 
