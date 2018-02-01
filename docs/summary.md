@@ -15,4 +15,5 @@
    * [#hidden](options/hidden.md)
    * [#id](options/id.md)
    * [#index](options/glance-index.md)
+   * [#node-type](options/node-type.md)
 * [Glossary](glossary.md)

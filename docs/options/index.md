@@ -12,12 +12,9 @@ These options are added to end of a Glance label to allow us to change how the o
  * [#hidden](hidden.md)
  * [#id](id.md)
  * [#&lt;index&gt;](glance-index.md)
+ * [#node-type](node-type.md)
 
 <dl>
-  <dt>#node-type</dt>
-  <dd>look only for elements that match this node-type<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/rmEWQy
-  </dd>
   <dt>#value</dt>
   <dd>look for the selector in the value attribute</dd>
   <dt>#visible</dt>
