@@ -13,6 +13,7 @@ These options are added to end of a Glance label to allow us to change how the o
  * [#id](id.md)
  * [#&lt;index&gt;](glance-index.md)
  * [#node-type](node-type.md)
+ * [#value](value.md)
 
 <dl>
   <dt>#value</dt>

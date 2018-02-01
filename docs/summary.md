@@ -16,4 +16,5 @@
    * [#id](options/id.md)
    * [#index](options/glance-index.md)
    * [#node-type](options/node-type.md)
+   * [#value](options/value.md)
 * [Glossary](glossary.md)
