@@ -14,12 +14,4 @@ These options are added to end of a Glance label to allow us to change how the o
  * [#&lt;index&gt;](glance-index.md)
  * [#node-type](node-type.md)
  * [#value](value.md)
-
-<dl>
-  <dt>#value</dt>
-  <dd>look for the selector in the value attribute</dd>
-  <dt>#visible</dt>
-  <dd>default behavior - return only visible elements<br><br>
-  Example Code: https://codepen.io/quasimatic/pen/MmqGGq
-  </dd>
-</dl>
+ * [#visible](visible.md)

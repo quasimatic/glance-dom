@@ -17,4 +17,5 @@
    * [#index](options/glance-index.md)
    * [#node-type](options/node-type.md)
    * [#value](options/value.md)
+   * [#visible](options/visible.md)
 * [Glossary](glossary.md)
