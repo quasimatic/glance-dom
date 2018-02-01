@@ -12,4 +12,5 @@
    * [#css](options/css.md)
    * [#contains-text](options/contains-text.md)
    * [#exact-text](options/exact-text.md)
+   * [#hidden](options/hidden.md)
 * [Glossary](glossary.md)

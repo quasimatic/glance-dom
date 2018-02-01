@@ -9,10 +9,9 @@ These options are added to end of a Glance label to allow us to change how the o
  * [#contains-text](contains-text.md)
  * [#css](css.md)
  * [#exact-text](exact-text.md)
+ * [#hidden](hidden.md)
 
 <dl>
-  <dt>#hidden</dt>
-  <dd>limit the search to hidden elements</dd>
   <dt>#id</dt>
   <dd>limit the search to the specified id (fastest way to search)</dd>
   <dt>#&lt;index&gt;</dt>
