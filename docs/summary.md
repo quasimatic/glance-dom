@@ -13,4 +13,6 @@
    * [#contains-text](options/contains-text.md)
    * [#exact-text](options/exact-text.md)
    * [#hidden](options/hidden.md)
+   * [#id](options/id.md)
+   * [#index](options/glance-index.md)
 * [Glossary](glossary.md)
