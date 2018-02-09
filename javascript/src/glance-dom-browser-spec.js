@@ -49,6 +49,6 @@ describe('Glance Selector', () => {
 	});
 
 	it('should provide a way to run the processor', () => {
-		glanceDOM.process([], {advanced: true}).should.have.property('containerElements');
+		glanceDOM.process([], {advanced: true}).should.have.property('containers');
 	});
 });

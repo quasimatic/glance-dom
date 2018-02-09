@@ -10,29 +10,29 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			break;
 
 		case 'containers':
-			if (result.scopeElements) {
-				result.containerElements = containers(result.scopeElements, result.subjectElements);
+			if (result.scopes) {
+				result.containers = containers(result.scopes, result.subjects);
 			}
 
-			if (result.subjectElements.length > 0)
-				result.scopeElements = result.subjectElements;
+			if (result.subjects.length > 0)
+				result.scopes = result.subjects;
 
 			result.locatedElements = [];
-			result.targetElements = [];
-			result.subjectElements = [];
+			result.targets = [];
+			result.subjects = [];
 			break;
 
 		case 'intersect':
-			if (result.targetElements.length > 0) {
-				let targetLookup = new Set(result.targetElements);
-				result.targetElements = filter(result.locatedElements, e => targetLookup.has(e));
-				log.debug('Intersected elements:', result.targetElements.length);
+			if (result.targets.length > 0) {
+				let targetLookup = new Set(result.targets);
+				result.targets = filter(result.locatedElements, e => targetLookup.has(e));
+				log.debug('Intersected elements:', result.targets.length);
 			}
 			else {
-				result.targetElements = result.locatedElements;
+				result.targets = result.locatedElements;
 			}
 
-			if (result.targetElements.length === 0)
+			if (result.targets.length === 0)
 				result.elementsNotFound = true;
 
 			result.locatedElements = [];
@@ -45,7 +45,7 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 				...command,
 				extensions,
 				glanceDOM,
-				containerElements: result.containerElements
+				containerElements: result.containers
 			});
 
 			if (located.length > 0) log.debug('Located:', located.length);
@@ -65,37 +65,37 @@ function dispatch({command, extensions, glanceDOM, result, reference}) {
 			let remaining = filterOption({
 				...command,
 				extensions,
-				elements: result.targetElements,
-				scopeElements: result.scopeElements
+				elements: result.targets,
+				scopeElements: result.scopes
 			});
 
-			if (result.targetElements.length !== remaining.length) {
-				log.debug(`Filtered out ${result.targetElements.length - remaining.length}`);
+			if (result.targets.length !== remaining.length) {
+				log.debug(`Filtered out ${result.targets.length - remaining.length}`);
 				log.debug(`Remaining ${remaining.length}`);
 			}
 
-			result.targetElements = remaining;
+			result.targets = remaining;
 			break;
 
 		case 'afterfiltering':
-			log.debug(`Elements remaining after filter: ${result.targetElements.length}`);
-			result.subjectElements = result.targetElements;
+			log.debug(`Elements remaining after filter: ${result.targets.length}`);
+			result.subjects = result.targets;
 			break;
 
 		case 'afterall':
-			result.containerElements = containers(result.scopeElements, result.subjectElements);
-			extensions.getAfterAllHooks().forEach(h => h({reference, elements: result.subjectElements}));
+			result.containers = containers(result.scopes, result.subjects);
+			extensions.getAfterAllHooks().forEach(h => h({reference, elements: result.subjects}));
 			break;
 	}
 
 	return result;
 }
 
-export default function({commands, extensions, glanceDOM, reference, containerElements, advanced, state = {}}) {
-	state.containerElements = state.containerElements || containerElements;
-	state.subjectElements = state.subjectElements || [];
-	state.locatedElements = state.locatedElements || [];
-	state.targetElements = state.targetElements || [];
+export default function({commands, extensions, glanceDOM, reference, containerElements, advanced, survey = {}}) {
+	survey.containers = survey.containers || containerElements;
+	survey.subjects = survey.subjects || [];
+	survey.locatedElements = survey.locatedElements || [];
+	survey.targets = survey.targets || [];
 
 	let result = reduce(commands, (result, command) => {
 			if (result.elementsNotFound) return result;
@@ -108,18 +108,18 @@ export default function({commands, extensions, glanceDOM, reference, containerEl
 				result
 			});
 		},
-		state
+		survey
 	);
 
-	log.debug(`Elements found: ${result.subjectElements.length}`);
+	log.debug(`Elements found: ${result.subjects.length}`);
 
 	if (advanced)
 		return {
 			...result,
 			reference: reference,
-			elements: result.subjectElements,
+			elements: result.subjects,
 			logs: log.logs
 		};
 	else
-		return result.subjectElements.length === 1 ? result.subjectElements[0] : result.subjectElements;
+		return result.subjects.length === 1 ? result.subjects[0] : result.subjects;
 };

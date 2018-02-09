@@ -48,6 +48,6 @@ describe('Advanced', () => {
 				<div id='subject'/>
 			</div>);
 
-		glanceDOM('scope > subject', {advanced: true}).should.have.property('containerElements').and.deep.equal(dom.getArray('container'));
+		glanceDOM('scope > subject', {advanced: true}).should.have.property('containers').and.deep.equal(dom.getArray('container'));
 	});
 });

@@ -12,7 +12,7 @@ describe('Subjects', () => {
 
 		let commands = glanceDOM.preprocess('scope > subject');
 
-		let result = commands.reduce((state, c) => glanceDOM.process(c, {advanced: true, state}), {});
+		let result = commands.reduce((survey, c) => glanceDOM.process(c, {advanced: true, survey}), {});
 		result.should.have.property('elements').deep.equal(dom.getArray('subject'));
 	});
 });
