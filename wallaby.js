@@ -9,7 +9,8 @@ module.exports = function(wallaby) {
 					loader: 'babel-loader',
 					exclude: /node_modules/,
 					query: {
-						presets: ['es2015']
+						presets: ['env'],
+						plugins: ['transform-object-rest-spread', 'transform-object-assign'],
 					}
 				}
 			]
@@ -44,7 +45,8 @@ module.exports = function(wallaby) {
 
 		compilers: {
 			'**/*.js': wallaby.compilers.babel({
-				presets: ['es2015', 'react', 'stage-0'],
+				presets: ['env', 'react'],
+				plugins: ['transform-object-rest-spread', 'transform-object-assign'],
 				babel: require('babel-core')
 			})
 		},

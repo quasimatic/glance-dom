@@ -83,7 +83,7 @@ export default class Extensions {
 	}
 
 	static labels(extensions) {
-		return reduce(filter(extensions, e => e.labels), (l, e) => Object.assign(l, e.labels), {});
+		return reduce(filter(extensions, e => e.labels), (l, e) => {return {...l, ...e.labels}}, {});
 	}
 
 	static options(extensions) {
