@@ -1,11 +1,11 @@
 import dom from '../../../test/dom';
-import extension from './in-tag-name';
+import extension from './tag-name';
 
 describe('Locator: Exact Match', () => {
-    let findByNodeType = extension.options['in-tag-name'].locate;
+    let findByNodeType = extension.options['tag-name'].locate;
 
     it('should find by node type', () => {
-        dom.render(<p id="subject"></p>);
+        dom.render(<p id="subject"/>);
 
         findByNodeType({
             label: 'p',
@@ -14,7 +14,7 @@ describe('Locator: Exact Match', () => {
     });
 
     it('should not find by node type', () => {
-        dom.render(<span></span>);
+        dom.render(<span/>);
 
         findByNodeType({label: 'p', containerElements: [document.documentElement]}).should.deep.equal([]);
     });

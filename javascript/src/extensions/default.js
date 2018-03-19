@@ -3,7 +3,7 @@ import containsText from './locators/contains-text';
 import exactText from './locators/exact-text';
 import value from './locators/value';
 import className from './locators/class';
-import nodeType from './locators/in-tag-name';
+import nodeType from './locators/tag-name';
 import css from './locators/css';
 import image from './locators/image';
 import attribute from './locators/attribute';

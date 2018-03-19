@@ -9,7 +9,7 @@ export default [
 	'image',
 	'attribute-alt',
 	'attribute-type',
-	'in-tag-name',
+	'tag-name',
 	'visible',
 	'lowest-level-matches',
 	'input-after',
