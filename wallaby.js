@@ -1,9 +1,9 @@
-var wallabyWebpack = require('wallaby-webpack');
+const wallabyWebpack = require('wallaby-webpack');
 
 module.exports = function(wallaby) {
-	var webpackPostprocessor = wallabyWebpack({
+	const webpackPostprocessor = wallabyWebpack({
 		module: {
-			loaders: [
+			rules: [
 				{
 					test: /.js?$/,
 					loader: 'babel-loader',
@@ -16,7 +16,7 @@ module.exports = function(wallaby) {
 			]
 		},
 		node: {
-			fs: "empty"
+			fs: 'empty'
 		}
 	});
 
@@ -58,7 +58,7 @@ module.exports = function(wallaby) {
 		setup: function() {
 			window.expect = chai.expect;
 
-			var should = chai.should();
+			chai.should();
 
 			window.__moduleBundler.loadTests();
 		}

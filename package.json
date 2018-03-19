@@ -7,8 +7,8 @@
   "scripts": {
     "build": "npm run build:browser && npm run build:node",
     "build:node": "rm -rf javascript/lib && babel javascript/src -d javascript/lib",
-    "build:browser": "rm -rf dist && webpack --config webpack-browser.js && webpack --config webpack-jquery.js",
-    "prepublish": "npm run build",
+    "build:browser": "rm -rf dist && webpack --mode production --config webpack-browser.js && webpack --mode production --config webpack-jquery.js",
+    "prepublishOnly": "npm run build",
     "docs:clean": "rm -rf docs/_book",
     "docs:prepare": "cd docs && gitbook install",
     "docs:watch": "npm run docs:prepare && cd docs && gitbook serve",
@@ -36,8 +36,8 @@
   "homepage": "https://github.com/quasimatic/glance-dom",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.1",
-    "babel-loader": "^7.1.2",
+    "babel-eslint": "^8.2.2",
+    "babel-loader": "^7.1.4",
     "babel-plugin-transform-object-assign": "^6.22.0",
     "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
@@ -45,17 +45,18 @@
     "babel-preset-stage-0": "^6.24.1",
     "babelify": "^8.0.0",
     "chai": "^4.1.2",
-    "eslint": "^4.17.0",
+    "eslint": "^4.19.0",
     "gitbook-cli": "^2.3.2",
     "inject-loader": "^3.0.1",
     "jquery": "^3.3.1",
-    "mocha": "^5.0.1",
+    "mocha": "^5.0.4",
     "pegjs": "^0.10.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "sinon": "^4.3.0",
-    "wallaby-webpack": "3.9.4",
-    "webpack": "^3.11.0"
+    "sinon": "^4.4.6",
+    "wallaby-webpack": "3.9.5",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   },
   "babel": {
     "ignore": [
