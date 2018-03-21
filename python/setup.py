@@ -6,7 +6,7 @@ setup(
     package_data={
         'glance_dom': ['scr/glance-dom.js'],
     },
-    version='0.11.8-0',
+    version='0.11.8-1',
     description='Quickly reference DOM elements with minimal inspection.',
     long_description=open('README.rst').read(),
     author='Dan Gilkerson',
