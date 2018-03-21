@@ -1,7 +1,7 @@
 module.exports = {
 	entry: './javascript/src/browser/index.js',
 	output: {
-		filename: './dist/glance-dom.js'
+		filename: './glance-dom.js'
 	},
 	module: {
 		rules: [
